@@ -21,7 +21,7 @@ public class BillInfoService {
 		db = helper.getReadableDatabase();
 	}
 	
-	/**billÊı¾İ¿âÊôĞÔ
+	/**billæ•°æ®åº“å±æ€§
 	 *idx integer primary key autoincrement, jine text, incatagory text,
 	 * outcatagory text , outcatagorychildid integer, outcatagoryparentid integer,
 	 *  account text, accountid integer, date text, dateymd text,
@@ -32,7 +32,7 @@ public class BillInfoService {
 	
 	
 	
-	//Ìí¼ÓÖ§³öÀàĞÍµÄÕËµ¥ĞÅÏ¢
+	//æ·»åŠ æ”¯å‡ºç±»å‹çš„è´¦å•ä¿¡æ¯
 	public void addOutBill(Bill bill) {
 //		Log.i("a", bill.toString());
 		db.execSQL("insert into bill_info (jine, outcatagory, outcatagorychildid, outcatagoryparentid, account, accountid, date, dateymd, member, beizhu, isCanBaoXiao, billType) values (?,?,?,?,?,?,?,?,?,?,?, ?)", 
@@ -47,7 +47,7 @@ public class BillInfoService {
 		accountService.updateOutAccount(bill);
 		
 	}
-	//Ìí¼ÓÊÕÈëÀàĞÍµÄÕËµ¥ĞÅÏ¢
+	//æ·»åŠ æ”¶å…¥ç±»å‹çš„è´¦å•ä¿¡æ¯
 	public void addInBill(Bill bill) {
 //		Log.i("a", bill.toString());
 		db.execSQL("insert into bill_info (jine, incatagory, account, accountid, date,dateymd, member, beizhu, billType) values (?, ?,?, ?, ?, ?, ?, ?, ?)", 
@@ -61,7 +61,7 @@ public class BillInfoService {
 //		db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(currentAccountYue), String.valueOf(bill.getAccountid())});
 		accountService.updateInAccount(bill);
 	}
-	//Ìí¼Ó×ªÕËÀàĞÍµÄÕËµ¥ĞÅÏ¢
+	//æ·»åŠ è½¬è´¦ç±»å‹çš„è´¦å•ä¿¡æ¯
 	public void addTransferBill(Bill bill) {
 		db.execSQL("insert into bill_info (jine, date, dateymd, transferIn, transferInAccountId, transferOut, transferOutAccountId, billType) values (?, ?, ?, ?, ?, ?, ?, ?)", new String[]{
 				bill.getJine(), bill.getDate(),bill.getDateYMD(), bill.getTransferIn(), String.valueOf(bill.getTransferInAccountId()), bill.getTransferOut(), String.valueOf(bill.getTransferOutAccountId()), String.valueOf(bill.getBillType())
@@ -83,53 +83,53 @@ public class BillInfoService {
 
 	
 	
-	//ĞŞ¸ÄÖ§³öÀàĞÍµÄÕËµ¥ĞÅÏ¢
+	//ä¿®æ”¹æ”¯å‡ºç±»å‹çš„è´¦å•ä¿¡æ¯
 	public void updateOutBill(Bill bill) {
 		
 		if(bill.getLastBillType() == 1) {
-			//Ö§³ö£¬²»ÊÇ±ä»»ÀàĞÍ
-			//ÏÈ½«Ö®Ç°µÄidxÖ¸Ê¾µÄÕË»§½ğ¶î»Ö¸´
+			//æ”¯å‡ºï¼Œä¸æ˜¯å˜æ¢ç±»å‹
+			//å…ˆå°†ä¹‹å‰çš„idxæŒ‡ç¤ºçš„è´¦æˆ·é‡‘é¢æ¢å¤
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountLastIdx())});
 //			cursor.moveToFirst();
 //			double lastValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(lastValue), String.valueOf(bill.getAccountLastIdx())});
 			accountService.updateLastInAccount(bill);
-//			//ĞŞ¸ÄÏÖÔÚÊµ¼ÊµÄÕË»§½ğ¶î
+//			//ä¿®æ”¹ç°åœ¨å®é™…çš„è´¦æˆ·é‡‘é¢
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountid())});
 //			cursor.moveToFirst();
 //			double currentValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(currentValue), String.valueOf(bill.getAccountid())});
 			accountService.updateOutAccount(bill);
 		}else if(bill.getLastBillType() == 2) {
-			//Ö®Ç°ÊÇÊÕÈë
-			//ÏÈ½«Ö®Ç°µÄidxÖ¸Ê¾µÄÕË»§½ğ¶î»Ö¸´
+			//ä¹‹å‰æ˜¯æ”¶å…¥
+			//å…ˆå°†ä¹‹å‰çš„idxæŒ‡ç¤ºçš„è´¦æˆ·é‡‘é¢æ¢å¤
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountLastIdx())});
 //			cursor.moveToFirst();
 //			double lastValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(lastValue), String.valueOf(bill.getAccountLastIdx())});
 			accountService.updateLastOutAccount(bill);
-			//ĞŞ¸ÄÏÖÔÚÊµ¼ÊµÄÕË»§½ğ¶î
+			//ä¿®æ”¹ç°åœ¨å®é™…çš„è´¦æˆ·é‡‘é¢
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountid())});
 //			cursor.moveToFirst();
 //			double currentValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(currentValue), String.valueOf(bill.getAccountid())});
 			accountService.updateOutAccount(bill);
 		}else if(bill.getLastBillType() == 3) {
-			//Ö®Ç°ÊÇ×ªÕË
-			//ÏÈ»Ö¸´Ö®Ç°µÄidxËù¹ØÁªµÄ×ªÈë×ª³öÕË»§½ğ¶î
-			//Ö®Ç°µÄ×ªÈëÕË»§
+			//ä¹‹å‰æ˜¯è½¬è´¦
+			//å…ˆæ¢å¤ä¹‹å‰çš„idxæ‰€å…³è”çš„è½¬å…¥è½¬å‡ºè´¦æˆ·é‡‘é¢
+			//ä¹‹å‰çš„è½¬å…¥è´¦æˆ·
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getLastTransferInAccountId())});
 //			cursor.moveToFirst();
 //			double inLastValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(inLastValue), String.valueOf(bill.getLastTransferInAccountId())});
 			accountService.updateLastTransferOutAccount(bill);
-			//Ö®Ç°µÄ×ª³öÕË»§
+			//ä¹‹å‰çš„è½¬å‡ºè´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getLastTransferOutAccountId())});
 //			cursor.moveToFirst();
 //			double outLastValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue  = ? where idx = ?", new String[]{String.valueOf(outLastValue) ,String.valueOf(bill.getLastTransferOutAccountId())});
 			accountService.updateLastTransferInAccount(bill);
-			//ĞŞ¸Äµ±Ç°¹ØÁªµÄÕË»§µÄ½ğ¶î
+			//ä¿®æ”¹å½“å‰å…³è”çš„è´¦æˆ·çš„é‡‘é¢
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountid())});
 //			cursor.moveToFirst();
 //			double value = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getJine()));
@@ -144,54 +144,54 @@ public class BillInfoService {
 		
 		
 	}
-	//ĞŞ¸ÄÊÕÈëÀàĞÍµÄÕËµ¥ĞÅÏ¢
+	//ä¿®æ”¹æ”¶å…¥ç±»å‹çš„è´¦å•ä¿¡æ¯
 	public void updateInBill(Bill bill) {
 		
 		if(bill.getLastBillType() == 1) {
-			//Ö®Ç°ÊÇÖ§³ö
-			//ÏÈ½«Ö®Ç°µÄidxÖ¸Ê¾µÄÕË»§½ğ¶î»Ö¸´
+			//ä¹‹å‰æ˜¯æ”¯å‡º
+			//å…ˆå°†ä¹‹å‰çš„idxæŒ‡ç¤ºçš„è´¦æˆ·é‡‘é¢æ¢å¤
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountLastIdx())});
 //			cursor.moveToFirst();
 //			double lastValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(lastValue), String.valueOf(bill.getAccountLastIdx())});
 			accountService.updateLastInAccount(bill);
-			//ĞŞ¸ÄÏÖÔÚÊµ¼ÊµÄÕË»§½ğ¶î
+			//ä¿®æ”¹ç°åœ¨å®é™…çš„è´¦æˆ·é‡‘é¢
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountid())});
 //			cursor.moveToFirst();
 //			double currentValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(currentValue), String.valueOf(bill.getAccountid())});
 			accountService.updateInAccount(bill);
 		}else if(bill.getLastBillType() == 2){
-			//Ö®Ç°ÊÇÊÕÈë
+			//ä¹‹å‰æ˜¯æ”¶å…¥
 			
-			//ÏÈ½«Ö®Ç°µÄidxÖ¸Ê¾µÄÕË»§½ğ¶î»Ö¸´
+			//å…ˆå°†ä¹‹å‰çš„idxæŒ‡ç¤ºçš„è´¦æˆ·é‡‘é¢æ¢å¤
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountLastIdx())});
 //			cursor.moveToFirst();
 //			double lastValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(lastValue), String.valueOf(bill.getAccountLastIdx())});
 			accountService.updateLastOutAccount(bill);
-			//ĞŞ¸ÄÏÖÔÚÊµ¼ÊµÄÕË»§½ğ¶î
+			//ä¿®æ”¹ç°åœ¨å®é™…çš„è´¦æˆ·é‡‘é¢
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountid())});
 //			cursor.moveToFirst();
 //			double currentValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(currentValue), String.valueOf(bill.getAccountid())});
 			accountService.updateInAccount(bill);
 		}else if(bill.getLastBillType() == 3) {
-			//Ö®Ç°ÊÇ×ªÕË
-			//ÏÈ»Ö¸´Ö®Ç°µÄidxËù¹ØÁªµÄ×ªÈë×ª³öÕË»§½ğ¶î
-			//Ö®Ç°µÄ×ªÈëÕË»§
+			//ä¹‹å‰æ˜¯è½¬è´¦
+			//å…ˆæ¢å¤ä¹‹å‰çš„idxæ‰€å…³è”çš„è½¬å…¥è½¬å‡ºè´¦æˆ·é‡‘é¢
+			//ä¹‹å‰çš„è½¬å…¥è´¦æˆ·
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getLastTransferInAccountId())});
 //			cursor.moveToFirst();
 //			double inLastValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(inLastValue), String.valueOf(bill.getLastTransferInAccountId())});
 			accountService.updateLastTransferOutAccount(bill);
-			//Ö®Ç°µÄ×ª³öÕË»§
+			//ä¹‹å‰çš„è½¬å‡ºè´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getLastTransferOutAccountId())});
 //			cursor.moveToFirst();
 //			double outLastValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue  = ? where idx = ?", new String[]{String.valueOf(outLastValue) ,String.valueOf(bill.getLastTransferOutAccountId())});
 			accountService.updateLastTransferInAccount(bill);
-			//ĞŞ¸Äµ±Ç°¹ØÁªµÄÕË»§µÄ½ğ¶î
+			//ä¿®æ”¹å½“å‰å…³è”çš„è´¦æˆ·çš„é‡‘é¢
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountid())});
 //			cursor.moveToFirst();
 //			double value = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getJine()));
@@ -203,12 +203,12 @@ public class BillInfoService {
 				new String[]{bill.getJine(), bill.getInCatagory(), bill.getAccount(), String.valueOf(bill.getAccountid()), bill.getDate(),bill.getDateYMD(), bill.getMember(),
 				bill.getBeizhu(), String.valueOf(bill.getBillType()), String.valueOf(bill.getIdx())});
 	}
-	//ĞŞ¸Ä×ªÕËÀàĞÍµÄÕËµ¥ĞÅÏ¢
+	//ä¿®æ”¹è½¬è´¦ç±»å‹çš„è´¦å•ä¿¡æ¯
 	public void updateTransferBill(Bill bill) {
 		
 		if(bill.getLastBillType() == 1) {
-			//Ö®Ç°ÊÇÖ§³ö
-			//»Ö¸´Ö®Ç°µÄÖ§³öÕË»§½ğ¶î
+			//ä¹‹å‰æ˜¯æ”¯å‡º
+			//æ¢å¤ä¹‹å‰çš„æ”¯å‡ºè´¦æˆ·é‡‘é¢
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountLastIdx())});
 //			cursor.moveToFirst();
 //			double lastValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getLastJine()));
@@ -216,13 +216,13 @@ public class BillInfoService {
 		
 			accountService.updateLastInAccount(bill);
 			
-			//ÔÙ½«µ±Ç°Ñ¡ÔñµÄ×ªÈë×ª³öÕË»§½ğ¶îĞŞ¸Ä
-			//×ªÈëÕË»§
+			//å†å°†å½“å‰é€‰æ‹©çš„è½¬å…¥è½¬å‡ºè´¦æˆ·é‡‘é¢ä¿®æ”¹
+			//è½¬å…¥è´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getTransferInAccountId())});
 //			cursor.moveToFirst();
 //			double inValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue  = ? where idx = ?", new String[]{String.valueOf(inValue) ,String.valueOf(bill.getTransferInAccountId())});
-			//×ª³öÕË»§
+			//è½¬å‡ºè´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getTransferOutAccountId())});
 //			cursor.moveToFirst();
 //			double outValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getJine()));
@@ -230,7 +230,7 @@ public class BillInfoService {
 			accountService.updateTransferAccount(bill);
 			
 		}else if(bill.getLastBillType() == 2) {
-			//Ö®Ç°ÊÇÊÕÈë
+			//ä¹‹å‰æ˜¯æ”¶å…¥
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getAccountLastIdx())});
 //			cursor.moveToFirst();
 //			double lastValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getLastJine()));
@@ -238,40 +238,40 @@ public class BillInfoService {
 			accountService.updateLastOutAccount(bill);
 
 			
-			//ÔÙ½«µ±Ç°Ñ¡ÔñµÄ×ªÈë×ª³öÕË»§½ğ¶îĞŞ¸Ä
-			//×ªÈëÕË»§
+			//å†å°†å½“å‰é€‰æ‹©çš„è½¬å…¥è½¬å‡ºè´¦æˆ·é‡‘é¢ä¿®æ”¹
+			//è½¬å…¥è´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getTransferInAccountId())});
 //			cursor.moveToFirst();
 //			double inValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue  = ? where idx = ?", new String[]{String.valueOf(inValue) ,String.valueOf(bill.getTransferInAccountId())});
-//			//×ª³öÕË»§
+//			//è½¬å‡ºè´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getTransferOutAccountId())});
 //			cursor.moveToFirst();
 //			double outValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue  = ? where idx = ?", new String[]{String.valueOf(outValue) ,String.valueOf(bill.getTransferOutAccountId())});
 			accountService.updateTransferAccount(bill);
 		}else if(bill.getLastBillType() == 3) {
-			//Ö®Ç°ÊÇ×ªÕË
-			//ÏÈ»Ö¸´Ö®Ç°µÄidxËù¹ØÁªµÄ×ªÈë×ª³öÕË»§½ğ¶î
-			//Ö®Ç°µÄ×ªÈëÕË»§
+			//ä¹‹å‰æ˜¯è½¬è´¦
+			//å…ˆæ¢å¤ä¹‹å‰çš„idxæ‰€å…³è”çš„è½¬å…¥è½¬å‡ºè´¦æˆ·é‡‘é¢
+			//ä¹‹å‰çš„è½¬å…¥è´¦æˆ·
 //			Cursor cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getLastTransferInAccountId())});
 //			cursor.moveToFirst();
 //			double inLastValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(inLastValue), String.valueOf(bill.getLastTransferInAccountId())});
 			accountService.updateLastTransferOutAccount(bill);
-//			//Ö®Ç°µÄ×ª³öÕË»§
+//			//ä¹‹å‰çš„è½¬å‡ºè´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getLastTransferOutAccountId())});
 //			cursor.moveToFirst();
 //			double outLastValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getLastJine()));
 //			db.execSQL("update bill_account set dangqianyue  = ? where idx = ?", new String[]{String.valueOf(outLastValue) ,String.valueOf(bill.getLastTransferOutAccountId())});
 			accountService.updateLastTransferInAccount(bill);
-			//ÔÙ½«µ±Ç°Ñ¡ÔñµÄ×ªÈë×ª³öÕË»§½ğ¶îĞŞ¸Ä
-			//×ªÈëÕË»§
+			//å†å°†å½“å‰é€‰æ‹©çš„è½¬å…¥è½¬å‡ºè´¦æˆ·é‡‘é¢ä¿®æ”¹
+			//è½¬å…¥è´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getTransferInAccountId())});
 //			cursor.moveToFirst();
 //			double inValue = cursor.getDouble(0) + Math.abs(Double.parseDouble(bill.getJine()));
 //			db.execSQL("update bill_account set dangqianyue  = ? where idx = ?", new String[]{String.valueOf(inValue) ,String.valueOf(bill.getTransferInAccountId())});
-//			//×ª³öÕË»§
+//			//è½¬å‡ºè´¦æˆ·
 //			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(bill.getTransferOutAccountId())});
 //			cursor.moveToFirst();
 //			double outValue = cursor.getDouble(0) - Math.abs(Double.parseDouble(bill.getJine()));
@@ -289,8 +289,8 @@ public class BillInfoService {
 	
 	
 	
-	//É¾³ı
-	//¸ù¾İÕË»§id²éÕÒÒıÓÃÁË¸ÃÕË»§idµÄÕËµ¥Êı
+	//åˆ é™¤
+	//æ ¹æ®è´¦æˆ·idæŸ¥æ‰¾å¼•ç”¨äº†è¯¥è´¦æˆ·idçš„è´¦å•æ•°
 	public boolean isRelatedWithAccount(int accountId) {
 		Cursor cursor = db.rawQuery("select count(*) from bill_info where accountid = ? or transferInAccountId = ? or transferOutAccountId = ?", new String[]{String.valueOf(accountId), String.valueOf(accountId), String.valueOf(accountId)} );
 		cursor.moveToFirst();
@@ -305,7 +305,7 @@ public class BillInfoService {
 	
 
 	
-	//¸ù¾İÈÕÆÚ²éÕÒÕËµ¥ĞÅÏ¢  yyyy-MM-d   ÓÃÓÚ¼ÇÕËÊ×Ò³µÄ±¾ÈÕ¼ÇÕËµÄÍ³¼Æ
+	//æ ¹æ®æ—¥æœŸæŸ¥æ‰¾è´¦å•ä¿¡æ¯  yyyy-MM-d   ç”¨äºè®°è´¦é¦–é¡µçš„æœ¬æ—¥è®°è´¦çš„ç»Ÿè®¡
 	public List<Bill> findBillByYMD(String ymd) {
 		List<Bill> bills = new ArrayList<Bill>();
 		Bill bill = null;
@@ -323,7 +323,7 @@ public class BillInfoService {
 	}
 	
 	
-	//¸ù¾İÈÕÆÚ²éÕÒÕËµ¥ĞÅÏ¢  yyyy-MM-d   ÓÃÓÚ¼ÇÕË±¾ÔÂÁ÷Ë®ĞÅÏ¢
+	//æ ¹æ®æ—¥æœŸæŸ¥æ‰¾è´¦å•ä¿¡æ¯  yyyy-MM-d   ç”¨äºè®°è´¦æœ¬æœˆæµæ°´ä¿¡æ¯
 	public List<Bill> findBillByYMDInDetails(String ymd) {
 		List<Bill> bills = new ArrayList<Bill>();
 		Bill bill = null;
@@ -336,10 +336,10 @@ public class BillInfoService {
 			int billType = cursor.getInt(cursor.getColumnIndex("billType"));
 			bill.setBillType(billType);
 			if(billType == 1) {
-				//Ö§³ö
+				//æ”¯å‡º
 				bill.setOutCatagory(cursor.getString(cursor.getColumnIndex("outcatagory")));
 			}else if(billType == 2) {
-				//ÊÕÈë
+				//æ”¶å…¥
 				bill.setInCatagory(cursor.getString(cursor.getColumnIndex("incatagory")));
 			}
 			bill.setAccount(cursor.getString(cursor.getColumnIndex("account")));
@@ -357,7 +357,7 @@ public class BillInfoService {
 		return bills;
 	}
 	
-	//²éÕÒµ±ÔÂµÄËùÓĞÊÕÈëÕËµ¥ĞÅÏ¢ billType = 2
+	//æŸ¥æ‰¾å½“æœˆçš„æ‰€æœ‰æ”¶å…¥è´¦å•ä¿¡æ¯ billType = 2
 	public List<Bill> findIncomeByYM(String ym) {
 		List<Bill> bills = new ArrayList<Bill>();
 		Bill bill = null;
@@ -371,7 +371,7 @@ public class BillInfoService {
 		return bills;
 	}
 	
-	//²éÕÒµ±ÔÂµÄËùÓĞÖ§³öÕËµ¥ĞÅÏ¢ billType = 1
+	//æŸ¥æ‰¾å½“æœˆçš„æ‰€æœ‰æ”¯å‡ºè´¦å•ä¿¡æ¯ billType = 1
 	public List<Bill> findSpendByYM(String ym) {
 		List<Bill> bills = new ArrayList<Bill>();
 		Bill bill = null;
@@ -386,7 +386,7 @@ public class BillInfoService {
 		return bills;
 	}
 	
-	//¸ù¾İÔÂ·İ²éÕÒµ±Ç°ÔÂÊÇ·ñÓĞÕËµ¥ĞÅÏ¢
+	//æ ¹æ®æœˆä»½æŸ¥æ‰¾å½“å‰æœˆæ˜¯å¦æœ‰è´¦å•ä¿¡æ¯
 	public boolean isCurrentHaveBills(String ym) {
 		String dateParam = "%" + ym + "%";
 		Cursor cursor = db.rawQuery("select count(*) from bill_info where dateymd like ?", new String[]{dateParam});
@@ -395,7 +395,7 @@ public class BillInfoService {
 		return count > 0 ? true : false;
 	}
 	
-	//¸ù¾İÔÂ·İ²éÕÒµ±Ç°ÔÂËùÓĞ¼Ç¹ıÕÊµÄÈÕÆÚ  yyyy-MM-dd
+	//æ ¹æ®æœˆä»½æŸ¥æ‰¾å½“å‰æœˆæ‰€æœ‰è®°è¿‡å¸çš„æ—¥æœŸ  yyyy-MM-dd
 	public List<String> findAllYMDInMonth(String ym) {
 		List<String> ymds = new ArrayList<String>();
 		String dateParam = "%" + ym + "%";
@@ -406,7 +406,7 @@ public class BillInfoService {
 		return ymds;
 	}
 	
-	//¸ù¾İidx²éÕÒ¼ÇÕËĞÅÏ¢
+	//æ ¹æ®idxæŸ¥æ‰¾è®°è´¦ä¿¡æ¯
 	public Bill findBillByIdx(int idx) {
 		Bill bill = new Bill();
 		Cursor cursor = db.rawQuery("select * from bill_info where idx = ?", new String[]{String.valueOf(idx)});
@@ -443,19 +443,19 @@ public class BillInfoService {
 		return bill;
 	}
 	
-	//¸ù¾İIDXÉ¾³ıĞÅÏ¢
+	//æ ¹æ®IDXåˆ é™¤ä¿¡æ¯
 	public void deleteBillByIdx(int idx) {
-		//²éÕÒidxµÄÕËµ¥ĞÅÏ¢
+		//æŸ¥æ‰¾idxçš„è´¦å•ä¿¡æ¯
 		Bill bill = null;
 		bill = findBillByIdx(idx);
 		int billType = bill.getBillType();
-		int accountId = bill.getAccountid();       //µ±Ç°ÕËµ¥Ëù¹ØÁªµÄÕË»§ĞÅÏ¢
+		int accountId = bill.getAccountid();       //å½“å‰è´¦å•æ‰€å…³è”çš„è´¦æˆ·ä¿¡æ¯
 		Cursor cursor;
 		double accountValue;
 		double value = Double.parseDouble(bill.getJine());
 		switch (billType) {
 		case 1:
-			//Ö§³ö
+			//æ”¯å‡º
 			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(accountId)});
 			cursor.moveToFirst();
 			accountValue = cursor.getDouble(0);
@@ -463,7 +463,7 @@ public class BillInfoService {
 			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(accountValue), String.valueOf(accountId)});
 			break;
 		case 2:
-			//ÊÕÈë
+			//æ”¶å…¥
 			 cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(accountId)});
 			cursor.moveToFirst();
 			accountValue = cursor.getDouble(0);
@@ -471,9 +471,9 @@ public class BillInfoService {
 			db.execSQL("update bill_account set dangqianyue = ? where idx = ?", new String[]{String.valueOf(accountValue), String.valueOf(accountId)});
 			break;
 		case 3:
-			//×ªÕË
-			int inAccountId = bill.getTransferInAccountId();           //×ªÈëÕË»§idx
-			int outAccountId = bill.getTransferOutAccountId();		   //×ª³öÕË»§idx
+			//è½¬è´¦
+			int inAccountId = bill.getTransferInAccountId();           //è½¬å…¥è´¦æˆ·idx
+			int outAccountId = bill.getTransferOutAccountId();		   //è½¬å‡ºè´¦æˆ·idx
 			cursor = db.rawQuery("select dangqianyue from bill_account where idx = ?", new String[]{String.valueOf(inAccountId)});
 			cursor.moveToFirst();
 			double inAccountValue = cursor.getDouble(0);
@@ -490,7 +490,7 @@ public class BillInfoService {
 		db.execSQL("delete from bill_info where idx = ?", new String[]{String.valueOf(idx)});
 	}
 	
-	//Í³¼ÆËùÓĞbillType = 1 Ö§³öÕËµ¥µÄ»¨·Ñ½ğ¶î
+	//ç»Ÿè®¡æ‰€æœ‰billType = 1 æ”¯å‡ºè´¦å•çš„èŠ±è´¹é‡‘é¢
 	public String findTotalSpendValue() {
 		Cursor cursor = db.rawQuery("select jine from bill_info where billType = 1", null);
 		double totalSpendValue = 0;
@@ -501,7 +501,7 @@ public class BillInfoService {
 		return String.valueOf(totalSpendValue);
 	}
 	
-	//²éÕÒ±¾ÔÂÊÇ·ñÓĞÊÕÈëÕËµ¥
+	//æŸ¥æ‰¾æœ¬æœˆæ˜¯å¦æœ‰æ”¶å…¥è´¦å•
 	public boolean isHaveIncomeDatas(String ym, int billType) {
 		String dateParam = "%" + ym + "%";
 		Cursor cursor = db.rawQuery("select count(*) from bill_info where dateymd like ? and billType = ?", new String[]{dateParam, String.valueOf(billType)});
@@ -509,7 +509,7 @@ public class BillInfoService {
 		long count = cursor.getLong(0);
 		return count > 0 ? true : false;
 	}
-	//²éÕÒ±¾ÔÂÊÇ·ñÓĞÖ§³öÕËµ¥
+	//æŸ¥æ‰¾æœ¬æœˆæ˜¯å¦æœ‰æ”¯å‡ºè´¦å•
 	public boolean isHaveSpendDatas(String ym) {
 		String dateParam = "%" + ym + "%";
 		Cursor cursor = db.rawQuery("select count(*) from bill_info where dateymd like ? and billType = 1", new String[]{dateParam});
@@ -517,6 +517,30 @@ public class BillInfoService {
 		long count = cursor.getLong(0);
 		return count > 0 ? true : false;
 	}
+	
+	  //ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2013ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½/ï¿½ï¿½ï¿½ë£¬ ï¿½ï¿½ï¿½Â¹ï¿½ï¿½ï¿½
+	  public int[] findIncomeOrSpendByYear(int billType, String year) {
+	    int[] values = new int[12];
+	    String dataParam;
+	    Cursor cursor;
+	    double totalValue;
+	    for(int i=1; i<= 12; i++) {
+	      totalValue = 0;
+	      if(i<10) {
+	        dataParam = "%" + year + "-0" + i + "%";
+	      }else {
+	        dataParam = "%" + year + "-" + i + "%";
+	      }
+	      
+	      cursor = db.rawQuery("select jine from bill_info where dateymd like ? and billType = ?", new String[]{dataParam, String.valueOf(billType)});
+	      while(cursor.moveToNext()) {
+	        totalValue += cursor.getDouble(0);
+	      }
+	      values[i-1] = (int) Math.rint(totalValue);
+	      
+	    }
+	    return values;
+	  }
 	
 	public void closeDB() {
 		accountService.closeDB();

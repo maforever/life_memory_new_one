@@ -126,13 +126,13 @@
                 android:background="@drawable/bill_chart_bar_selector"
                 android:onClick="btnClick" />
 
-            <ImageView
+            <!-- <ImageView
                 android:id="@+id/lineBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/bill_chart_line_selector"
-                android:onClick="btnClick" />
+                android:onClick="btnClick" /> -->
 
             <ImageView
                 android:id="@+id/listBtn"
