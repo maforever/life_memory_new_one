@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="#ffffcc"
+     >
+    
+    <TextView
+        android:id="@+id/incomeChart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="收入报表"
+        android:background="@drawable/bill_common_bar_common_btn_selector"
+        android:clickable="true"
+        android:onClick="btnClick"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:gravity="center" 
+        android:padding="10dp"
+        />
+    
+    <TextView
+        android:id="@+id/spendChart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="支出报表"
+        android:background="@drawable/bill_common_bar_common_btn_selector"
+        android:clickable="true"
+        android:onClick="btnClick"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:gravity="center" 
+        android:layout_marginLeft="80dp"
+        android:padding="10dp"
+        />
+
+</LinearLayout>

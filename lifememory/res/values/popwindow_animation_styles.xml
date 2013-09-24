@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="popwindow_tip_animation">
+        <item name="android:windowEnterAnimation">@anim/popwindow_tips_in</item>
+         <item name="android:windowExitAnimation">@anim/popwindow_tips_out</item>
+    </style>
+
+</resources>

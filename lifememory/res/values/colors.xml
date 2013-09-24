@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item name="leftmenuselected" type="color">#cc66ff</item>
+    <item name="colorPink" type="color">#ff66ff</item>
+    <item name="colorPurple" type="color">#9900cc</item>
+    <item name="colorBlue" type="color">#0000ff</item>
+    <item name="incomeColor" type="color">#009900</item>
+    <item name="spendColor" type="color">#ff0000</item>
+    <item name="transferColor" type="color">#0033ff</item>
+
+    <!-- 记账图表颜色 -->
+    <item name="color1" type="color">#ff8080</item>
+    <item name="color2" type="color">#ffff80</item>
+    <item name="color3" type="color">#80ff80</item>
+    <item name="color4" type="color">#80ffff</item>
+    <item name="color5" type="color">#0080ff</item>
+    <item name="color6" type="color">#ff80c0</item>
+    <item name="color7" type="color">#ff80ff</item>
+    <item name="color8" type="color">#804040</item>
+    <item name="color9" type="color">#ff8000</item>
+    <item name="color10" type="color">#008000</item>
+    <item name="color11" type="color">#004080</item>
+    <item name="color12" type="color">#0000ff</item>
+    <item name="color13" type="color">#8000ff</item>
+    <item name="color14" type="color">#800040</item>
+    <item name="color15" type="color">#800080</item>
+    <item name="color16" type="color">#808000</item>
+    <item name="color17" type="color">#808040</item>
+    <item name="color18" type="color">#808080</item>
+    <item name="color19" type="color">#408080</item>
+    <item name="color20" type="color">#c0c0c0</item>
+    <item name="color21" type="color">#ffffff</item>
+    <item name="color22" type="color">#0000a0</item>
+    
+    
+    <item name="chartBackground" type="color">#00FFFFFF</item>
+    
+    
+    
+</resources>

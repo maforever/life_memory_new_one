@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@drawable/bill_bg_src">
+
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bill_title_bar_bg"
+        >
+       	<ImageView
+       	    android:id="@+id/icon"
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:background="@drawable/btn_setting"
+       	    android:layout_alignParentLeft="true"
+       	    android:layout_centerVertical="true" 
+       	    android:layout_marginLeft="10dp"
+       	    />
+       	
+       	<TextView
+       	    android:text="设置"
+       	     android:layout_toRightOf="@+id/icon"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="25dp"
+       	     android:textColor="#ffffff"
+       	     android:layout_centerVertical="true"
+       	     android:layout_marginLeft="10dp"
+       	    />
+       	
+       	<ImageView
+       	    android:id="@+id/close"
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:background="@drawable/bill_close_dialog_selector"
+       	    android:layout_centerVertical="true"
+       	    android:layout_alignParentRight="true"
+       	    android:layout_marginRight="10dp" 
+       	    android:onClick="btnClick"
+       	    />
+       	
+    </RelativeLayout>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" 
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:id="@+id/edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="编辑账单" 
+                    android:clickable="true"
+                    android:onClick="btnClick"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/bill_common_bar_common_btn_selector"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1" 
+                >
+                <TextView
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="删除账单" 
+                    android:clickable="true"
+                    android:onClick="btnClick"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/bill_common_bar_common_btn_selector"
+                    android:gravity="center"
+                                        android:padding="5dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            >
+            <LinearLayout
+                android:id="@+id/changetoincomelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" 
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:id="@+id/changetoincome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转为收入" 
+                    android:clickable="true"
+                    android:onClick="btnClick"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/bill_common_bar_common_btn_selector"
+                    android:gravity="center"
+                                        android:padding="5dp"
+                    />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/changetospendlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1" 
+                >
+                <TextView
+                    android:id="@+id/changetospend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转为支出" 
+                    android:clickable="true"
+                    android:onClick="btnClick"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/bill_common_bar_common_btn_selector"
+                    android:gravity="center"
+                                        android:padding="5dp"
+                    />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/changetotransferlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1" 
+                >
+                <TextView
+                    android:id="@+id/changetotransfer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转为转账" 
+                    android:clickable="true"
+                    android:onClick="btnClick"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/bill_common_bar_common_btn_selector"
+                    android:gravity="center"
+                                        android:padding="5dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    
+    
+</LinearLayout>
