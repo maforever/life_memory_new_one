@@ -174,7 +174,11 @@
         </activity>
                 <activity android:name=".activity.BillChartNoDataActivity" >
         </activity>
-        
+         <activity
+            android:name="com.example.lifememory.fragments.chart.Activity_BillLineChartActivity2"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+         </activity>
     </application>
 
     <instrumentation

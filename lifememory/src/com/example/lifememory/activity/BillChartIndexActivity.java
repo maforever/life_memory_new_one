@@ -8,6 +8,7 @@ import com.example.lifememory.R;
 import com.example.lifememory.activity.model.BillCatagoryItem;
 import com.example.lifememory.db.service.BillCatagoryService;
 import com.example.lifememory.db.service.BillInfoService;
+import com.example.lifememory.fragments.chart.Activity_BillLineChartActivity2;
 import com.example.lifememory.fragments.chart.FR_BillBarChartFragment;
 import com.example.lifememory.fragments.chart.FR_BillListChartFragment;
 import com.example.lifememory.fragments.chart.FR_BillNoDataChartFragment;
@@ -15,6 +16,7 @@ import com.example.lifememory.fragments.chart.FR_BillPieChartFragment;
 import com.example.lifememory.utils.AbstractMyActivityGroup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -142,9 +144,11 @@ public class BillChartIndexActivity extends FragmentActivity {
 				.findViewById(R.id.incomeChart);
 		TextView spendChart = (TextView) contentView
 				.findViewById(R.id.spendChart);
+		TextView inAndOutLineChart = (TextView) contentView
+				.findViewById(R.id.inAndoutLineChart);
 		incomeChart.setOnClickListener(new PopwindowBtnClickListener());
 		spendChart.setOnClickListener(new PopwindowBtnClickListener());
-
+		inAndOutLineChart.setOnClickListener(new PopwindowBtnClickListener());
 	}
 
 	private class PopwindowBtnClickListener implements OnClickListener {
@@ -170,6 +174,13 @@ public class BillChartIndexActivity extends FragmentActivity {
 				// Toast.makeText(BillChartIndexActivity.this, "spendChart",
 				// 0).show();
 				break;
+			case R.id.inAndoutLineChart:
+				Intent intent = new Intent(BillChartIndexActivity.this,
+						Activity_BillLineChartActivity2.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.activity_up,
+						R.anim.activity_steady);
+				break;
 			}
 		}
 	}
@@ -194,9 +205,9 @@ public class BillChartIndexActivity extends FragmentActivity {
 					// 柱状图
 					handler.sendEmptyMessage(1);
 					break;
-//				case 3:
-//					// 线形图
-//					break;
+				// case 3:
+				// // 线形图
+				// break;
 				case 4:
 					// 列表
 					handler.sendEmptyMessage(3);
@@ -245,13 +256,13 @@ public class BillChartIndexActivity extends FragmentActivity {
 			new isHaveDatas().start();
 			// setContainerView(CHART_BAR_ACTIVITY, BillChartBarActivity.class);
 			break;
-//		case R.id.lineBtn:
-//			freshTabBarBackGround();
-//			lineBtn.setBackgroundResource(R.drawable.catagory_line_press);
-//			chartType = 3;
-//			// setContainerView(CHART_LINE_ACTIVITY,
-//			// BillChartLineActivity.class);
-//			break;
+		// case R.id.lineBtn:
+		// freshTabBarBackGround();
+		// lineBtn.setBackgroundResource(R.drawable.catagory_line_press);
+		// chartType = 3;
+		// // setContainerView(CHART_LINE_ACTIVITY,
+		// // BillChartLineActivity.class);
+		// break;
 		case R.id.listBtn:
 			freshTabBarBackGround();
 			listBtn.setBackgroundResource(R.drawable.catagory_list_press);
@@ -266,7 +277,7 @@ public class BillChartIndexActivity extends FragmentActivity {
 	private void freshTabBarBackGround() {
 		pieBtn.setBackgroundResource(R.drawable.bill_chart_pie_selector);
 		barBtn.setBackgroundResource(R.drawable.bill_chart_bar_selector);
-//		lineBtn.setBackgroundResource(R.drawable.bill_chart_line_selector);
+		// lineBtn.setBackgroundResource(R.drawable.bill_chart_line_selector);
 		listBtn.setBackgroundResource(R.drawable.bill_chart_list_selector);
 	}
 
