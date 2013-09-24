@@ -5,4 +5,23 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">点滴忆</string>
 	<string name="bill_empty_notice">您可以进入“记账界面”填写</string>
+	
+	
+		<string
+		name="app_id">521ac238</string>
+			<string
+		name="preference_key_tts_role">tts_role</string>
+				<string
+		name="preference_default_tts_role">xiaoyan</string>
+					<string
+		name="preference_key_tts_speed">tts_speed</string>
+						<string
+		name="preference_key_tts_volume">tts_volume</string>
+							<string
+		name="preference_key_tts_music">tts_music</string>
+								<string
+		name="preference_default_tts_music">0</string>
+									<string
+		name="tts_toast_format"
+		formatted="false">当前合成进度为%d%%，播放进度为%d%%</string>
 </resources>

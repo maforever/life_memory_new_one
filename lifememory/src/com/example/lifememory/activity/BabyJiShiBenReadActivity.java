@@ -13,12 +13,18 @@ import com.example.lifememory.dialog.DialogAlertListener;
 import com.example.lifememory.dialog.DialogInputListener;
 import com.example.lifememory.dialog.DialogPregnancyJiShiBenReNameDialog;
 import com.example.lifememory.utils.MyAnimations;
+import com.iflytek.speech.SpeechError;
+import com.iflytek.speech.SynthesizerPlayer;
+import com.iflytek.speech.SynthesizerPlayerListener;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -28,36 +34,49 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BabyJiShiBenReadActivity extends Activity{
+public class BabyJiShiBenReadActivity extends Activity implements SynthesizerPlayerListener{
 	private TextView contentEt = null;
-	private int[] textSize = {20, 25, 30}; //��������
+	private int[] textSize = {20, 25, 30}; //锟斤拷锟斤拷锟斤拷锟�
 	private  int[] colors = new int[6];
-	private BabyJiShiBen jishibenItem; //���ڼ��±�
+	private BabyJiShiBen jishibenItem; //锟斤拷锟节硷拷锟铰憋拷
 	private int itemId = 0;
 	private TextView titleTv = null;
 	private BabyDiaryJiShiBenService dbService = null;
-	//��Path
+	//锟斤拷Path
 	private boolean areButtonsShowing;
 	private RelativeLayout composerButtonsWrapper;
 	private ImageView composerButtonsShowHideButtonIcon;
 	private RelativeLayout composerButtonsShowHideButton;
 	
+	//缓存对象.
+	private SharedPreferences mSharedPreferences;
+	//缓冲进度
+	private int mPercentForBuffering = 0;
+	
+	//播放进度
+	private int mPercentForPlaying = 0;
+	//合成对象.
+	private SynthesizerPlayer mSynthesizerPlayer;
+	//弹出提示
+	private Toast mToast;
+	
+	
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
-			//��ȡ
+			//锟斤拷取
 			case 0:
 				initViews();
 				break;
-			//ɾ��
+			//删锟斤拷
 			case 1:
 				BabyJiShiBenReadActivity.this.finish();
 				overridePendingTransition(R.anim.activity_steady, R.anim.activity_down);
-				Toast.makeText(BabyJiShiBenReadActivity.this, "ɾ���ռǳɹ�!", 0).show();
+				Toast.makeText(BabyJiShiBenReadActivity.this, "删锟斤拷锟秸记成癸拷!", 0).show();
 				break;
-			//������
+			//锟斤拷锟斤拷锟斤拷
 			case 2:
-				Toast.makeText(BabyJiShiBenReadActivity.this, "�ռ��������ɹ�!", 0).show();
+				Toast.makeText(BabyJiShiBenReadActivity.this, "锟秸硷拷锟斤拷锟斤拷锟斤拷晒锟�", 0).show();
 				break;
 		
 			}
@@ -73,13 +92,18 @@ public class BabyJiShiBenReadActivity extends Activity{
 		
 		MyAnimations.initOffset(BabyJiShiBenReadActivity.this);
 		
-		initColors();   //��ʼ����ɫ����
-		findViews();    //ʵ������ͼ
+		initColors();   //锟斤拷始锟斤拷锟斤拷色锟斤拷锟斤拷
+		findViews();    //实锟斤拷锟斤拷图
 		
-		
-		new InitDatasThread().start(); //���߳��г�ʼ�����ݣ������߳�����Ⱦ��ͼ
-//		initDatas();    //��ʼ������
-//		initViews();	//�����ͼ����
+		mSharedPreferences = getSharedPreferences(getPackageName(),
+				MODE_PRIVATE);
+
+		mToast = Toast.makeText(this,
+				String.format(getString(R.string.tts_toast_format), 0, 0),
+				Toast.LENGTH_LONG);
+		new InitDatasThread().start(); //锟斤拷锟竭筹拷锟叫筹拷始锟斤拷锟斤拷荩锟斤拷锟斤拷锟斤拷叱锟斤拷锟斤拷锟饺撅拷锟酵�
+//		initDatas();    //锟斤拷始锟斤拷锟斤拷锟�
+//		initViews();	//锟斤拷锟斤拷锟酵硷拷锟斤拷锟�
 		
 		
 		composerButtonsShowHideButton.setOnClickListener(new OnClickListener() {
@@ -106,23 +130,31 @@ public class BabyJiShiBenReadActivity extends Activity{
 						@Override
 						public void onClick(View view) {
 							switch (view.getId()) {
-							//�޸�
+							//锟睫革拷
 							case R.id.composer_button_edit:
 								Intent intent = new Intent(BabyJiShiBenReadActivity.this, PregnancyJiShiBenEditActivity.class);
 								intent.putExtra("itemId", itemId);
 								BabyJiShiBenReadActivity.this.startActivity(intent);
 								overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
 								break;
-							//����
-							case R.id.composer_button_share:
+							//锟斤拷锟斤拷
+							case R.id.composer_button_read:
+								MyAnimations.startAnimationsOut(
+										composerButtonsWrapper, 300);
+								composerButtonsShowHideButtonIcon
+										.startAnimation(MyAnimations
+												.getRotateAnimation(-270, 0,
+														300));
+								areButtonsShowing = false;
+								synthetizeInSilence();
 								break;
-							//������
+							//锟斤拷锟斤拷锟斤拷
 							case R.id.composer_button_rename:
 								new DialogPregnancyJiShiBenReNameDialog(BabyJiShiBenReadActivity.this, listener2, titleTv.getText().toString()).show();
 								break;
-							//ɾ��
+							//删锟斤拷
 							case R.id.composer_button_del:
-								new DialogAlert(BabyJiShiBenReadActivity.this, listener, "��ȷ��ɾ�������ռ���?").show();
+								new DialogAlert(BabyJiShiBenReadActivity.this, listener, "锟斤拷确锟斤拷删锟斤拷锟斤拷锟斤拷占锟斤拷锟�").show();
 								break;
 								
 							}
@@ -132,6 +164,51 @@ public class BabyJiShiBenReadActivity extends Activity{
 		
 		composerButtonsShowHideButton.startAnimation(MyAnimations
 				.getRotateAnimation(0, 360, 200));
+	}
+	
+	/**
+	 * 使用SynthesizerPlayer合成语音，不弹出合成Dialog.
+	 * @param
+	 */
+	private void synthetizeInSilence() {
+		if (null == mSynthesizerPlayer) {
+			//创建合成对象.
+			mSynthesizerPlayer = SynthesizerPlayer.createSynthesizerPlayer(
+					this, "appid=" + getString(R.string.app_id));
+		}
+
+		//设置合成发音�?
+		String role = mSharedPreferences.getString(
+				getString(R.string.preference_key_tts_role),
+				getString(R.string.preference_default_tts_role));
+		mSynthesizerPlayer.setVoiceName(role);
+
+		//设置发音人语�?
+		int speed = mSharedPreferences.getInt(
+				getString(R.string.preference_key_tts_speed),
+				50);
+		mSynthesizerPlayer.setSpeed(speed);
+
+		//设置音量.
+		int volume = mSharedPreferences.getInt(
+				getString(R.string.preference_key_tts_volume),
+				50);
+		mSynthesizerPlayer.setVolume(volume);
+
+		//设置背景�?
+		String music = mSharedPreferences.getString(
+				getString(R.string.preference_key_tts_music),
+				getString(R.string.preference_default_tts_music));
+		mSynthesizerPlayer.setBackgroundSound(music);
+
+		//获取合成文本.
+		String source = contentEt.getText().toString();
+
+		//进行语音合成.
+		mSynthesizerPlayer.playText(source, null,this);
+		mToast.setText(String
+				.format(getString(R.string.tts_toast_format), 0, 0));
+		mToast.show();
 	}
 	
 	private class RenameThread extends Thread {
@@ -259,7 +336,7 @@ public class BabyJiShiBenReadActivity extends Activity{
 			break;
 		}
 	}
-	//�����ͼ
+	//锟斤拷锟斤拷锟酵�
 	private void initViews() {
 		contentEt.setTextColor(colors[jishibenItem.getTextColorIndex()]);
 		contentEt.setTextSize(textSize[jishibenItem.getTextSizeIndex()]);
@@ -275,17 +352,17 @@ public class BabyJiShiBenReadActivity extends Activity{
 		}
 	}
 	
-	//���ʱ��
+	//锟斤拷锟绞憋拷锟�
 	private String getDate() {
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy��MM��dd�� HHʱmm��ss��");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy锟斤拷MM锟斤拷dd锟斤拷 HH时mm锟斤拷ss锟斤拷");
 		String dateStr = sdf.format(date); 
 		return dateStr;
 	}
-	//��ȡ������
+	//锟斤拷取锟斤拷锟斤拷锟斤拷
 	private String getYMD() {
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy��MM��dd��");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy锟斤拷MM锟斤拷dd锟斤拷");
 		String dateStr = sdf.format(date); 
 		return dateStr;
 	}
@@ -294,6 +371,46 @@ public class BabyJiShiBenReadActivity extends Activity{
 	protected void onDestroy() {
 		super.onDestroy();
 		dbService.closeDB();
+	}
+
+	@Override
+	public void onBufferPercent(int percent, int arg1, int arg2) {
+		mPercentForBuffering = percent;
+		mToast.setText(String.format(getString(R.string.tts_toast_format),
+				mPercentForBuffering, mPercentForPlaying));
+		mToast.show();
+	}
+
+	@Override
+	public void onEnd(SpeechError arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPlayBegin() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPlayPaused() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPlayPercent(int percent, int arg1, int arg2) {
+		mPercentForPlaying = percent;
+		mToast.setText(String.format(getString(R.string.tts_toast_format),
+				mPercentForBuffering, mPercentForPlaying));
+		mToast.show();		
+	}
+
+	@Override
+	public void onPlayResumed() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
