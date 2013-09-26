@@ -11,6 +11,7 @@ import com.example.lifememory.activity.BillInputActivity;
 import com.example.lifememory.activity.BillMonthDetailsActivity;
 import com.example.lifememory.activity.BillTempleteSelectActivity;
 import com.example.lifememory.activity.IndexActivity;
+import com.example.lifememory.activity.ReimbursementSettingActivity;
 import com.example.lifememory.activity.model.Bill;
 import com.example.lifememory.activity.slidingmenu.menulib.SlidingMenu.OnClosedListener;
 import com.example.lifememory.activity.slidingmenu.menulib.SlidingMenu.OnOpenListener;
@@ -50,7 +51,7 @@ public class FR_Bill_index extends Fragment {
 	private ArrayList<ArrayList<String>> lists = new ArrayList<ArrayList<String>>();// 全部数据的集合集lists.size()==countpage;
 	private TextView tv_page = null;
 	private String[] firstPageTitle = new String[]{"闪电记", "记一笔", "预算平衡表", "今日"};
-	private String[] secondPageTitle = new String[]{"信用卡", "翻日历", "查账户","看报表"};
+	private String[] secondPageTitle = new String[]{"报销管理", "日历", "查账户","看报表"};
 	private int[] firstPageImageIds = new int[]{R.drawable.metro_drawable_flashbook, R.drawable.metro_drawable_book, R.drawable.metro_drawable_coupon, 1};
 	private int[] secondPageImageIds = new int[]{R.drawable.metro_drawable_card, R.drawable.metro_drawable_calendar, R.drawable.metro_drawable_account, R.drawable.metro_drawable_report};
 	private BillIndexGridViewAdapter firstAdapter, secondAdapter;
@@ -307,7 +308,10 @@ public class FR_Bill_index extends Fragment {
 				long id) {
 			switch (position) {
 			case 0:
-				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();
+				intent = new Intent(getActivity(), ReimbursementSettingActivity.class);
+				startActivity(intent);
+				getActivity().overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
+//				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();
 				break;
 			case 1:
 				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();

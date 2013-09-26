@@ -54,7 +54,7 @@ public class FR_BillListChartFragment extends Fragment {
       titleTv.setText("◊‹ ’»Î:");
     }
     for(BillCatagoryItem item : items) {
-      totalValue = item.getSpendValue();
+      totalValue += item.getSpendValue();
     }
     valueTv.setText("" + totalValue);
     adapter = new BillListChartListViewAdapter(getActivity(), items, totalValue);

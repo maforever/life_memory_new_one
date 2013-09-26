@@ -6,6 +6,7 @@ public class Bill {
 	private int accountLastIdx;          //用于修改账户当前余额，lastjine存放修改前的accountid，首先将该id的账户金额恢复 ： 当前的加上或减去lashJine，再将
 								  //idx所指的账单奖赏或减去
 	private String jine;          //本次实际的金额，与数据库管理
+	private String baoxiaojine;    //实报金额
 	private String lastJine;      //用于修改账户当前余额，lastjine存放修改钱的金额，用lastjine减去jine得到改动的差值，在相应的做加减操作
 	private String outCatagory;   //支出类型catagoryname
 	private int outCatagoryChildId;        //支出类型的子id
@@ -17,8 +18,8 @@ public class Bill {
 	private String date;
 	private String dateYMD;   //yyyy-MM-dd
 	private String beizhu;
-	private boolean isCanBaoXiao;
-	private boolean isBaoxiaoed;
+	private boolean isCanBaoXiao = false;
+	private boolean isBaoxiaoed = false;
 	private String TransferIn;     //转入     现金
 	private int transferInAccountId;
 	private int lastTransferInAccountId;
@@ -39,6 +40,13 @@ public class Bill {
 	}
 	public void setJine(String jine) {
 		this.jine = jine;
+	}
+	
+	public String getBaoxiaojine() {
+		return baoxiaojine;
+	}
+	public void setBaoxiaojine(String baoxiaojine) {
+		this.baoxiaojine = baoxiaojine;
 	}
 	public String getOutCatagory() {
 		return outCatagory;
@@ -175,20 +183,25 @@ public class Bill {
 	@Override
 	public String toString() {
 		return "Bill [idx=" + idx + ", accountLastIdx=" + accountLastIdx
-				+ ", jine=" + jine + ", lastJine=" + lastJine
-				+ ", outCatagory=" + outCatagory + ", inCatagory=" + inCatagory
-				+ ", account=" + account + ", accountid=" + accountid
-				+ ", member=" + member + ", date=" + date + ", dateYMD="
-				+ dateYMD + ", beizhu=" + beizhu + ", isCanBaoXiao="
-				+ isCanBaoXiao + ", isBaoxiaoed=" + isBaoxiaoed
-				+ ", TransferIn=" + TransferIn + ", transferInAccountId="
-				+ transferInAccountId + ", lastTransferInAccountId="
-				+ lastTransferInAccountId + ", transferOutAccountId="
-				+ transferOutAccountId + ", lastTransferOutAccountId="
-				+ lastTransferOutAccountId + ", TransferOut=" + TransferOut
-				+ ", billType=" + billType + ", lastBillType=" + lastBillType
-				+ ", getIdx()=" + getIdx() + ", getJine()=" + getJine()
-				+ ", getOutCatagory()=" + getOutCatagory()
+				+ ", jine=" + jine + ", baoxiaojine=" + baoxiaojine
+				+ ", lastJine=" + lastJine + ", outCatagory=" + outCatagory
+				+ ", outCatagoryChildId=" + outCatagoryChildId
+				+ ", outCatagoryParentId=" + outCatagoryParentId
+				+ ", inCatagory=" + inCatagory + ", account=" + account
+				+ ", accountid=" + accountid + ", member=" + member + ", date="
+				+ date + ", dateYMD=" + dateYMD + ", beizhu=" + beizhu
+				+ ", isCanBaoXiao=" + isCanBaoXiao + ", isBaoxiaoed="
+				+ isBaoxiaoed + ", TransferIn=" + TransferIn
+				+ ", transferInAccountId=" + transferInAccountId
+				+ ", lastTransferInAccountId=" + lastTransferInAccountId
+				+ ", transferOutAccountId=" + transferOutAccountId
+				+ ", lastTransferOutAccountId=" + lastTransferOutAccountId
+				+ ", TransferOut=" + TransferOut + ", billType=" + billType
+				+ ", lastBillType=" + lastBillType + ", getIdx()=" + getIdx()
+				+ ", getJine()=" + getJine() + ", getBaoxiaojine()="
+				+ getBaoxiaojine() + ", getOutCatagory()=" + getOutCatagory()
+				+ ", getOutCatagoryChildId()=" + getOutCatagoryChildId()
+				+ ", getOutCatagoryParentId()=" + getOutCatagoryParentId()
 				+ ", getInCatagory()=" + getInCatagory() + ", getAccount()="
 				+ getAccount() + ", getAccountid()=" + getAccountid()
 				+ ", getMember()=" + getMember() + ", getDate()=" + getDate()
@@ -208,6 +221,7 @@ public class Bill {
 				+ ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
 	}
+	
 	
 
 	

@@ -12,10 +12,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 录音权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-+    <uses-permission android:name="android.permission.INTERNET" />
-+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
++    
+    <uses-permission android:name="android.permission.INTERNET" />
++    
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
++    
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
++    
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
     <application
         android:name=".utils.AppAplication"
         android:icon="@drawable/app_icon"
@@ -164,21 +169,43 @@
             android:name=".activity.BillChartIndexActivity"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
-        <activity android:name=".activity.BillChartPieActivity" android:launchMode="standard">
+        <activity
+            android:name=".activity.BillChartPieActivity"
+            android:launchMode="standard" >
         </activity>
-        <activity android:name=".activity.BillChartBarActivity" android:launchMode="standard">
+        <activity
+            android:name=".activity.BillChartBarActivity"
+            android:launchMode="standard" >
         </activity>
-        <activity android:name=".activity.BillChartLineActivity" android:launchMode="standard">
+        <activity
+            android:name=".activity.BillChartLineActivity"
+            android:launchMode="standard" >
         </activity>
-        <activity android:name=".activity.BillChartListActivity" android:launchMode="standard">
+        <activity
+            android:name=".activity.BillChartListActivity"
+            android:launchMode="standard" >
         </activity>
-                <activity android:name=".activity.BillChartNoDataActivity" >
+        <activity android:name=".activity.BillChartNoDataActivity" >
         </activity>
-         <activity
+        <activity
             android:name="com.example.lifememory.fragments.chart.Activity_BillLineChartActivity2"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
-         </activity>
+        </activity>
+        <activity
+            android:name=".activity.ReimbursementSettingActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+        <activity
+            android:name=".activity.BillReimbursementValueInputDialog"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@style/dialog" />
+        <activity
+            android:name=".activity.BillReimbursementInputAccountSelectDialog"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@style/dialog" />
+        
+        
     </application>
 
     <instrumentation

@@ -13,6 +13,14 @@ public class DateFormater {
 	public static DateFormater getInstatnce() {
 		return instance;
 	}
+	
+	//返回年月日小时分钟  2013-09-23 13:88
+	public String getYMDHT() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String dateStr = sdf.format(date);
+		return dateStr;
+	}
 
 	public String getCurrentDate() {
 		Date date = new Date();

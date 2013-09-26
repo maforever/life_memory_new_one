@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bill_title_bar_bg" >
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bill_common_bar_back_btn_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="btnClick"
+            android:text="返回"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/arrowLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/year"
+            android:background="@drawable/bill_monthdetals_arrowleft_selector"
+            android:onClick="btnClick" />
+
+        <ImageView
+            android:id="@+id/arrowRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/year"
+            android:background="@drawable/bill_monthdetals_arrowright_selector"
+            android:onClick="btnClick" />
+    </RelativeLayout>
+
+    
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" 
+        >
+        
+    </FrameLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bill_title_bar_bg" 
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" 
+            >
+            <TextView
+                android:id="@+id/baoxiaoed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已报销"
+                android:background="@drawable/bill_common_titlebar_common_btn_normal"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:clickable="true"
+                android:onClick="btnClick" 
+                android:padding="10dp"
+                />
+        </LinearLayout>
+                    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" 
+            >
+            <TextView
+                android:id="@+id/unbaoxiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未报销"
+                android:background="@drawable/bill_common_titlebar_common_btn_normal"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:clickable="true"
+                android:onClick="btnClick" 
+                 android:padding="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+        
+    
+</LinearLayout>

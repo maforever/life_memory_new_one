@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@drawable/mymoney_bg">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bill_title_bar_bg" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="报销金额设置"
+            android:textColor="#ffffff"
+            android:textSize="25dp" />
+    </RelativeLayout>
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" 
+	    android:gravity="center"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginBottom="20dp"
+	    >
+	    <EditText
+	        android:id="@+id/value"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:textSize="20dp" 
+	        android:textColor="#000000"
+	        android:hint="请输入报销的金额"
+	        android:singleLine="true"
+	        android:inputType="number"
+	        />
+	    <TextView
+	        android:text="账户:"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="20dp"
+	        android:textColor="#000000"
+	        android:layout_marginLeft="5dp"
+	        />
+	    <TextView
+	        android:id="@+id/account"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="现金"
+	        android:textColor="#000000"
+	        android:textSize="20dp" 
+	        android:layout_marginRight="5dp"
+	        />
+	    <ImageView
+	        android:id="@+id/selectAccount"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/more_options"
+	        android:onClick="btnClick"
+	         
+	        />
+	</LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginBottom="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" 
+            >
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:background="@drawable/bill_common_bar_common_btn_selector"
+                android:clickable="true"
+                android:onClick="btnClick" 
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" 
+            >
+            <TextView
+                android:id="@+id/sur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:background="@drawable/bill_common_bar_common_btn_selector"
+                android:clickable="true"
+                android:onClick="btnClick" 
+                />
+        </LinearLayout>
+    </LinearLayout>
+	
+	
+</LinearLayout>
