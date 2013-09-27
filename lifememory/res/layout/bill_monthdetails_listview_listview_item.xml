@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
      >
     
 	<LinearLayout
@@ -18,8 +18,9 @@
 	
 	<LinearLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:orientation="vertical"
+	    android:gravity="center"
 	    android:layout_marginLeft="10dp"
 	    >
 	    <RelativeLayout
@@ -52,20 +53,20 @@
 	        
 	    </RelativeLayout>
 	    
-	    <RelativeLayout
+	    <LinearLayout
 	        android:layout_marginTop="5dp"
 	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" 
+	        android:layout_height="match_parent" 
 	        android:layout_marginBottom="3dp"
 	        >
 	        
 	        <TextView
 	            android:id="@+id/beizhu"
-	            android:layout_width="wrap_content"
+	            android:layout_width="0dp"
 	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
 	            android:textSize="14dp"
-	            android:text="木有备注"
-	            android:layout_alignParentLeft="true"
+	            android:singleLine="true"
 	            android:textColor="#993333" 
 	            />
 	        
@@ -76,12 +77,10 @@
 	            android:layout_height="wrap_content"
 	            android:textSize="14dp"
 	            android:text="现金"
-	            android:layout_alignParentRight="true"
 	            android:textColor="#993333"
-	            android:layout_centerVertical="true" 
 	            />
 	        
-	    </RelativeLayout>
+	    </LinearLayout>
 	</LinearLayout>
     
 </LinearLayout>

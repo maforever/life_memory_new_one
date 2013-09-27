@@ -693,35 +693,35 @@ public class PregnancyDiaryFragment extends Fragment {
 			public boolean onTouch(MotionEvent event) {
 				// 手指按下并且没有显示leftmenufragment
 				if (event.getAction() == MotionEvent.ACTION_DOWN
-						&& !indexActivity.getSlidingMenu().isMenuShowing()) {
+						&& !((IndexActivity)getActivity()).getSlidingMenu().isMenuShowing()) {
 					if (pager.getCurrentItem() != 0) {
-						indexActivity.getSlidingMenu().setSlidingEnabled(false);
+						((IndexActivity)getActivity()).getSlidingMenu().setSlidingEnabled(false);
 					} else {
-						indexActivity.getSlidingMenu().setSlidingEnabled(true);
+						((IndexActivity)getActivity()).getSlidingMenu().setSlidingEnabled(true);
 					}
 				}
 				return false;
 			}
 		};
-		this.indexActivity.registerMyOnTouchListener(myOnTouchListener);
+		((IndexActivity)getActivity()).registerMyOnTouchListener(myOnTouchListener);
 
 		// 显示leftmenufragment时注销掉PregnancyDiaryFragment的ontouch事件
-		indexActivity.getSlidingMenu().setOnOpenListener(new OnOpenListener() {
+		((IndexActivity)getActivity()).getSlidingMenu().setOnOpenListener(new OnOpenListener() {
 
 			@Override
 			public void onOpen() {
 				Log.i("a", "menu onOpen");
-				indexActivity.getSlidingMenu().setSlidingEnabled(true);
-				indexActivity.unregisterMyOnTouchListener(myOnTouchListener);
+				((IndexActivity)getActivity()).getSlidingMenu().setSlidingEnabled(true);
+				((IndexActivity)getActivity()).unregisterMyOnTouchListener(myOnTouchListener);
 			}
 		});
 		// 当隐藏左侧的leftmenuframent的时候注册ontouch时间
-		indexActivity.getSlidingMenu().setOnClosedListener(new OnClosedListener() {
+		((IndexActivity)getActivity()).getSlidingMenu().setOnClosedListener(new OnClosedListener() {
 			
 			@Override
 			public void onClosed() {
-				indexActivity.getSlidingMenu().setSlidingEnabled(true);
-				indexActivity.registerMyOnTouchListener(myOnTouchListener);
+				((IndexActivity)getActivity()).getSlidingMenu().setSlidingEnabled(true);
+				((IndexActivity)getActivity()).registerMyOnTouchListener(myOnTouchListener);
 			}
 		});
 

@@ -8,11 +8,14 @@ import com.example.lifememory.activity.model.Bill;
 import com.example.lifememory.adapter.BillWeiBaoxiaoAdapter;
 import com.example.lifememory.db.service.BillInfoService;
 import com.example.lifememory.utils.ConstantUtil;
+import com.example.lifememory.utils.DateFormater;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +33,12 @@ public class FR_Bill_WeiBaoXiao extends Fragment {
 	ListView listView;
 	BillWeiBaoxiaoAdapter adapter;
 	Intent intent;
+	String accountName;
+	int accountId;
+	String baoxiaojineStr;
+	String beizhu;
+	Bill baoxiaoBill;
+	ProgressDialog pd = null;
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
@@ -38,11 +47,12 @@ public class FR_Bill_WeiBaoXiao extends Fragment {
 				adapter = new BillWeiBaoxiaoAdapter(getActivity(), bills);
 				listView.setAdapter(adapter);
 				msgLaytout.setVisibility(ViewGroup.GONE);
-
+				pd.dismiss();
 				break;
 			case 2:
 				listView.setVisibility(ViewGroup.GONE);
 				msgLaytout.setVisibility(ViewGroup.VISIBLE);
+				pd.dismiss();
 				break;
 			}
 		};
@@ -51,6 +61,7 @@ public class FR_Bill_WeiBaoXiao extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		infoService = new BillInfoService(getActivity());
+		pd = new ProgressDialog(getActivity());
 	}
 	
 	public FR_Bill_WeiBaoXiao(String year) {
@@ -70,12 +81,15 @@ public class FR_Bill_WeiBaoXiao extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				beizhu = "这是对" + bills.get(position).getDate() + "用于" + bills.get(position).getOutCatagory() + "的报销款!";
+				baoxiaoBill = bills.get(position);
 				intent = new Intent(getActivity(), BillReimbursementValueInputDialog.class);
 				startActivityForResult(intent, 100);
 			}
 			
 		});
 		
+		pd.show();
 		new InitDatasThread().start();
 		
 		return view;
@@ -85,7 +99,31 @@ public class FR_Bill_WeiBaoXiao extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (resultCode) {
 		case ConstantUtil.REIMBURSEMENT_VALUE_INPUT:
+			accountName = data.getStringExtra("accountName");
+			accountId = data.getIntExtra("accountId", 0);
+			baoxiaojineStr = data.getStringExtra("value");
 			
+			//将当前选中的未报销账单设置为已报销
+			baoxiaoBill.setBaoxiaoed(true);
+			baoxiaoBill.setBaoxiaojine(baoxiaojineStr);
+			infoService.setBaoxiaoed(baoxiaoBill);
+			
+			Bill inBill = new Bill();
+			inBill.setAccount(accountName);
+			inBill.setAccountid(accountId);
+			inBill.setJine(baoxiaojineStr);
+			inBill.setInCatagory("报销款");
+			String date = DateFormater.getInstatnce().getYMDHT();
+			String dateymd = DateFormater.getInstatnce().getY_M_D();
+			inBill.setDate(date);
+			inBill.setDateYMD(dateymd);
+			inBill.setMember("自己");
+//			inBill.setCanBaoXiao(false);
+//			inBill.setBaoxiaoed(false);
+			inBill.setBillType(2);
+			inBill.setBeizhu(beizhu);
+			infoService.addInBill(inBill);
+			Log.i("a", "inBill = " + inBill);
 			break;
 		}
 	}

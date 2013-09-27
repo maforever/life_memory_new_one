@@ -66,11 +66,21 @@ public class BillReimbursementValueInputDialog extends Activity {
 			cancel();
 			break;
 		case R.id.sure:
-			if(accountItem == null) {
-				Toast.makeText(this, "没有任何账户信息，请先添加账户!" , 0).show();
+			if(validateDatas()) {
+				if(accountItem == null) {
+					Toast.makeText(this, "没有任何账户信息，请先添加账户!" , 0).show();
+				}else {
+					intent = new Intent();
+					intent.putExtra("value", valueEt.getText().toString());
+					intent.putExtra("accountId", accountId);
+					intent.putExtra("accountName", accountName);
+					this.setResult(ConstantUtil.REIMBURSEMENT_VALUE_INPUT, intent);
+					BillReimbursementValueInputDialog.this.finish();
+				}
 			}else {
-				
+				Toast.makeText(this, "请填写报销金额,不能为0!", 0).show();
 			}
+			
 			break;
 		}
 	}
@@ -83,6 +93,14 @@ public class BillReimbursementValueInputDialog extends Activity {
 			accountId = data.getIntExtra("accountId", 0);
 			accountTv.setText(accountName);
 		}
+	}
+	
+	public boolean validateDatas() {
+		String valueStr = valueEt.getText().toString();
+		if(valueStr == null || "".equals(valueStr) || "0".equals(valueStr)) {
+			return false;
+		}
+		return true;
 	}
 	
 	public void cancel() {

@@ -814,9 +814,15 @@ public class BillInfoService {
 			item.setJine(cursor.getString(cursor.getColumnIndex("jine")));
 			item.setAccount(cursor.getString(cursor.getColumnIndex("account")));
 			item.setAccountid(cursor.getInt(cursor.getColumnIndex("accountid")));
+			item.setDate(cursor.getString(cursor.getColumnIndex("date")));
 			items.add(item);
 		}
 		return items;
+	}
+	
+	//将未报销的账单设置为已报销，并填写报销金额
+	public void setBaoxiaoed(Bill bill) {
+		db.execSQL("update bill_info set isBaoxiaoed = ?, baoxiaojine = ? where idx = ?", new String[]{String.valueOf(true), bill.getBaoxiaojine(), String.valueOf(bill.getIdx())});
 	}
 	
 	//报销操作

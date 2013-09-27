@@ -13,6 +13,7 @@ import com.example.lifememory.activity.model.BillMonthDetailsListViewModel;
 import com.example.lifememory.adapter.BillMonthDetailsListViewAdapter;
 import com.example.lifememory.db.service.BillInfoService;
 import com.example.lifememory.utils.DateFormater;
+import com.example.lifememory.utils.SetListViewHeight;
 
 import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
@@ -298,7 +299,7 @@ public class BillMonthDetailsActivity extends Activity {
 			
 			adapter = new BillMonthDetailsListViewAdapter(this, monthDetails, this);
 			listView.setAdapter(adapter);
-			
+			new SetListViewHeight().setListViewHeightBasedOnChildren(listView);
 
 			
 		}else {

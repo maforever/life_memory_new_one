@@ -109,6 +109,7 @@ public class FR_Bill_index extends Fragment {
 		secondGridView.setOnTouchListener(new FlipperOnTouchListener());
 		viewFlipper.setOnTouchListener(new FlipperOnTouchListener());
 		
+		
 		firstGridView.setOnItemClickListener(new MyOnItemClickListener1());
 		secondGridView.setOnItemClickListener(new MyOnItemClickListener2());
 		
@@ -250,6 +251,7 @@ public class FR_Bill_index extends Fragment {
 						tv_page.startAnimation(AnimationUtils.loadAnimation(
 								getActivity(), R.anim.scale_out));
 					}
+					return true;
 //					Log.i("a", "viewFlipper childId = " + viewFlipper.getDisplayedChild());
 				}else if(x1 - x2 > 50) {
 					if(viewFlipper.getDisplayedChild() != 1) {
@@ -261,6 +263,7 @@ public class FR_Bill_index extends Fragment {
 								getActivity(), R.anim.scale_out));
 					}
 //					Log.i("a", "viewFlipper childId = " + viewFlipper.getDisplayedChild());
+					return true;
 				}
 				break;
 			}
@@ -330,5 +333,7 @@ public class FR_Bill_index extends Fragment {
 			}
 		}
 	}
+
+	
 	
 }

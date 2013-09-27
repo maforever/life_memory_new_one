@@ -6,6 +6,8 @@ import com.example.lifememory.fragments.FR_Bill_YiBaoXiao;
 import com.example.lifememory.utils.DateFormater;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,6 +25,7 @@ public class ReimbursementSettingActivity extends FragmentActivity {
 	FragmentTransaction ft;
 	Fragment fragment;
 	TextView baoxiaoedBtn, unBaoxiaoBtn;
+	boolean isWeiBaoXiaoFlag = false;      //是显示未报销还是已报销  true - 未报销  false - 已报销
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,12 +34,11 @@ public class ReimbursementSettingActivity extends FragmentActivity {
 		year = DateFormater.getInstatnce().getYear();
 		fm = this.getSupportFragmentManager();
 		
+		
 		fragment = new FR_Bill_YiBaoXiao(year);
 		ft = fm.beginTransaction();
 		ft.replace(R.id.container, fragment);
 		ft.commit();
-		
-		
 		
 		findViews();
 		
@@ -78,6 +80,7 @@ public class ReimbursementSettingActivity extends FragmentActivity {
 		unBaoxiaoBtn.setBackgroundResource(R.drawable.bill_common_titlebar_common_btn_normal);
 		switch (viewId) {
 		case R.id.baoxiaoed:
+			isWeiBaoXiaoFlag = false;
 			baoxiaoedBtn.setBackgroundResource(R.drawable.bill_common_titlebar_common_btn_selected);
 			fragment = new FR_Bill_YiBaoXiao(year);
 			ft = fm.beginTransaction();
@@ -85,6 +88,7 @@ public class ReimbursementSettingActivity extends FragmentActivity {
 			ft.commit();
 			break;
 		case R.id.unbaoxiao:
+			isWeiBaoXiaoFlag = true;
 			unBaoxiaoBtn.setBackgroundResource(R.drawable.bill_common_titlebar_common_btn_selected);
 			fragment = new FR_Bill_WeiBaoXiao(year);
 			ft = fm.beginTransaction();
@@ -110,6 +114,22 @@ public class ReimbursementSettingActivity extends FragmentActivity {
 			yearTv.setText(year);
 			break;
 		}
+		
+		if(isWeiBaoXiaoFlag) {
+			//显示未报销
+			fragment = new FR_Bill_WeiBaoXiao(year);
+			ft = fm.beginTransaction();
+			ft.replace(R.id.container, fragment);
+			ft.commit();
+
+		}else {
+			//显示报销
+			fragment = new FR_Bill_YiBaoXiao(year);
+			ft = fm.beginTransaction();
+			ft.replace(R.id.container, fragment);
+			ft.commit();
+		}
+		
 	}
 	
 	private void back() {

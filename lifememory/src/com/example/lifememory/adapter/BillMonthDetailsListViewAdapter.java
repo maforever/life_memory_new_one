@@ -127,7 +127,7 @@ public class BillMonthDetailsListViewAdapter extends BaseAdapter {
 			}
 		});
 		
-		new SetListViewHeight().setListViewHeightBasedOnChildren(listView);
+		new SetListViewHeight().setListViewHeightBasedOnChildren(listView, 40);
 		
 		
 		return convertView;

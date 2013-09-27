@@ -3,9 +3,14 @@ package com.example.lifememory.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +23,7 @@ public class BillMonthDetailsListViewListViewAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private List<Bill> bills;
 	private Bill bill;
+	int txtLineCount;
 	public BillMonthDetailsListViewListViewAdapter(Context context, List<Bill> bills) {
 		this.context = context;
 		inflater = LayoutInflater.from(context);
@@ -44,10 +50,10 @@ public class BillMonthDetailsListViewListViewAdapter extends BaseAdapter {
 		ImageView icon;
 		TextView catagoryName;
 		TextView money;
-		TextView beizhu;
+		final TextView beizhu;
 		TextView account;
 		ViewHolder vh;
-		
+		final int lines;
 		if(convertView == null) {
 			convertView = inflater.inflate(R.layout.bill_monthdetails_listview_listview_item, null);
 			icon = (ImageView) convertView.findViewById(R.id.icon);
@@ -97,7 +103,6 @@ public class BillMonthDetailsListViewListViewAdapter extends BaseAdapter {
 		account.setText(bill.getAccount());
 		
 		
-		
 		return convertView;
 	}
 	
@@ -108,6 +113,8 @@ public class BillMonthDetailsListViewListViewAdapter extends BaseAdapter {
 		TextView beizhu;
 		TextView account;
 	}
+
+
 }
 
 
