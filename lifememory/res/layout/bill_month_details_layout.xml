@@ -52,14 +52,14 @@
             android:onClick="btnClick" />
     </RelativeLayout>
 
-    <LinearLayout
+    <!-- <LinearLayout
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/search_static_bg"
         android:clickable="true"
         android:onClick="btnClick" >
-    </LinearLayout>
+    </LinearLayout> -->
 
     <FrameLayout
         android:layout_width="match_parent"

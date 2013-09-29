@@ -314,10 +314,11 @@ public class BillInfoService {
 		}
 
 		db.execSQL(
-				"update  bill_info set jine = ?, incatagory = ?, account = ?, accountid = ?, date = ?,dateymd = ?, member = ?,isCanBaoXiao = false, isBaoxiaoed = false, beizhu = ?, billType = ? where idx = ?",
+				"update  bill_info set jine = ?, incatagory = ?, account = ?, accountid = ?, date = ?,dateymd = ?, member = ?,isCanBaoXiao = ?, isBaoxiaoed = ?, beizhu = ?, billType = ? where idx = ?",
 				new String[] { bill.getJine(), bill.getInCatagory(),
 						bill.getAccount(), String.valueOf(bill.getAccountid()),
 						bill.getDate(), bill.getDateYMD(), bill.getMember(),
+						String.valueOf(false), String.valueOf(false),
 						bill.getBeizhu(), String.valueOf(bill.getBillType()),
 						String.valueOf(bill.getIdx()) });
 	}
@@ -796,6 +797,7 @@ public class BillInfoService {
 			item.setJine(cursor.getString(cursor.getColumnIndex("jine")));
 			item.setAccountid(cursor.getInt(cursor.getColumnIndex("accountid")));
 			item.setBaoxiaojine(cursor.getString(cursor.getColumnIndex("baoxiaojine")));
+			item.setBeizhu(cursor.getString(cursor.getColumnIndex("beizhu")));
 			items.add(item);
 		}
 		return items;
@@ -822,7 +824,7 @@ public class BillInfoService {
 	
 	//将未报销的账单设置为已报销，并填写报销金额
 	public void setBaoxiaoed(Bill bill) {
-		db.execSQL("update bill_info set isBaoxiaoed = ?, baoxiaojine = ? where idx = ?", new String[]{String.valueOf(true), bill.getBaoxiaojine(), String.valueOf(bill.getIdx())});
+		db.execSQL("update bill_info set isBaoxiaoed = ?, baoxiaojine = ?, beizhu = ? where idx = ?", new String[]{String.valueOf(true), bill.getBaoxiaojine(),bill.getBeizhu(), String.valueOf(bill.getIdx())});
 	}
 	
 	//报销操作

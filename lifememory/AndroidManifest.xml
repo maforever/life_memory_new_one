@@ -204,7 +204,10 @@
             android:name=".activity.BillReimbursementInputAccountSelectDialog"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@style/dialog" />
-        
+                <activity
+            android:name=".activity.BillCalenderActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
         
     </application>
 

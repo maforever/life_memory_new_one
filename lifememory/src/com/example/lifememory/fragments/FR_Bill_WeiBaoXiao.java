@@ -105,6 +105,7 @@ public class FR_Bill_WeiBaoXiao extends Fragment {
 			
 			//将当前选中的未报销账单设置为已报销
 			baoxiaoBill.setBaoxiaoed(true);
+			baoxiaoBill.setBeizhu(beizhu);
 			baoxiaoBill.setBaoxiaojine(baoxiaojineStr);
 			infoService.setBaoxiaoed(baoxiaoBill);
 			
@@ -123,7 +124,8 @@ public class FR_Bill_WeiBaoXiao extends Fragment {
 			inBill.setBillType(2);
 			inBill.setBeizhu(beizhu);
 			infoService.addInBill(inBill);
-			Log.i("a", "inBill = " + inBill);
+			new InitDatasThread().start();
+//			Log.i("a", "inBill = " + inBill);
 			break;
 		}
 	}

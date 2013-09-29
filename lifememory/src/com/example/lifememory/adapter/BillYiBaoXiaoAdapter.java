@@ -6,6 +6,7 @@ import com.example.lifememory.R;
 import com.example.lifememory.activity.model.Bill;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

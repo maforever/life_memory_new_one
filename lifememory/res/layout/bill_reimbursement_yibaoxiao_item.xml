@@ -7,6 +7,7 @@
     android:gravity="center">
     
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -21,9 +22,9 @@
 		        android:id="@+id/name"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="吃喝玩乐"
 		        android:textSize="20dp"
 		        android:textColor="#000000" 
+		        android:singleLine="true"
 		        />
 		</LinearLayout>   
 				<LinearLayout
@@ -75,7 +76,8 @@
         android:layout_height="wrap_content" 
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         >
         <TextView
             android:id="@+id/baoxiaoxiangqing"

@@ -2,4 +2,6 @@
 <resources>
     <item name="selected_view" type="id"/>
     
+    <item type="id" name="tagFirst"/>
+    <item type="id" name="tagSecond"/>
 </resources>

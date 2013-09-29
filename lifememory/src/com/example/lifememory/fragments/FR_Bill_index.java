@@ -6,6 +6,8 @@ import java.util.List;
 import com.example.lifememory.R;
 import com.example.lifememory.activity.BillAccountDetailsActivity;
 import com.example.lifememory.activity.BillBudgetSettingActivity;
+import com.example.lifememory.activity.BillCalculatorActivity;
+import com.example.lifememory.activity.BillCalenderActivity;
 import com.example.lifememory.activity.BillChartIndexActivity;
 import com.example.lifememory.activity.BillInputActivity;
 import com.example.lifememory.activity.BillMonthDetailsActivity;
@@ -317,6 +319,10 @@ public class FR_Bill_index extends Fragment {
 //				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();
 				break;
 			case 1:
+				//»’¿˙
+				intent = new Intent(getActivity(), BillCalenderActivity.class);
+				getActivity().startActivity(intent);
+				getActivity().overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
 				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();
 				break;
 			case 2:
