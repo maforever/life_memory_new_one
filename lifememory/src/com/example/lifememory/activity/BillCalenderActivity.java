@@ -2,21 +2,29 @@ package com.example.lifememory.activity;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import com.example.lifememory.R;
 import com.example.lifememory.activity.bill.calender.CalendarGridView;
 import com.example.lifememory.activity.bill.calender.CalendarGridViewAdapter;
 import com.example.lifememory.activity.bill.calender.CalendarUtil;
 import com.example.lifememory.activity.bill.calender.NumberHelper;
+import com.example.lifememory.activity.model.Bill;
+import com.example.lifememory.adapter.BillCalendarListViewAdapter;
+import com.example.lifememory.db.service.BillInfoService;
+import com.example.lifememory.utils.DateFormater;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -29,6 +37,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -152,7 +161,31 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
      */
     private int iFirstDayOfWeek = Calendar.MONDAY;
 
+    private BillInfoService infoService;
+    private ListView listView;
+    private LinearLayout emptyLayout;
+    private List<Bill> bills;
+    private String ymd;
+    private BillCalendarListViewAdapter adapter;
+    private Handler handler = new Handler() {
+    	public void handleMessage(android.os.Message msg) {
+    		switch (msg.what) {
+			case 1:
+				//无数据
+				listView.setVisibility(ViewGroup.GONE);
+				emptyLayout.setVisibility(ViewGroup.VISIBLE);
+				break;
+			case 2:
+				//有数据
+				listView.setVisibility(ViewGroup.VISIBLE);
+				emptyLayout.setVisibility(ViewGroup.GONE);
+				adapter = new BillCalendarListViewAdapter(BillCalenderActivity.this, bills);
+				listView.setAdapter(adapter);
+				break;
 
+			}
+    	};
+    };
     public boolean onTouch(View v, MotionEvent event) {
         return mGesture.onTouchEvent(event);
     }
@@ -162,6 +195,8 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.calendar_main);
+        
+        infoService = new BillInfoService(this);
         initView();
         updateStartDateForMonth();
 
@@ -177,6 +212,49 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
         slideRightOut.setAnimationListener(animationListener);
 
         mGesture = new GestureDetector(this, new GestureListener());
+        
+        ymd = DateFormater.getInstatnce().getY_M_D();
+        new InitDatasThread().start();
+        
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    	if(infoService != null) {
+    		ymd = DateFormater.getInstatnce().getY_M_D();
+            updateStartDateForMonth();
+            generateContetView(mCalendarMainLayout);
+            new InitDatasThread().start();
+    	}
+    }
+    
+    private class InitDatasThread extends Thread {
+    	@Override
+    	public void run() {
+    		bills = infoService.findBillByYMDInDetails(ymd);
+    		if(bills.size() > 0) {
+    			//有数据
+    			handler.sendEmptyMessage(2);
+    		}else {
+    			//没数据
+    			handler.sendEmptyMessage(1);
+    		}
+    		
+    	}
+    }
+    
+    public void btnClick(View view) {
+    	switch (view.getId()) {
+		case R.id.emptyLayout:
+			Intent intent = new Intent(this, BillInputActivity.class);
+			intent.putExtra("flag", "fromCalendar");
+			intent.putExtra("ymd", ymd);
+			this.startActivity(intent);
+			this.overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
+//			Toast.makeText(this, "添加数据", 0).show();
+			break;
+		}
     }
 
     /**
@@ -189,6 +267,8 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
         mCalendarMainLayout = (RelativeLayout) findViewById(R.id.calendar_main);
         mPreMonthImg = (ImageView) findViewById(R.id.left_img);
         mNextMonthImg = (ImageView) findViewById(R.id.right_img);
+        listView = (ListView) findViewById(R.id.listView);
+        emptyLayout = (LinearLayout) findViewById(R.id.emptyLayout);
         mTodayBtn.setOnClickListener(onTodayClickListener);
         backBtn.setOnClickListener(onBackBtnClickListener);
         mPreMonthImg.setOnClickListener(onPreMonthClickListener);
@@ -297,18 +377,18 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
 
         firstGridView = new CalendarGridView(mContext);
         firstCalendar.add(Calendar.MONTH, -1);
-        firstGridAdapter = new CalendarGridViewAdapter(this, firstCalendar);
+        firstGridAdapter = new CalendarGridViewAdapter(this, firstCalendar, false, infoService);
         firstGridView.setAdapter(firstGridAdapter);// 设置菜单Adapter
         firstGridView.setId(CAL_LAYOUT_ID);
 
         currentGridView = new CalendarGridView(mContext);
-        currentGridAdapter = new CalendarGridViewAdapter(this, currentCalendar);
+        currentGridAdapter = new CalendarGridViewAdapter(this, currentCalendar, true, infoService);
         currentGridView.setAdapter(currentGridAdapter);// 设置菜单Adapter
         currentGridView.setId(CAL_LAYOUT_ID);
 
         lastGridView = new CalendarGridView(mContext);
         lastCalendar.add(Calendar.MONTH, 1);
-        lastGridAdapter = new CalendarGridViewAdapter(this, lastCalendar);
+        lastGridAdapter = new CalendarGridViewAdapter(this, lastCalendar, false, infoService);
         lastGridView.setAdapter(lastGridAdapter);// 设置菜单Adapter
         lastGridView.setId(CAL_LAYOUT_ID);
 
@@ -480,8 +560,9 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
                         String week = CalendarUtil.getWeek(calSelected);
                         String message = CalendarUtil.getDay(calSelected) + " 农历" +
                                 new CalendarUtil(calSelected).getDay() + " " + week;
-                        String dateStr = CalendarUtil.getDay(calSelected);
-                        Toast.makeText(getApplicationContext(), "" + dateStr, 0).show();
+                        ymd = CalendarUtil.getDay(calSelected);
+                        new InitDatasThread().start();
+//                        Toast.makeText(getApplicationContext(), "" + dateStr, 0).show();
 //                        Toast.makeText(getApplicationContext(), "您选择的日期为:" + message, Toast.LENGTH_SHORT).show();
 //                    } else {
 //                        Toast.makeText(getApplicationContext(), "选择的日期不能小于今天的日期", Toast.LENGTH_SHORT).show();
@@ -493,5 +574,11 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
 
             return false;
         }
+    }
+    
+    @Override
+    protected void onDestroy() {
+    	super.onDestroy();
+    	infoService.closeDB();
     }
 }

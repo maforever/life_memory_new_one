@@ -851,6 +851,16 @@ public class BillInfoService {
 		
 	}
 	
+	//根据yyyy-MM-dd判断是否指定日期有记账信息（包括支出，收入，转账）
+	public boolean ifHaveDatasByYMD(String ymd) {
+		Cursor cursor = db.rawQuery("select count(*) from bill_info where dateymd = ?", new String[]{ymd});
+		cursor.moveToFirst();
+		Long count = cursor.getLong(0);
+		return count > 0 ? true : false;
+	}
+	
+	
+	
 	
 	public void closeDB() {
 		accountService.closeDB();

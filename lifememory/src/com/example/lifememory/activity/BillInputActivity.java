@@ -19,6 +19,7 @@ import com.example.lifememory.utils.DateFormater;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -110,7 +111,7 @@ public class BillInputActivity extends Activity {
 
 		flag = this.getIntent().getStringExtra("flag");
 
-		if ("add".equals(flag)) {
+		if ("fromCalendar".equals(flag)) {
 			
 			bill = new Bill();
 			
@@ -153,12 +154,11 @@ public class BillInputActivity extends Activity {
 //			bill.setTransferIn("现金");
 
 			
-			
+			String ymd = this.getIntent().getStringExtra("ymd");
 			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			bill.setDate(sdf.format(d));
-			bill.setDateYMD(DateFormater.getInstatnce().getY_M_D());
-
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			bill.setDate(ymd + " " + sdf.format(d));
+			bill.setDateYMD(ymd);
 			findViews();
 			currentAccountTextView = (TextView) viewFlipper.getCurrentView().findViewById(R.id.zhanghu);
 			currentAccountTextView.setText(bill.getAccount());
@@ -166,7 +166,65 @@ public class BillInputActivity extends Activity {
 			
 			initViews();
 			initCalculator();
-		} else if ("view".equals(flag)) {
+		}else
+			if ("add".equals(flag)) {
+				
+				bill = new Bill();
+				
+				commonAccount = accountService.findItemsForAddViews();
+				commonTransferInAccount = accountService.findItemsForAddTransferInViews();
+				commonTransferOutAccount = accountService.findItemsForAddViews();
+				
+				if(commonAccount == null) {
+					//没有是现金类型下的账户
+					bill.setAccount("无账户");
+					bill.setAccountid(-1);
+				}else {
+					bill.setAccount(commonAccount.getName());
+					bill.setAccountid(commonAccount.getIdx());
+				}
+				
+				if(commonTransferInAccount == null) {
+					bill.setTransferIn("现金");
+					bill.setTransferInAccountId(-1);
+				}else {
+					bill.setTransferIn(commonTransferInAccount.getName());
+					bill.setTransferInAccountId(commonTransferInAccount.getIdx());
+				}
+				
+				if(commonTransferOutAccount == null) {
+					bill.setTransferOut("储蓄");
+					bill.setTransferOutAccountId(-1);
+				}else {
+					bill.setTransferOut(commonTransferOutAccount.getName());
+					bill.setTransferOutAccountId(commonTransferOutAccount.getIdx());
+				}
+
+				bill.setOutCatagory("常用-打的");
+				bill.setOutCatagoryParentId(1);    //默认选择常用父类别
+				bill.setOutCatagoryChildId(10);     //默认选择打的子类别
+//				bill.setAccount("现金");
+				bill.setMember("自己");
+				bill.setInCatagory("工资");
+//				bill.setTransferOut("储蓄");
+//				bill.setTransferIn("现金");
+
+				
+				
+				Date d = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				bill.setDate(sdf.format(d));
+				bill.setDateYMD(DateFormater.getInstatnce().getY_M_D());
+
+				findViews();
+				currentAccountTextView = (TextView) viewFlipper.getCurrentView().findViewById(R.id.zhanghu);
+				currentAccountTextView.setText(bill.getAccount());
+				
+				
+				initViews();
+				initCalculator();
+			}
+			else if ("view".equals(flag)) {
 			idx = this.getIntent().getIntExtra("idx", 0);
 			bill = billService.findBillByIdx(idx);
 			findViews();
@@ -822,7 +880,71 @@ public class BillInputActivity extends Activity {
 	}
 	
 	private void clickSaveBtn(int clickNextBtn) {
-		if ("add".equals(flag)) {
+		if ("fromCalendar".equals(flag)) {
+			currentJinETextView = (TextView) viewFlipper.getCurrentView()
+					.findViewById(R.id.jine);
+			if (currentJinETextView.getText().toString() == null
+					|| "".equals(currentJinETextView.getText().toString())
+					|| "0".equals(currentJinETextView.getText().toString())) {
+				Toast.makeText(BillInputActivity.this, "请输入金额!", 0).show();
+			} else {
+				
+				
+				
+				currentBeizhuTextView = (TextView) viewFlipper
+						.getCurrentView().findViewById(R.id.beizhu);
+				bill.setBeizhu(currentBeizhuTextView.getText().toString());
+				bill.setJine(currentJinETextView.getText().toString());
+				bill.setBaoxiaoed(false);
+				if (baoxiaoCb.isChecked()) {
+					bill.setCanBaoXiao(true);
+				} else {
+					bill.setCanBaoXiao(false);
+				}
+
+				switch (viewFlipper.getDisplayedChild()) {
+				case 0:
+					// 支出
+					bill.setBillType(1);
+					if(bill.getAccountid() > 0) {
+						showNoticeDialog(bill);
+						billService.addOutBill(bill);
+						saveOrUpdateOk(clickNextBtn);
+					}else {
+						Toast.makeText(BillInputActivity.this, "无账户类型，请先添加账户!", 0).show();
+						return;
+					}
+					break;
+				case 1:
+					// 收入
+					bill.setBillType(2);
+					if(bill.getAccountid() > 0) {
+						showNoticeDialog(bill);
+						billService.addInBill(bill);
+						saveOrUpdateOk(clickNextBtn);
+					}else {
+						Toast.makeText(BillInputActivity.this, "无账户类型，请先添加账户!", 0).show();
+						return;
+					}
+					break;
+				case 2:
+					// 转账
+					bill.setBillType(3);
+					if(bill.getTransferInAccountId() > 0 && bill.getTransferOutAccountId() > 0) {
+						showNoticeDialog(bill);
+						billService.addTransferBill(bill);
+						saveOrUpdateOk(clickNextBtn);
+					}else {
+						Toast.makeText(BillInputActivity.this, "无账户类型，请先添加账户!", 0).show();
+						return;
+					}
+					break;
+				}
+			}
+
+		} 
+		
+	else if ("add".equals(flag)) {
 			currentJinETextView = (TextView) viewFlipper.getCurrentView()
 					.findViewById(R.id.jine);
 			if (currentJinETextView.getText().toString() == null

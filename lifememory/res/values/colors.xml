@@ -41,8 +41,8 @@
     <color name="white">#ffffffff</color>
 	<color name="calendar_background">#e3eef4</color>
 	<color name="selection">#b1dce2ff</color>
-	<color name="calendar_zhe_day">#faedda</color>
-	<color name="event_center">#ff6bd697</color>
+	<color name="calendar_zhe_day">#ffcc33</color>
+	<color name="event_center">#ff0000</color>
 	<color name="noMonth">#c0c0c0</color>
 	<color name="title_text_6">#FF529bd0</color>
 	<color name="title_text_7">#FFbc4445</color>

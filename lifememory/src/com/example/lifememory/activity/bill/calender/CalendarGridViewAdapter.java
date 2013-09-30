@@ -5,9 +5,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.example.lifememory.R;
+import com.example.lifememory.db.service.BillInfoService;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,14 +27,26 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 	private Calendar calStartDate = Calendar.getInstance();// 当前显示的日历
 	private Calendar calSelected = Calendar.getInstance(); // 选择的日历
 	private LayoutInflater inflater;
-
+	private boolean isCurrentDate;
+	private BillInfoService infoService;
+	private String ymd;
+	TextView tag;
 	public void setSelectedDate(Calendar cal) {
 		calSelected = cal;
 	}
 
 	private Calendar calToday = Calendar.getInstance(); // 今日
 	private int iMonthViewCurrentMonth = 0; // 当前视图月
-
+	private Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			boolean flag = (Boolean) msg.obj;
+			if(flag) {
+				tag.setVisibility(ViewGroup.VISIBLE);
+			}else {
+				tag.setVisibility(ViewGroup.GONE);
+			}
+		};
+	};
 	// 根据改变的日期更新日历
 	// 填充日历控件用
 	private void UpdateStartDateForMonth() {
@@ -79,12 +93,15 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 	Resources resources;
 
 	// construct
-	public CalendarGridViewAdapter(Activity a, Calendar cal) {
+	public CalendarGridViewAdapter(Activity a, Calendar cal,
+			boolean isCurrentDate, BillInfoService infoService) {
 		calStartDate = cal;
 		activity = a;
 		resources = activity.getResources();
 		titles = getDates();
 		inflater = a.getLayoutInflater();
+		this.isCurrentDate = isCurrentDate;
+		this.infoService = infoService;
 	}
 
 	public CalendarGridViewAdapter(Activity a) {
@@ -113,7 +130,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 		FrameLayout fl;
 		TextView txtDay;
 		TextView txtToDay;
-		TextView tag;
+//		TextView tag;
 		ViewHolder vh;
 		if (convertView == null) {
 			convertView = inflater.inflate(
@@ -127,7 +144,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 			vh.txtToDay = txtToDay;
 			vh.tag = tag;
 			vh.fl = fl;
-			convertView.setTag(R.id.tagFirst,vh);
+			convertView.setTag(R.id.tagFirst, vh);
 		} else {
 			vh = (ViewHolder) convertView.getTag(R.id.tagFirst);
 			txtDay = vh.txtDay;
@@ -163,6 +180,21 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 			txtToDay.setText(calendarUtil.toString());
 		}
 
+		// 这里用于比对是不是比当前日期小，如果比当前日期小就高亮
+
+		// 设置背景颜色
+		if (equalsDate(calSelected.getTime(), myDate)) {
+			// 选择的
+			convertView.setBackgroundColor(resources
+					.getColor(R.color.selection));
+		} else {
+			if (equalsDate(calToday.getTime(), myDate)) {
+				// 当前日期
+				convertView.setBackgroundColor(resources
+						.getColor(R.color.calendar_zhe_day));
+			}
+		}
+
 		// 判断是否是当前月
 		if (iMonth == iMonthViewCurrentMonth) {
 			txtToDay.setTextColor(resources.getColor(R.color.ToDayText));
@@ -171,9 +203,15 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 			txtDay.setTextColor(resources.getColor(R.color.noMonth));
 			txtToDay.setTextColor(resources.getColor(R.color.noMonth));
 		}
-
-//		 String dateStr = CalendarUtil.getDay(calCalendar);
-//		 Log.i("a", dateStr);
+		if (isCurrentDate) {
+//			String dateStr = CalendarUtil.getDay(calCalendar);
+			ymd = CalendarUtil.getDay(calCalendar);
+			new IfHaveDataThread().start();
+			// Log.i("a", "dateStr = " + dateStr);
+//			if (infoService.ifHaveDatasByYMD(dateStr)) {
+//				tag.setVisibility(ViewGroup.VISIBLE);
+//			}
+		}
 
 		int day = myDate.getDate(); // 日期
 
@@ -290,6 +328,14 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 			return false;
 		}
 
+	}
+	
+	private class IfHaveDataThread  extends Thread {
+		@Override
+		public void run() {
+			boolean flag = infoService.ifHaveDatasByYMD(ymd);
+			handler.sendMessage(handler.obtainMessage(1, flag));
+		}
 	}
 
 }
