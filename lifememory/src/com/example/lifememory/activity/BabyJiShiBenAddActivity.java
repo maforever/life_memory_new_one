@@ -29,6 +29,7 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -84,7 +85,7 @@ public class BabyJiShiBenAddActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.pregnancydiray_jishiben_add);
+		setContentView(R.layout.baby_pregnancydiray_jishiben_add);
 		
 		
 		DisplayMetrics dm = this.getResources().getDisplayMetrics();
@@ -322,16 +323,28 @@ public class BabyJiShiBenAddActivity extends Activity{
 		switch (view.getId()) {
 		case R.id.back:
 			
-			if(isSave) {
-				//保存过
-				BabyJiShiBenAddActivity.this.finish();
-				overridePendingTransition(R.anim.activity_steady, R.anim.activity_down);
-			}else if(!isSave) {
-				//没保存
-				new DialogBackUnSaveAlert(BabyJiShiBenAddActivity.this, new listener(), "是否保存当前内容?").show();
-			}
+			back();
 			break;
 		}
+	}
+	
+	private void back() {
+		if(isSave) {
+			//保存过
+			BabyJiShiBenAddActivity.this.finish();
+			overridePendingTransition(R.anim.activity_steady, R.anim.activity_down);
+		}else if(!isSave) {
+			//没保存
+			new DialogBackUnSaveAlert(BabyJiShiBenAddActivity.this, new listener(), "是否保存当前内容?").show();
+		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			back();
+		}
+		return true;
 	}
 	
 	private class listener implements DialogAlertListener {

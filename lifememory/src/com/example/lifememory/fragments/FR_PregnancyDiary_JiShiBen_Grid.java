@@ -24,6 +24,7 @@ import com.example.lifememory.activity.IndexActivity;
 import com.example.lifememory.activity.model.PregnancyJiShiBen;
 import com.example.lifememory.activity.model.PrenancyJiShiBenGridViewExpandableGroupItem;
 import com.example.lifememory.activity.slidingmenu.menulib.SlidingMenu.OnOpenListener;
+import com.example.lifememory.adapter.CommonMyExpandableListViewAdapter;
 import com.example.lifememory.adapter.MyExpandableListViewAdapter;
 import com.example.lifememory.db.service.PregnancyDiaryJiShiBenService;
 import com.example.lifememory.utils.DateFormater;
@@ -34,7 +35,7 @@ public class FR_PregnancyDiary_JiShiBen_Grid extends Fragment {
 	private List<PrenancyJiShiBenGridViewExpandableGroupItem> groupItems = null;
 	private PrenancyJiShiBenGridViewExpandableGroupItem groupItem = null;
 	private static ExpandableListView listView = null;
-	public static MyExpandableListViewAdapter exAdapter = null;
+	public static CommonMyExpandableListViewAdapter exAdapter = null;
 	private List<String> groupTitles = new ArrayList<String>();
 	private IndexActivity indexActivity = null;
 	public boolean isShowDelTag = false;
@@ -42,7 +43,7 @@ public class FR_PregnancyDiary_JiShiBen_Grid extends Fragment {
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			if(msg.what == 0) {
-				exAdapter = new MyExpandableListViewAdapter(fa,
+				exAdapter = new CommonMyExpandableListViewAdapter(fa,
 						fa, groupItems);
 				listView.setAdapter(exAdapter);
 				if(isShowDelTag) {
@@ -147,6 +148,12 @@ public class FR_PregnancyDiary_JiShiBen_Grid extends Fragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		dbService.closeDB();
+	}
+	
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
 		dbService.closeDB();
 	}
 }

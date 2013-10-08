@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -304,12 +305,23 @@ public class PregnancyJiShiBenEditActivity extends Activity{
 	public void btnClick(View view) {
 		switch (view.getId()) {
 		case R.id.back:
-			PregnancyJiShiBenEditActivity.this.finish();
-			overridePendingTransition(R.anim.activity_steady, R.anim.activity_down);
+			
 			break;
 		}
 	}
 	
+	private void back() {
+		PregnancyJiShiBenEditActivity.this.finish();
+		overridePendingTransition(R.anim.activity_steady, R.anim.activity_down);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			back();
+		}
+		return true;
+	}
 	
 	//初始化颜色选择popupwindow
 	private void initColorPopupWindow() {

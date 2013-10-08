@@ -22,6 +22,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -66,7 +67,7 @@ public class BabyLuYinReadActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.pregnancydiray_luyin_read);
+		this.setContentView(R.layout.baby_pregnancydiray_luyin_read);
 		
 		dbService = new BabyDiaryLuYinService(this);
 		
@@ -75,17 +76,29 @@ public class BabyLuYinReadActivity extends Activity {
 		initViews();
 	}
 	
+	private void back() {
+		mediaPlayerClose();
+		try {
+			Thread.sleep(SEEKBAR_INTERVAL);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		BabyLuYinReadActivity.this.finish();
+		overridePendingTransition(R.anim.activity_steady, R.anim.activity_down);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			back();
+		}
+		return true;
+	}
+	
 	public void btnClick(View view) {
 		switch (view.getId()) {
 		case R.id.back:
-			mediaPlayerClose();
-			try {
-				Thread.sleep(SEEKBAR_INTERVAL);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			BabyLuYinReadActivity.this.finish();
-			overridePendingTransition(R.anim.activity_steady, R.anim.activity_down);
+			back();
 			break;
 		case R.id.rename:
 			//÷ÿ√¸√˚

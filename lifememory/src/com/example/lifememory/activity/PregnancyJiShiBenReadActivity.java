@@ -6,6 +6,7 @@ import java.util.Date;
 import com.example.lifememory.R;
 import com.example.lifememory.activity.model.PregnancyJiShiBen;
 import com.example.lifememory.db.service.PregnancyDiaryJiShiBenService;
+import com.example.lifememory.dialog.CommonDiaryDialogAlert;
 import com.example.lifememory.dialog.DialogAlert;
 import com.example.lifememory.dialog.DialogAlertListener;
 import com.example.lifememory.dialog.DialogInputListener;
@@ -22,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -148,9 +150,9 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 								break;
 							// ɾ��
 							case R.id.composer_button_del:
-								new DialogAlert(
+								new CommonDiaryDialogAlert(
 										PregnancyJiShiBenReadActivity.this,
-										listener, "��ȷ��ɾ������ռ���?").show();
+										listener, "确定要删除所有日记马?无法回复!").show();
 								break;
 
 							}
@@ -275,13 +277,11 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 
 		@Override
 		public void onDialogSave(Dialog dlg, Object param) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void onDialogUnSave(Dialog dlg, Object param) {
-			// TODO Auto-generated method stub
 
 		}
 	};
@@ -368,5 +368,15 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		dbService.closeDB();
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			PregnancyJiShiBenReadActivity.this.finish();
+			overridePendingTransition(R.anim.activity_steady,
+					R.anim.activity_down);
+		}
+		return true;
 	}
 }

@@ -161,7 +161,7 @@ public class BabyDiaryFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_pregnancydiary, null,
+		View view = inflater.inflate(R.layout.baby_fragment_pregnancydiary, null,
 				false);
 		findViews(view);
 		initFragments();

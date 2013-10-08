@@ -9,10 +9,12 @@ import com.example.lifememory.activity.slidingmenu.menulib.SlidingMenu.OnCloseLi
 import com.example.lifememory.activity.slidingmenu.menulib.SlidingMenu.OnClosedListener;
 import com.example.lifememory.activity.slidingmenu.menulib.SlidingMenu.OnOpenListener;
 import com.example.lifememory.activity.slidingmenu.menulib.SlidingMenu.OnOpenedListener;
+import com.example.lifememory.adapter.CommonPregnancyJSBPopWindowGridAdapter;
 import com.example.lifememory.adapter.MyFragmentViewPagerAdapter;
 import com.example.lifememory.adapter.PregnancyJSBPopWindowGridAdapter;
 import com.example.lifememory.db.service.PregnancyDiaryJiShiBenService;
 import com.example.lifememory.db.service.PregnancyDiaryLuYinService;
+import com.example.lifememory.dialog.CommonDiaryDialogAlert;
 import com.example.lifememory.dialog.DialogAlert;
 import com.example.lifememory.dialog.DialogAlertListener;
 
@@ -189,7 +191,7 @@ public class PregnancyDiaryFragment extends Fragment {
 				R.drawable.toolbar_delall_icon, R.drawable.toolbar_timer_icon,
 				R.drawable.toolbar_list_icon };
 		String[] titles = { "批量删除", "全部删除", "按时查找", "文件备份" };
-		PregnancyJSBPopWindowGridAdapter adapter = new PregnancyJSBPopWindowGridAdapter(
+		CommonPregnancyJSBPopWindowGridAdapter adapter = new CommonPregnancyJSBPopWindowGridAdapter(
 				getActivity(), imageIds, titles);
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(new OnItemClickListener() {
@@ -259,10 +261,10 @@ public class PregnancyDiaryFragment extends Fragment {
 						// 是记事本界面
 						if (isJSBGridStyle) {
 							// 是grid显示方式
-							new DialogAlert(getActivity(), listener, "确定要删除所有日记吗？无法恢复！").show();
+							new CommonDiaryDialogAlert(getActivity(), listener, "确定要删除所有日记吗？无法恢复！").show();
 						} else {
 							// 是list显示方式
-							new DialogAlert(getActivity(), listener2, "确定要删除所有日记吗？无法恢复！").show();
+							new CommonDiaryDialogAlert(getActivity(), listener2, "确定要删除所有日记吗？无法恢复！").show();
 //							Toast.makeText(getActivity(), "记事本界面 --- list显示方式", 0).show();
 						}
 
@@ -270,11 +272,11 @@ public class PregnancyDiaryFragment extends Fragment {
 						// 是录音界面
 						if (isLYGridStyle) {
 							// 是grid显示方式
-							new DialogAlert(getActivity(), listener3, "确定要删除所有录音吗？无法恢复！").show();
+							new CommonDiaryDialogAlert(getActivity(), listener3, "确定要删除所有录音吗？无法恢复！").show();
 							
 						} else {
 							// 是list显示方式
-							new DialogAlert(getActivity(), listener4, "确定要删除所有录音吗？无法恢复！").show();
+							new CommonDiaryDialogAlert(getActivity(), listener4, "确定要删除所有录音吗？无法恢复！").show();
 						}
 					}
 					

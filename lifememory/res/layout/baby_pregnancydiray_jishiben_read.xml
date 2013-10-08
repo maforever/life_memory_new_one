@@ -13,7 +13,7 @@
             android:id="@+id/top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/common_diary_top" >
+            android:background="@drawable/pregnancydiray_title_bg" >
 
             <ImageView
                 android:id="@+id/back"
@@ -117,8 +117,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="8.666666666666667dp"
                 android:layout_marginRight="144dp"
-                android:background="@drawable/pregnancy_delete_btn_selector"
-                android:visibility="visible" />
+                android:background="@drawable/pregnancy_jishiben_delete_selector"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout

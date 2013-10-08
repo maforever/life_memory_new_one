@@ -9,7 +9,7 @@
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/common_diary_top" >
+        android:background="@drawable/pregnancydiray_title_bg" >
 
         <ImageView
             android:id="@+id/back"
@@ -20,22 +20,18 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/pregnancydiray_back_icon"
             android:onClick="btnClick" />
-        
-        <TextView
-            android:id="@+id/titleTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:layout_centerInParent="true"
-            android:text="孕期笔记"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:layout_toRightOf="@+id/back"
-            android:ellipsize="end" 
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="10dp"
-            />
-        
+                    <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/back"
+                android:singleLine="true"
+                android:text="DJFLDJFSLJFSDJFLSDJFLJFKDSFKSFJ"
+                android:textColor="#ffffff"
+                android:textSize="23dp" />
     </RelativeLayout>
 
     <ScrollView
@@ -67,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/common_diary_top" >
+        android:background="@drawable/pregnancydiray_title_bg" >
 
         <ImageView
             android:layout_width="wrap_content"

@@ -10,6 +10,7 @@ import com.example.lifememory.activity.PregnancyLuYinAddActivity;
 import com.example.lifememory.activity.PregnancyLuYinReadActivity;
 import com.example.lifememory.activity.model.PregnancyLuYin;
 import com.example.lifememory.activity.model.PrenancyJiShiBenListViewExpandableGroupItem;
+import com.example.lifememory.adapter.CommonMyExpandableListViewAdapterLuYinList;
 import com.example.lifememory.adapter.MyExpandableListViewAdapterLuYinList;
 import com.example.lifememory.db.service.PregnancyDiaryLuYinService;
 import com.example.lifememory.utils.DateFormater;
@@ -31,7 +32,7 @@ public class FR_PregnancyDiary_LuYinBi_List extends Fragment {
 	private static ExpandableListView listView = null;
 	private List<PrenancyJiShiBenListViewExpandableGroupItem> groupItems = null;
 	private PrenancyJiShiBenListViewExpandableGroupItem groupItem = null;
-	public static MyExpandableListViewAdapterLuYinList exAdapter = null;
+	public static CommonMyExpandableListViewAdapterLuYinList exAdapter = null;
 	private List<PregnancyLuYin> luyinItems = null;
 	private PregnancyLuYin luyinItem = null;
 	private static PregnancyDiaryLuYinService dbService = null;
@@ -143,7 +144,7 @@ public class FR_PregnancyDiary_LuYinBi_List extends Fragment {
 	}
 	
 	private void setAdapter() {
-		exAdapter = new MyExpandableListViewAdapterLuYinList(fa, fa, groupItems);
+		exAdapter = new CommonMyExpandableListViewAdapterLuYinList(fa, fa, groupItems);
 		listView.setAdapter(exAdapter);
 		if(isShowDelTag) {
 			exAdapter.showDeleteTag(isShowDelTag);

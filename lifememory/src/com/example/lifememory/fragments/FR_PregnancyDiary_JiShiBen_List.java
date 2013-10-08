@@ -19,6 +19,7 @@ import com.example.lifememory.activity.PregnancyJiShiBenAddActivity;
 import com.example.lifememory.activity.PregnancyJiShiBenReadActivity;
 import com.example.lifememory.activity.model.PregnancyJiShiBen;
 import com.example.lifememory.activity.model.PrenancyJiShiBenGridViewExpandableGroupItem;
+import com.example.lifememory.adapter.CommonMyExpandableListViewAdapterList;
 import com.example.lifememory.adapter.MyExpandableListViewAdapterList;
 import com.example.lifememory.db.service.PregnancyDiaryJiShiBenService;
 import com.example.lifememory.utils.DateFormater;
@@ -29,13 +30,13 @@ public class FR_PregnancyDiary_JiShiBen_List extends Fragment {
 	private List<PrenancyJiShiBenGridViewExpandableGroupItem> groupItems = null;
 	private PrenancyJiShiBenGridViewExpandableGroupItem groupItem = null;
 	private static ExpandableListView listView = null;
-	public static MyExpandableListViewAdapterList exAdapter = null;
+	public static CommonMyExpandableListViewAdapterList exAdapter = null;
 	private List<String> groupTitles = new ArrayList<String>();
 	public boolean isShowDelTag = false;
 	private static FragmentActivity fa = null;
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			exAdapter = new MyExpandableListViewAdapterList(fa,
+			exAdapter = new CommonMyExpandableListViewAdapterList(fa,
 					fa, groupItems);
 			listView.setAdapter(exAdapter);
 			if(isShowDelTag) {

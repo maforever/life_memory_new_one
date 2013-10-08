@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@drawable/pregnancydiray_title_bg" >
+        android:background="@drawable/common_diary_top" >
 
         <ImageView
             android:id="@+id/back"
@@ -149,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/pregnancyjishiben_btn_selector"
+            android:background="@drawable/pregnancy_btn_selector"
             android:gravity="center"
             android:onClick="btnClick"
             android:orientation="vertical" >
@@ -172,7 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/pregnancyjishiben_btn_selector"
+            android:background="@drawable/pregnancy_btn_selector"
             android:gravity="center"
             android:onClick="btnClick"
             android:orientation="vertical"
@@ -197,7 +197,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/pregnancyjishiben_btn_selector"
+            android:background="@drawable/pregnancy_btn_selector"
             android:gravity="center"
             android:onClick="btnClick"
             android:orientation="vertical"

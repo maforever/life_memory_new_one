@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/pregnancy_jishiben_dialog_bg"
+        android:background="@drawable/pregnancy_common_dialog_bg"
         android:orientation="vertical" >
 
         <LinearLayout
