@@ -150,13 +150,13 @@ public class FR_BabyDiary_JiShiBen_Grid extends Fragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.i("a", "onDestroy");
+//		Log.i("a", "onDestroy");
 		dbService.closeDB();
 	}
 	
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		Log.i("a", "onDestroyView");
-	}
+//	@Override
+//	public void onDestroyView() {
+//		super.onDestroyView();
+//		Log.i("a", "onDestroyView");
+//	}
 }

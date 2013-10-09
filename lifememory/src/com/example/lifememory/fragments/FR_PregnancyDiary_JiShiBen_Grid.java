@@ -151,9 +151,4 @@ public class FR_PregnancyDiary_JiShiBen_Grid extends Fragment {
 		dbService.closeDB();
 	}
 	
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		dbService.closeDB();
-	}
 }

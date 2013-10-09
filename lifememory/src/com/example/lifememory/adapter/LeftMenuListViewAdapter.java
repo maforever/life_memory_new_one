@@ -7,6 +7,7 @@ import com.example.lifememory.activity.model.LeftMenuItem;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,12 @@ public class LeftMenuListViewAdapter extends BaseAdapter {
 	private LayoutInflater inflater = null;
 	private List<LeftMenuItem> menuItems = null;
 	private int currentSelected = -1;
-	
+	private Context context;
+	private Drawable d;
 	public LeftMenuListViewAdapter(Context context, List<LeftMenuItem> menuItems) {
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.menuItems = menuItems;
+		this.context = context;
 	}
 	
 	@Override
@@ -73,7 +76,30 @@ public class LeftMenuListViewAdapter extends BaseAdapter {
 		image.setImageResource(menuItems.get(position).getImageId());
 		
 		if(currentSelected == position) {
-			convertView.setBackgroundResource(R.drawable.leftmenuselected);
+			
+			switch (position) {
+			case 0:
+				//ºìÉ«
+				d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_red);
+				d.setAlpha(10);
+				break;
+			case 1:
+				//»ÆÉ«
+				d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_yellow);
+				d.setAlpha(10);
+				break;
+			case 2:
+				//ÂÌÉ«
+				d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_green);
+				d.setAlpha(10);
+				break;
+			}
+			
+//			convertView.setBackgroundResource(R.drawable.leftmenuselected);
+//			Drawable d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_red);
+//			d.setAlpha(50);
+			convertView.setBackgroundDrawable(d);
+//			convertView.setBackgroundResource(R.drawable.left_menu_selected_bg_red);
 		}else {
 			convertView.setBackgroundColor(Color.TRANSPARENT);
 		}

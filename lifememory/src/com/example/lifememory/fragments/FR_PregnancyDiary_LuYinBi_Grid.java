@@ -134,17 +134,17 @@ public class FR_PregnancyDiary_LuYinBi_Grid extends Fragment {
 		}
 	}
 	
-//	@Override
-//	public void onDestroy() {
-//		super.onDestroy();
-//		dbService.closeDB();
-//	}
-	
 	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
+	public void onDestroy() {
+		super.onDestroy();
 		dbService.closeDB();
 	}
+	
+//	@Override
+//	public void onDestroyView() {
+//		super.onDestroyView();
+//		dbService.closeDB();
+//	}
 }
 
 

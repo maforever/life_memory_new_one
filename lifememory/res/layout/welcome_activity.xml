@@ -16,7 +16,7 @@
                 android:layout_width="1280dip"
                 android:layout_height="fill_parent"
                 android:scaleType="matrix"
-                android:src="@drawable/welcome_bg" />
+                 />
         </LinearLayout>
 
         <RelativeLayout

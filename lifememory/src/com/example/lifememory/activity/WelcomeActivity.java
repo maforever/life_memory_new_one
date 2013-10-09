@@ -1,5 +1,6 @@
 package com.example.lifememory.activity;
 
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -68,6 +69,36 @@ public class WelcomeActivity extends Activity{
 	
 	private void findViews() {
 		imageView = (ImageView) this.findViewById(R.id.run_image);
+		
+		switch (getTimeInt()) {
+		case 1:
+			imageView.setImageResource(R.drawable.qingchen);
+			break;
+		case 2:
+			imageView.setImageResource(R.drawable.zhongwu);
+			break;
+		case 3:
+			imageView.setImageResource(R.drawable.morning2);
+			 break;
+		}
+	}
+	
+	//根据小时判断时间点，
+	/**
+	 * 1 早上，2中午，3下午，4深夜
+	 * @return
+	 */
+	private int getTimeInt() {
+		Calendar c = Calendar.getInstance();
+		int hour = c.getTime().getHours();
+		if(hour >= 5 && hour <= 10) {
+			return 1;
+		}else if(hour > 10 && hour <= 16) {
+			return 2;
+		}else if(hour > 16 && hour < 5) {
+			return 3;
+		}
+		return 3;
 	}
 	
 	private void runAnimation() {

@@ -64,16 +64,16 @@ public class LeftMenuFragment extends Fragment {
 		adapter.setSelected(0);
 		Fragment fragment = new PregnancyDiaryFragment(indexActivity);
 		fragments.add(fragment);
-		fragment = new FR_PregnancyDiary_JiShiBen_Grid();
-		fragments.add(fragment);
+//		fragment = new FR_PregnancyDiary_JiShiBen_Grid();
+//		fragments.add(fragment);
 		fragment = new BabyDiaryFragment(indexActivity);
 		fragments.add(fragment);
-		fragment = new EFragment();
-		fragments.add(fragment);
+//		fragment = new EFragment();
+//		fragments.add(fragment);
 		fragment = new FR_Bill_index(indexActivity);
 		fragments.add(fragment);
-		fragment = new EFragment();
-		fragments.add(fragment);
+//		fragment = new EFragment();
+//		fragments.add(fragment);
 		
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -114,40 +114,40 @@ public class LeftMenuFragment extends Fragment {
     private void initDatas() {
     	menuItems = new ArrayList<LeftMenuItem>();
     	menuItem = new LeftMenuItem();
-    	menuItem.setTitle("孕期日志");
-    	menuItem.setSubTitle("Pregnancy Diary");
-    	menuItem.setImageId(R.drawable.leftmenu_icon);
+    	menuItem.setTitle("普通日志");
+    	menuItem.setSubTitle("Ordinary Diary");
+    	menuItem.setImageId(R.drawable.common_diary_icon);
     	menuItems.add(menuItem);
     	
-    	menuItem = new LeftMenuItem();
-    	menuItem.setTitle("孕期指南");
-    	menuItem.setSubTitle("Pregnancy guide");
-    	menuItem.setImageId(R.drawable.leftmenu_icon);
-    	menuItems.add(menuItem);
+//    	menuItem = new LeftMenuItem();
+//    	menuItem.setTitle("孕期指南");
+//    	menuItem.setSubTitle("Pregnancy guide");
+//    	menuItem.setImageId(R.drawable.leftmenu_icon);
+//    	menuItems.add(menuItem);
     	
     	menuItem = new LeftMenuItem();
     	menuItem.setTitle("宝贝日志");
     	menuItem.setSubTitle("Baby Diary");
-    	menuItem.setImageId(R.drawable.leftmenu_icon);
+    	menuItem.setImageId(R.drawable.baby_diary_icon);
     	menuItems.add(menuItem);
     	
-    	menuItem = new LeftMenuItem();
-    	menuItem.setTitle("宝贝指南");
-    	menuItem.setSubTitle("Baby Diary");
-    	menuItem.setImageId(R.drawable.leftmenu_icon);
-    	menuItems.add(menuItem);
+//    	menuItem = new LeftMenuItem();
+//    	menuItem.setTitle("宝贝指南");
+//    	menuItem.setSubTitle("Baby Diary");
+//    	menuItem.setImageId(R.drawable.leftmenu_icon);
+//    	menuItems.add(menuItem);
     	
     	menuItem = new LeftMenuItem();
     	menuItem.setTitle("我的记账");
-    	menuItem.setSubTitle("consume Diary");
-    	menuItem.setImageId(R.drawable.leftmenu_icon);
+    	menuItem.setSubTitle("My Bill");
+    	menuItem.setImageId(R.drawable.jizhang_icon);
     	menuItems.add(menuItem);
     	
-    	menuItem = new LeftMenuItem();
-    	menuItem.setTitle("我的店铺");
-    	menuItem.setSubTitle("my Shop");
-    	menuItem.setImageId(R.drawable.leftmenu_icon);
-    	menuItems.add(menuItem);
+//    	menuItem = new LeftMenuItem();
+//    	menuItem.setTitle("我的店铺");
+//    	menuItem.setSubTitle("my Shop");
+//    	menuItem.setImageId(R.drawable.leftmenu_icon);
+//    	menuItems.add(menuItem);
     }
 
 	private void changeFragment(int fragmentId) {

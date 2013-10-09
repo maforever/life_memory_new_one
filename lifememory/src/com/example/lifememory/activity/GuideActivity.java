@@ -74,29 +74,32 @@ public class GuideActivity extends Activity {
     }
     private void initPagerViews() {
     	view = new View(this);
-    	view.setBackgroundResource(R.drawable.page1);
+    	view.setBackgroundResource(R.drawable.guide1);
     	views.add(view);
     	view = new View(this);
-    	view.setBackgroundResource(R.drawable.page2);
+    	view.setBackgroundResource(R.drawable.guide2);
     	views.add(view);
     	view = new View(this);
-    	view.setBackgroundResource(R.drawable.page3);
+    	view.setBackgroundResource(R.drawable.guide3);
     	views.add(view);
     	view = new View(this);
-    	view.setBackgroundResource(R.drawable.page4);
+    	view.setBackgroundResource(R.drawable.guide4);
     	views.add(view);
-    	view = inflater.inflate(R.layout.guide_lastpager, null);
+    	view = new View(this);
+    	view.setBackgroundResource(R.drawable.guide5);
     	views.add(view);
-    	view.findViewById(R.id.btn_start).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
-				startActivity(intent);
-				GuideActivity.this.finish();
-				overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
-			}
-		});
+//    	view = inflater.inflate(R.layout.guide_lastpager, null);
+//    	views.add(view);
+//    	view.findViewById(R.id.btn_start).setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
+//				startActivity(intent);
+//				GuideActivity.this.finish();
+//				overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
+//			}
+//		});
     }
     
     private void initPointLayout() {
