@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/leftmenu_handler"
+            android:background="@drawable/sns_seeother_btn_more"
             android:onClick="onClick" />
 
         <TextView
@@ -32,32 +32,50 @@
             android:id="@+id/setting_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/style_checkboxs"
-            android:background="@drawable/pregnancy_jishiben_setting_checkbox"
-            android:button="@null" />
+            android:background="@drawable/pregnancy_common_checkbox_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="设置"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:padding="3dp" />
 
         <FrameLayout
             android:id="@+id/style_checkboxs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" >
+            android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="5dp" >
 
             <CheckBox
                 android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/pregnancy_grid_btn_selector"
+                android:background="@drawable/pregnancy_common_checkbox_bg"
                 android:button="@null"
-                android:visibility="visible" />
+                android:gravity="center"
+                android:text="表格"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:visibility="visible"
+                android:padding="3dp" />
 
             <CheckBox
                 android:id="@+id/checkbox_luyin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/pregnancy_grid_btn_selector"
+                android:background="@drawable/pregnancy_common_checkbox_bg"
                 android:button="@null"
+                android:gravity="center"
+                android:text="表格"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
                 android:visibility="gone" />
         </FrameLayout>
     </RelativeLayout>
@@ -154,28 +172,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/pregnancyjishiben_btn_selector"
+                android:background="@drawable/pregnancy_btn_selector"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="btnClick"
+                android:padding="10dp"
                 android:text="删除"
                 android:textColor="#000000"
-                android:textSize="28dp"
-                android:padding="10dp" />
+                android:textSize="28dp" />
 
             <TextView
                 android:id="@+id/delete_cancle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/pregnancyjishiben_btn_selector"
+                android:background="@drawable/pregnancy_btn_selector"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="btnClick"
+                android:padding="10dp"
                 android:text="取消"
                 android:textColor="#000000"
-                android:textSize="28dp" 
-                android:padding="10dp"/>
+                android:textSize="28dp" />
         </LinearLayout>
     </FrameLayout>
 

@@ -21,7 +21,7 @@
 	        android:verticalSpacing="3dp"
 	        android:horizontalSpacing="3dp"
 	        android:gravity="center"
-	        android:listSelector="@drawable/pregnancyjishiben_grid_selector"
+	        android:listSelector="#00000000"
 	        ></GridView>
 	    
 	</LinearLayout>

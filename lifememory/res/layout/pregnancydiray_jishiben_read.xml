@@ -84,7 +84,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="142dp"
                 android:layout_marginRight="10.667dp"
-                android:background="@drawable/pregnancy_jishiben_edit_selector"
+                android:background="@drawable/pregnancy_edit_btn_selector"
                 android:visibility="gone" />
 
             <ImageButton
@@ -95,7 +95,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="120.666dp"
                 android:layout_marginRight="69.33333333333333dp"
-                android:background="@drawable/pregnancy_jishiben_read_selector"
+                android:background="@drawable/pregnancy_record_btn_selector"
                 android:visibility="gone" />
 
             <ImageButton
@@ -106,7 +106,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="70dp"
                 android:layout_marginRight="120.3333333333333dp"
-                android:background="@drawable/pregnancy_jishiben_rename_selector"
+                android:background="@drawable/pregnancy_rename_btn_selector"
                 android:visibility="gone" />
 
             <ImageButton
@@ -118,7 +118,7 @@
                 android:layout_marginBottom="8.666666666666667dp"
                 android:layout_marginRight="144dp"
                 android:background="@drawable/pregnancy_delete_btn_selector"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout

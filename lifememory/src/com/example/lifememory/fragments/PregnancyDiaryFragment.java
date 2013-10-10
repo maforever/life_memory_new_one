@@ -634,12 +634,14 @@ public class PregnancyDiaryFragment extends Fragment {
 							boolean isChecked) {
 						// 选中
 						if (isChecked) {
-							listGridSwitcer
-									.setBackgroundResource(R.drawable.pregnancy_list_btn_selector);
+//							listGridSwitcer
+//									.setBackgroundResource(R.drawable.pregnancy_list_btn_selector);
+							listGridSwitcer.setText("列表");
 							isJSBGridStyle = false; // 是list显示方式
 						} else {
-							listGridSwitcer
-									.setBackgroundResource(R.drawable.pregnancy_grid_btn_selector);
+//							listGridSwitcer
+//									.setBackgroundResource(R.drawable.pregnancy_grid_btn_selector);
+							listGridSwitcer.setText("表格");
 							isJSBGridStyle = true; // 是grid显示方式
 						}
 						initFragments();
@@ -655,12 +657,14 @@ public class PregnancyDiaryFragment extends Fragment {
 							boolean isChecked) {
 						// 选中
 						if (isChecked) {
-							listGridSwitcherLuyin
-									.setBackgroundResource(R.drawable.pregnancy_list_btn_selector);
+//							listGridSwitcherLuyin
+//									.setBackgroundResource(R.drawable.pregnancy_list_btn_selector);
+							listGridSwitcherLuyin.setText("列表");
 							isLYGridStyle = false; // 是list显示方式
 						} else {
-							listGridSwitcherLuyin
-									.setBackgroundResource(R.drawable.pregnancy_grid_btn_selector);
+//							listGridSwitcherLuyin
+//									.setBackgroundResource(R.drawable.pregnancy_grid_btn_selector);
+							listGridSwitcherLuyin.setText("表格");
 							isLYGridStyle = true; // 是grid显示方式
 						}
 						initFragments();

@@ -85,21 +85,18 @@ public class GuideActivity extends Activity {
     	view = new View(this);
     	view.setBackgroundResource(R.drawable.guide4);
     	views.add(view);
-    	view = new View(this);
-    	view.setBackgroundResource(R.drawable.guide5);
+    	view = inflater.inflate(R.layout.guide_lastpager, null);
     	views.add(view);
-//    	view = inflater.inflate(R.layout.guide_lastpager, null);
-//    	views.add(view);
-//    	view.findViewById(R.id.btn_start).setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
-//				startActivity(intent);
-//				GuideActivity.this.finish();
-//				overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
-//			}
-//		});
+    	view.findViewById(R.id.btn_start).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
+				startActivity(intent);
+				GuideActivity.this.finish();
+				overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
+			}
+		});
     }
     
     private void initPointLayout() {
