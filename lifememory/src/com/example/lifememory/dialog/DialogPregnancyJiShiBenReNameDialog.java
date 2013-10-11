@@ -24,12 +24,13 @@ public class DialogPregnancyJiShiBenReNameDialog extends Dialog implements OnCli
 	private String text;
 	private Object param;
 	private boolean ifNum=false;
-
-	public DialogPregnancyJiShiBenReNameDialog(Context context, DialogInputListener listener, String text)
+	private int resourceId;
+	public DialogPregnancyJiShiBenReNameDialog(Context context, DialogInputListener listener, String text, int resourceId)
 	{
 		super(context, R.style.dialog);
 		this.listener = listener;
 		this.text = text;
+		this.resourceId = resourceId;
 		
 	}
 	public DialogPregnancyJiShiBenReNameDialog(Context context, DialogInputListener listener, String title, String text,boolean ifSetNum)
@@ -52,7 +53,7 @@ public class DialogPregnancyJiShiBenReNameDialog extends Dialog implements OnCli
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.dialog_rename);
+		setContentView(resourceId);
 		setCancelable(false);
 		setCanceledOnTouchOutside(false);
 

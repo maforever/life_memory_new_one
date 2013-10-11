@@ -134,7 +134,7 @@ public class BabyJiShiBenReadActivity extends Activity implements SynthesizerPla
 							switch (view.getId()) {
 							//锟睫革拷
 							case R.id.composer_button_edit:
-								Intent intent = new Intent(BabyJiShiBenReadActivity.this, PregnancyJiShiBenEditActivity.class);
+								Intent intent = new Intent(BabyJiShiBenReadActivity.this, BabyJiShiBenEditActivity.class);
 								intent.putExtra("itemId", itemId);
 								BabyJiShiBenReadActivity.this.startActivity(intent);
 								overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
@@ -152,7 +152,7 @@ public class BabyJiShiBenReadActivity extends Activity implements SynthesizerPla
 								break;
 							//锟斤拷锟斤拷锟斤拷
 							case R.id.composer_button_rename:
-								new DialogPregnancyJiShiBenReNameDialog(BabyJiShiBenReadActivity.this, listener2, titleTv.getText().toString()).show();
+								new DialogPregnancyJiShiBenReNameDialog(BabyJiShiBenReadActivity.this, listener2, titleTv.getText().toString(), R.layout.dialog_rename).show();
 								break;
 							//删锟斤拷
 							case R.id.composer_button_del:
@@ -300,6 +300,7 @@ public class BabyJiShiBenReadActivity extends Activity implements SynthesizerPla
 	
 	private void initDatas() {
 		itemId = this.getIntent().getIntExtra("itemId", 0);
+		Log.i("a", "itemId = " + itemId);
 		if(itemId > 0) {
 			jishibenItem = dbService.findItemById(itemId);
 		}

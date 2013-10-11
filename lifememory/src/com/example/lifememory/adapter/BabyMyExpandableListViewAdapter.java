@@ -7,6 +7,7 @@ import com.example.lifememory.activity.BabyJiShiBenReadActivity;
 import com.example.lifememory.activity.IndexActivity;
 import com.example.lifememory.activity.PregnancyJiShiBenAddActivity;
 import com.example.lifememory.activity.PregnancyJiShiBenReadActivity;
+import com.example.lifememory.activity.model.BabyJiShiBen;
 import com.example.lifememory.activity.model.BabyJiShiBenGridViewExpandableGroupItem;
 import com.example.lifememory.activity.model.PrenancyJiShiBenGridViewExpandableGroupItem;
 import com.example.lifememory.activity.views.MyGridView;
@@ -38,6 +39,15 @@ public class BabyMyExpandableListViewAdapter  extends BaseExpandableListAdapter{
 		this.groupItems = groupItems;
 		this.fa = fa;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		for(BabyJiShiBenGridViewExpandableGroupItem gis : groupItems) {
+			List<BabyJiShiBen> jsbs =  gis.getJishibenItems();
+			for(BabyJiShiBen jsb : jsbs) {
+				Log.i("a", "id = " + jsb.getIdx() + "name = " + jsb.getTitle());
+			}
+		}
+		
+		
 	}
 	
 	public int getGroupCount() {
@@ -141,6 +151,7 @@ public class BabyMyExpandableListViewAdapter  extends BaseExpandableListAdapter{
 			}else {
 				Intent intent = new Intent(context, BabyJiShiBenReadActivity.class);
 				intent.putExtra("itemId", groupItems.get(groupPosition).getJishibenItems().get(position).getIdx());
+				Log.i("a", "onItemClick idx = " + groupItems.get(groupPosition).getJishibenItems().get(position).getIdx());
 				context.startActivity(intent);
 				fa.overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
 			}

@@ -55,7 +55,7 @@ public class WelcomeActivity extends Activity{
 		setContentView(R.layout.welcome_activity);
 		appSp = new AppSharedPreference(WelcomeActivity.this);
 		findViews();
-		runAnimation();
+//		runAnimation();
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			
@@ -72,13 +72,13 @@ public class WelcomeActivity extends Activity{
 		
 		switch (getTimeInt()) {
 		case 1:
-			imageView.setImageResource(R.drawable.qingchen);
+			imageView.setImageResource(R.drawable.zaoshang);
 			break;
 		case 2:
 			imageView.setImageResource(R.drawable.zhongwu);
 			break;
 		case 3:
-			imageView.setImageResource(R.drawable.morning2);
+			imageView.setImageResource(R.drawable.yewan);
 			 break;
 		}
 	}

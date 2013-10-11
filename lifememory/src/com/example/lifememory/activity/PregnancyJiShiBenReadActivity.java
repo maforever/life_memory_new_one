@@ -12,6 +12,9 @@ import com.example.lifememory.dialog.DialogAlertListener;
 import com.example.lifememory.dialog.DialogInputListener;
 import com.example.lifememory.dialog.DialogPregnancyJiShiBenReNameDialog;
 import com.example.lifememory.utils.MyAnimations;
+import com.iflytek.speech.SpeechError;
+import com.iflytek.speech.SynthesizerPlayer;
+import com.iflytek.speech.SynthesizerPlayerListener;
 import com.iflytek.ui.SynthesizerDialog;
 
 import android.app.Activity;
@@ -32,7 +35,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PregnancyJiShiBenReadActivity extends Activity {
+public class PregnancyJiShiBenReadActivity extends Activity implements SynthesizerPlayerListener{
 	private TextView contentEt = null;
 	private int[] textSize = { 20, 25, 30 }; // �������
 	private int[] colors = new int[6];
@@ -46,10 +49,18 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 	private ImageView composerButtonsShowHideButtonIcon;
 	private RelativeLayout composerButtonsShowHideButton;
 
-	// 缓存对象.
-	private SharedPreferences mSharedPreferences;
+	//缓存对象.
+		private SharedPreferences mSharedPreferences;
+		//缓冲进度
+		private int mPercentForBuffering = 0;
+		
+		//播放进度
+		private int mPercentForPlaying = 0;
+		//合成对象.
+		private SynthesizerPlayer mSynthesizerPlayer;
+		//弹出提示
+		private Toast mToast;
 	// 合成Dialog
-	private SynthesizerDialog ttsDialog;
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
@@ -91,6 +102,10 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 		mSharedPreferences = getSharedPreferences(getPackageName(),
 				MODE_PRIVATE);
 
+		mToast = Toast.makeText(this,
+				String.format(getString(R.string.tts_toast_format), 0, 0),
+				Toast.LENGTH_LONG);
+		
 		new InitDatasThread().start(); // ���߳��г�ʼ����ݣ������߳�����Ⱦ��ͼ
 		// initDatas(); //��ʼ�����
 		// initViews(); //�����ͼ����
@@ -139,13 +154,13 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 												.getRotateAnimation(-270, 0,
 														300));
 								areButtonsShowing = false;
-								showSynDialog();
+								synthetizeInSilence();
 								break;
 							// ������
 							case R.id.composer_button_rename:
 								new DialogPregnancyJiShiBenReNameDialog(
 										PregnancyJiShiBenReadActivity.this,
-										listener2, titleTv.getText().toString())
+										listener2, titleTv.getText().toString(), R.layout.common_dialog_rename)
 										.show();
 								break;
 							// ɾ��
@@ -164,42 +179,7 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 				.getRotateAnimation(0, 360, 200));
 	}
 
-	/**
-	 * 弹出合成Dialog，进行语音合�?
-	 * 
-	 * @param
-	 */
-	public void showSynDialog() {
-
-		String source = contentEt.getText().toString();
-		// 设置合成文本.
-		ttsDialog.setText(source, null);
-
-		// 设置发音�?
-		String role = mSharedPreferences.getString(
-				getString(R.string.preference_key_tts_role),
-				getString(R.string.preference_default_tts_role));
-		ttsDialog.setVoiceName(role);
-
-		// 设置语�?.
-		int speed = mSharedPreferences.getInt(
-				getString(R.string.preference_key_tts_speed), 50);
-		ttsDialog.setSpeed(speed);
-
-		// 设置音量.
-		int volume = mSharedPreferences.getInt(
-				getString(R.string.preference_key_tts_volume), 50);
-		ttsDialog.setVolume(volume);
-
-		// 设置背景�?
-		String music = mSharedPreferences.getString(
-				getString(R.string.preference_key_tts_music),
-				getString(R.string.preference_default_tts_music));
-		ttsDialog.setBackgroundSound(music);
-
-		// 弹出合成Dialog
-		ttsDialog.show();
-	}
+	
 
 	private class RenameThread extends Thread {
 		String title;
@@ -334,9 +314,6 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 		contentEt.setTextSize(textSize[jishibenItem.getTextSizeIndex()]);
 		contentEt.setText(jishibenItem.getContent());
 		titleTv.setText(jishibenItem.getTitle());
-		// 初始化合成Dialog.
-		ttsDialog = new SynthesizerDialog(this, "appid="
-				+ getString(R.string.app_id));
 	}
 
 	@Override
@@ -378,5 +355,90 @@ public class PregnancyJiShiBenReadActivity extends Activity {
 					R.anim.activity_down);
 		}
 		return true;
+	}
+
+	@Override
+	public void onBufferPercent(int percent, int arg1, int arg2) {
+		mPercentForBuffering = percent;
+		mToast.setText(String.format(getString(R.string.tts_toast_format),
+				mPercentForBuffering, mPercentForPlaying));
+		mToast.show();		
+	}
+
+	@Override
+	public void onEnd(SpeechError arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPlayBegin() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPlayPaused() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPlayPercent(int percent, int arg1, int arg2) {
+		mPercentForPlaying = percent;
+		mToast.setText(String.format(getString(R.string.tts_toast_format),
+				mPercentForBuffering, mPercentForPlaying));
+		mToast.show();			
+	}
+
+	@Override
+	public void onPlayResumed() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * 使用SynthesizerPlayer合成语音，不弹出合成Dialog.
+	 * @param
+	 */
+	private void synthetizeInSilence() {
+		if (null == mSynthesizerPlayer) {
+			//创建合成对象.
+			mSynthesizerPlayer = SynthesizerPlayer.createSynthesizerPlayer(
+					this, "appid=" + getString(R.string.app_id));
+		}
+
+		//设置合成发音�?
+		String role = mSharedPreferences.getString(
+				getString(R.string.preference_key_tts_role),
+				getString(R.string.preference_default_tts_role));
+		mSynthesizerPlayer.setVoiceName(role);
+
+		//设置发音人语�?
+		int speed = mSharedPreferences.getInt(
+				getString(R.string.preference_key_tts_speed),
+				50);
+		mSynthesizerPlayer.setSpeed(speed);
+
+		//设置音量.
+		int volume = mSharedPreferences.getInt(
+				getString(R.string.preference_key_tts_volume),
+				50);
+		mSynthesizerPlayer.setVolume(volume);
+
+		//设置背景�?
+		String music = mSharedPreferences.getString(
+				getString(R.string.preference_key_tts_music),
+				getString(R.string.preference_default_tts_music));
+		mSynthesizerPlayer.setBackgroundSound(music);
+
+		//获取合成文本.
+		String source = contentEt.getText().toString();
+
+		//进行语音合成.
+		mSynthesizerPlayer.playText(source, null,this);
+		mToast.setText(String
+				.format(getString(R.string.tts_toast_format), 0, 0));
+		mToast.show();
 	}
 }

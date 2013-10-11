@@ -436,11 +436,11 @@ public class PregnancyLuYinAddActivity extends Activity {
 			if (isRecodePage) {
 				// Â¼Òô½çÃæ
 				new DialogPregnancyJiShiBenReNameDialog(
-						PregnancyLuYinAddActivity.this, listener2, "").show();
+						PregnancyLuYinAddActivity.this, listener2, "", R.layout.common_dialog_rename).show();
 			} else {
 				new DialogPregnancyJiShiBenReNameDialog(
 						PregnancyLuYinAddActivity.this, listener2, titleTv
-								.getText().toString()).show();
+								.getText().toString(), R.layout.common_dialog_rename).show();
 			}
 			break;
 		case R.id.btn2:

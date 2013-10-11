@@ -198,11 +198,11 @@ public class PregnancyJiShiBenEditActivity extends Activity{
 				break;
 			//命名
 			case 6:
-				new DialogPregnancyJiShiBenReNameDialog(PregnancyJiShiBenEditActivity.this, pj_renameDilaoglistener,"name").show();
+				new DialogPregnancyJiShiBenReNameDialog(PregnancyJiShiBenEditActivity.this, pj_renameDilaoglistener,jishibenItem.getTitle().toString() , R.layout.common_dialog_rename).show();
 				break;
 			//另存为
 			case 7:
-				
+				new DialogPregnancyJiShiBenReNameDialog(PregnancyJiShiBenEditActivity.this, save_as_listener, jishibenItem.getTitle().toString(), R.layout.common_dialog_saveas).show();
 				break;
 			}
 		}
@@ -239,7 +239,13 @@ public class PregnancyJiShiBenEditActivity extends Activity{
 		
 		@Override
 		public void onDialogInput(Dialog dlg, String text) {
-			Toast.makeText(getApplicationContext(), text, 0).show();
+//			Toast.makeText(getApplicationContext(), text, 0).show();
+			if(text != null && !"".equals(text)) {
+				dbService.updateTitile(text, jishibenItem.getIdx());
+				titleTv.setText(text);
+			}else {
+				Toast.makeText(PregnancyJiShiBenEditActivity.this, "日记标题不能为空!", 0).show();
+			}
 		}
 
 		@Override
@@ -254,6 +260,51 @@ public class PregnancyJiShiBenEditActivity extends Activity{
 			
 		}
 	};
+	
+	private DialogInputListener save_as_listener = new DialogInputListener() {
+
+		@Override
+		public void onDialogCreate(Dialog dlg, Object param) {
+			
+		}
+
+		@Override
+		public void onDialogOk(Dialog dlg, Object param) {
+			
+		}
+
+		@Override
+		public void onDialogCancel(Dialog dlg, Object param) {
+			
+		}
+
+		@Override
+		public void onDialogSave(Dialog dlg, Object param) {
+			
+		}
+
+		@Override
+		public void onDialogUnSave(Dialog dlg, Object param) {
+			
+		}
+
+		@Override
+		public void onDialogInput(Dialog dlg, String text) {
+			if(text != null && !"".equals(text)) {
+				jishibenItem.setTitle(text);
+				jishibenItem.setCreateDate(DateFormater.getInstatnce().getCurrentDate());
+				jishibenItem.setCreateymd(DateFormater.getInstatnce().getYMD());
+				jishibenItem.setCreateym(DateFormater.getInstatnce().getYM());
+//				Log.i("a", "jishiben = " + jishibenItem.toString());
+				
+				dbService.addPregnancyDiaryJiShiBen(jishibenItem);
+				titleTv.setText(text);
+			}else {
+				Toast.makeText(PregnancyJiShiBenEditActivity.this, "日记标题不能为空!", 0).show();
+			}
+		}
+	};
+	
 	
 	private void findViews() {
 		contentEt = (EditText) this.findViewById(R.id.content);

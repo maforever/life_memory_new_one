@@ -3,6 +3,7 @@ package com.example.lifememory.activity;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 import com.example.lifememory.R;
 import com.example.lifememory.activity.bill.calender.CalendarGridView;
@@ -286,6 +287,9 @@ public class BillCalenderActivity extends Activity implements OnTouchListener{
             calSelected = Calendar.getInstance();
             updateStartDateForMonth();
             generateContetView(mCalendarMainLayout);
+            
+            ymd = DateFormater.getInstatnce().getY_M_D();
+            new InitDatasThread().start();            
         }
     };
 

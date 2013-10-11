@@ -127,7 +127,7 @@
                         android:id="@+id/menu_jishiben"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/pregnancydiary_btn_jishiben" />
+                        android:background="@drawable/common_menu_edit" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                         android:id="@+id/menu_luyinbi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/pregnancydiary_btn_luyinbi" />
+                        android:background="@drawable/common_menu_record" />
 
                     <TextView
                         android:layout_width="wrap_content"

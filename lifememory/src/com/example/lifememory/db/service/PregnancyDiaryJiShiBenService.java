@@ -215,6 +215,9 @@ public class PregnancyDiaryJiShiBenService {
 		}
 	}
 	
+	public void updateTitile(String name, int idx) {
+		db.execSQL("update diary_jishiben set title = ? where idx = ?", new String[]{name, String.valueOf(idx)});
+	}
 	
 	//删除所有日记
 	public void deleteAll() {

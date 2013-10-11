@@ -185,7 +185,7 @@ public class BabyDiaryFragment extends Fragment {
 
 	private void initPopWindow(LayoutInflater inflater) {
 		View contentView = inflater.inflate(
-				R.layout.pregnancy_jishiben_popwindow, null);
+				R.layout.baby_jishiben_popwindow, null);
 		GridView gridView = (GridView) contentView.findViewById(R.id.gridView);
 		int[] imageIds = { R.drawable.toolbar_del_icon,
 				R.drawable.toolbar_delall_icon, R.drawable.toolbar_timer_icon,

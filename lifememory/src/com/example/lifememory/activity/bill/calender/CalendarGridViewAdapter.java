@@ -9,7 +9,10 @@ import com.example.lifememory.db.service.BillInfoService;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -37,16 +40,6 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 	private Calendar calToday = Calendar.getInstance(); // 今日
 	private int iMonthViewCurrentMonth = 0; // 当前视图月
-	private Handler handler = new Handler() {
-		public void handleMessage(android.os.Message msg) {
-			boolean flag = (Boolean) msg.obj;
-			if(flag) {
-				tag.setVisibility(ViewGroup.VISIBLE);
-			}else {
-				tag.setVisibility(ViewGroup.GONE);
-			}
-		};
-	};
 	// 根据改变的日期更新日历
 	// 填充日历控件用
 	private void UpdateStartDateForMonth() {
@@ -204,13 +197,12 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 			txtToDay.setTextColor(resources.getColor(R.color.noMonth));
 		}
 		if (isCurrentDate) {
-//			String dateStr = CalendarUtil.getDay(calCalendar);
-			ymd = CalendarUtil.getDay(calCalendar);
-			new IfHaveDataThread().start();
-			// Log.i("a", "dateStr = " + dateStr);
+			String dateStr = CalendarUtil.getDay(calCalendar);
+//			 Log.i("a", "dateStr = " + dateStr);
 //			if (infoService.ifHaveDatasByYMD(dateStr)) {
 //				tag.setVisibility(ViewGroup.VISIBLE);
 //			}
+			new TagAsyncTask(tag).execute(dateStr);
 		}
 
 		int day = myDate.getDate(); // 日期
@@ -219,93 +211,39 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 		return convertView;
 
-		// LinearLayout iv = new LinearLayout(activity);
-		// iv.setId(position + 5000);
-		// LinearLayout imageLayout = new LinearLayout(activity);
-		// imageLayout.setOrientation(0);
-		// iv.setGravity(Gravity.CENTER);
-		// iv.setOrientation(1);
-		// iv.setBackgroundColor(resources.getColor(R.color.white));
-		//
-		// Date myDate = (Date) getItem(position);
-		// Calendar calCalendar = Calendar.getInstance();
-		// calCalendar.setTime(myDate);
-		// final int iMonth = calCalendar.get(Calendar.MONTH);
-		// final int iDay = calCalendar.get(Calendar.DAY_OF_WEEK);
-		//
-		//
-		// // 判断周六周日
-		// iv.setBackgroundColor(resources.getColor(R.color.white));
-		// if (iDay == 7) {
-		// // 周六
-		// iv.setBackgroundColor(resources.getColor(R.color.text_6));
-		// } else if (iDay == 1) {
-		// // 周日
-		// iv.setBackgroundColor(resources.getColor(R.color.text_7));
-		// }
-		// // 判断周六周日结束
-		//
-		// TextView txtToDay = new TextView(activity);// 日本老黄历
-		// txtToDay.setGravity(Gravity.CENTER_HORIZONTAL);
-		// txtToDay.setTextSize(9);
-		// CalendarUtil calendarUtil = new CalendarUtil(calCalendar);
-		// if (equalsDate(calToday.getTime(), myDate)) {
-		// // 当前日期
-		// iv.setBackgroundColor(resources.getColor(R.color.event_center));
-		// txtToDay.setText(calendarUtil.toString());
-		// } else {
-		// txtToDay.setText(calendarUtil.toString());
-		// }
-		//
-		// //这里用于比对是不是比当前日期小，如果比当前日期小就高亮
-		// // if (!CalendarUtil.compare(myDate, calToday.getTime())) {
-		// // iv.setBackgroundColor(resources.getColor(R.color.frame));
-		// // } else {
-		// // // 设置背景颜色
-		// if (equalsDate(calSelected.getTime(), myDate)) {
-		// // 选择的
-		// iv.setBackgroundColor(resources.getColor(R.color.selection));
-		// } else {
-		// if (equalsDate(calToday.getTime(), myDate)) {
-		// // 当前日期
-		// iv.setBackgroundColor(resources.getColor(R.color.calendar_zhe_day));
-		// }
-		// }
-		// // }
-		// // 设置背景颜色结束
-		//
-		// // 日期开始
-		// TextView txtDay = new TextView(activity);// 日期
-		// txtDay.setGravity(Gravity.CENTER_HORIZONTAL);
-		//
-		// // 判断是否是当前月
-		// if (iMonth == iMonthViewCurrentMonth) {
-		// txtToDay.setTextColor(resources.getColor(R.color.ToDayText));
-		// txtDay.setTextColor(resources.getColor(R.color.Text));
-		// } else {
-		// txtDay.setTextColor(resources.getColor(R.color.noMonth));
-		// txtToDay.setTextColor(resources.getColor(R.color.noMonth));
-		// }
-		//
-		// String dateStr = CalendarUtil.getDay(calCalendar);
-		// Log.i("a", dateStr);
-		//
-		// int day = myDate.getDate(); // 日期
-		//
-		// txtDay.setText(String.valueOf(day));
-		// txtDay.setId(position + 500);
-		// iv.setTag(myDate);
-		//
-		// LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-		// LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		// iv.addView(txtDay, lp);
-		//
-		// LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(
-		// LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		// iv.addView(txtToDay, lp1);
-		// return iv;
 	}
 
+	
+	private class TagAsyncTask extends AsyncTask<String, Integer, Boolean> {
+		private TextView tag;
+		public TagAsyncTask(TextView tag) {
+			this.tag = tag;
+		}
+		@Override
+		protected Boolean doInBackground(String... params) {
+			String ymd = params[0];
+			if (infoService.ifHaveDatasByYMD(ymd)) {
+				return true;
+			}
+			return false;
+		}
+		
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			super.onPostExecute(result);
+			if(result) {
+				tag.setVisibility(ViewGroup.VISIBLE);
+			}else {
+				tag.setVisibility(ViewGroup.GONE);
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	static class ViewHolder {
 		FrameLayout fl;
 		TextView txtDay;
@@ -330,12 +268,5 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 	}
 	
-	private class IfHaveDataThread  extends Thread {
-		@Override
-		public void run() {
-			boolean flag = infoService.ifHaveDatasByYMD(ymd);
-			handler.sendMessage(handler.obtainMessage(1, flag));
-		}
-	}
 
 }

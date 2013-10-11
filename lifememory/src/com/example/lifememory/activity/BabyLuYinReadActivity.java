@@ -102,7 +102,7 @@ public class BabyLuYinReadActivity extends Activity {
 			break;
 		case R.id.rename:
 			//重命名
-			new DialogPregnancyJiShiBenReNameDialog(BabyLuYinReadActivity.this, listener2, titleTv.getText().toString()).show();
+			new DialogPregnancyJiShiBenReNameDialog(BabyLuYinReadActivity.this, listener2, titleTv.getText().toString(), R.layout.dialog_rename).show();
 			break;
 		case R.id.del:
 			new DialogAlert(BabyLuYinReadActivity.this, listener, "您确定删除此条录音吗?").show();

@@ -192,7 +192,7 @@ public class PregnancyJiShiBenAddActivity extends Activity{
 				break;
 			//ÃüÃû
 			case 6:
-				new DialogPregnancyJiShiBenReNameDialog(PregnancyJiShiBenAddActivity.this, pj_renameDilaoglistener,title == null ? "" : title).show();
+				new DialogPregnancyJiShiBenReNameDialog(PregnancyJiShiBenAddActivity.this, pj_renameDilaoglistener,title == null ? "" : title, R.layout.common_dialog_rename).show();
 				break;
 			//Áí´æÎª
 			case 7:

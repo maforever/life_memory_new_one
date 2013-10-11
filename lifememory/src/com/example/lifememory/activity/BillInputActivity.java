@@ -1661,8 +1661,10 @@ public class BillInputActivity extends Activity {
 		super.onDestroy();
 		dbService.closeDB();
 		billService.closeDB();
+		accountService.closeDB();
 		dbService = null;
 		billService = null;
+		accountService = null;
 	}
 
 	private void back() {

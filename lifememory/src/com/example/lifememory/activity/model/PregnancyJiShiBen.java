@@ -101,6 +101,16 @@ public class PregnancyJiShiBen implements Serializable{
 	public void setUpdateym(String updateym) {
 		this.updateym = updateym;
 	}
+	@Override
+	public String toString() {
+		return "PregnancyJiShiBen [idx=" + idx + ", title=" + title
+				+ ", content=" + content + ", textColorIndex=" + textColorIndex
+				+ ", textSizeIndex=" + textSizeIndex + ", createDate="
+				+ createDate + ", updateDate=" + updateDate + ", createymd="
+				+ createymd + ", updateymd=" + updateymd + ", createym="
+				+ createym + ", updateym=" + updateym + ", isModified="
+				+ isModified + ", imageId=" + imageId + "]";
+	}
 	
 	
 	
