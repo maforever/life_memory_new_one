@@ -70,7 +70,7 @@ public class IndexActivity extends SlidingFragmentActivity {
 		case KeyEvent.KEYCODE_BACK:
 
 			if (getSlidingMenu().isMenuShowing()) {
-				Toast.makeText(this, "显示", 0).show();
+//				Toast.makeText(this, "显示", 0).show();
 			} else {
 //				Toast.makeText(this, "不显示", 0).show();
 				onBackPressed();

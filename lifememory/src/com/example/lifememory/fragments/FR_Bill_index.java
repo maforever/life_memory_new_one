@@ -323,7 +323,7 @@ public class FR_Bill_index extends Fragment {
 				intent = new Intent(getActivity(), BillCalenderActivity.class);
 				getActivity().startActivity(intent);
 				getActivity().overridePendingTransition(R.anim.activity_up, R.anim.activity_steady);
-				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();
+//				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();
 				break;
 			case 2:
 //				Toast.makeText(getActivity(), secondPageTitle[position], 0).show();

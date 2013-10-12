@@ -4,10 +4,10 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.dlnetwork.Dianle;
 import com.example.lifememory.R;
 import com.example.lifememory.adapter.GuideActivityPagerViewAdapter;
 import com.example.lifememory.utils.AppSharedPreference;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,8 +50,11 @@ public class WelcomeActivity extends Activity{
 	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
+		Dianle.initDianleContext(this, "d7e5d0bbefc9635678c99b2839907ce9");
+		Dianle.setCustomActivity("com.dlnetwork.DianleOfferActivity");
+		Dianle.setCustomService("com.dlnetwork.DianleOfferHelpService");
+
 		setContentView(R.layout.welcome_activity);
 		appSp = new AppSharedPreference(WelcomeActivity.this);
 		findViews();

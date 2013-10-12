@@ -4,6 +4,7 @@ package com.example.lifememory.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dlnetwork.Dianle;
 import com.example.lifememory.R;
 import com.example.lifememory.activity.IndexActivity;
 import com.example.lifememory.activity.model.LeftMenuItem;
@@ -25,6 +26,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class LeftMenuFragment extends Fragment {
@@ -95,16 +97,18 @@ public class LeftMenuFragment extends Fragment {
 					break;
 				case 3:
 					adapter.setSelected(3);
-					changeFragment(3);
+//					Toast.makeText(getActivity(), "aaaaa", 0).show();
+					Dianle.showOffers(getActivity());
+//					changeFragment(3);
 					break;
-				case 4:
-					adapter.setSelected(4);
-					changeFragment(4);
-					break;
-				case 5:
-					adapter.setSelected(5);
-					changeFragment(5);
-					break;
+//				case 4:
+//					adapter.setSelected(4);
+//					changeFragment(4);
+//					break;
+//				case 5:
+//					adapter.setSelected(5);
+//					changeFragment(5);
+//					break;
 				}
 			}
 		});
@@ -143,11 +147,11 @@ public class LeftMenuFragment extends Fragment {
     	menuItem.setImageId(R.drawable.jizhang_icon);
     	menuItems.add(menuItem);
     	
-//    	menuItem = new LeftMenuItem();
-//    	menuItem.setTitle("我的店铺");
-//    	menuItem.setSubTitle("my Shop");
-//    	menuItem.setImageId(R.drawable.leftmenu_icon);
-//    	menuItems.add(menuItem);
+    	menuItem = new LeftMenuItem();
+    	menuItem.setTitle("精彩应用");
+    	menuItem.setSubTitle("Wonderful application");
+    	menuItem.setImageId(R.drawable.tuijian_icon);
+    	menuItems.add(menuItem);
     }
 
 	private void changeFragment(int fragmentId) {

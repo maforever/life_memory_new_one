@@ -12,15 +12,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 录音权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-+    
     <uses-permission android:name="android.permission.INTERNET" />
-+    
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-+    
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-+    
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application
         android:name=".utils.AppAplication"
         android:icon="@drawable/app_icon2"
@@ -204,10 +201,18 @@
             android:name=".activity.BillReimbursementInputAccountSelectDialog"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@style/dialog" />
-                <activity
+        <activity
             android:name=".activity.BillCalenderActivity"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
+
+        <!-- the activity theme should be translucent and notitlebar -->
+        <activity
+            android:name="com.dlnetwork.DianleOfferActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service android:name="com.dlnetwork.DianleOfferHelpService" />
     </application>
 
     <instrumentation

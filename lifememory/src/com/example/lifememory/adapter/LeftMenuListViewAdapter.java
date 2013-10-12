@@ -81,17 +81,22 @@ public class LeftMenuListViewAdapter extends BaseAdapter {
 			case 0:
 				//红色
 				d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_red);
-				d.setAlpha(10);
+				d.setAlpha(70);
 				break;
 			case 1:
 				//黄色
 				d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_yellow);
-				d.setAlpha(10);
+				d.setAlpha(70);
 				break;
 			case 2:
 				//绿色
 				d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_green);
-				d.setAlpha(10);
+				d.setAlpha(70);
+				break;
+			case 3:
+				//蓝色
+				d = context.getResources().getDrawable(R.drawable.left_menu_selected_bg_blue);
+				d.setAlpha(70);
 				break;
 			}
 			

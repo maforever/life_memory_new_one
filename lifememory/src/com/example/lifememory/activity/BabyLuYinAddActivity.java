@@ -365,7 +365,7 @@ public class BabyLuYinAddActivity extends Activity {
 		case R.id.stop:
 			isStop = true;
 			isRecodePage = false; // 进入预览界面
-
+			isRecoding = false;
 			if (title == null || "".equals(title)) {
 				titleTv.setText(fileName);
 			} else {

@@ -67,7 +67,6 @@ android.support.v4.app.Fragment:
     749:749:public final boolean getRetainInstance()
     812:812:public boolean getUserVisibleHint()
     819:827:public android.support.v4.app.LoaderManager getLoaderManager()
-    846:850:public void startActivityForResult(android.content.Intent,int)
     1288:1289:public void registerForContextMenu(android.view.View)
     1299:1300:public void unregisterForContextMenu(android.view.View)
     1410:1416:android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
@@ -928,25 +927,52 @@ android.support.v4.widget.SearchViewCompatIcs$MySearchView
 android.support.v4.widget.SimpleCursorAdapter
 android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
 android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+com.dlnetwork.Dianle:
+    30:31:private Dianle()
+    35:36:public static void initDianleContext(android.app.Activity,java.lang.String,java.lang.String)
+    40:41:public static void initDianleContext(android.app.Service,java.lang.String,java.lang.String)
+    48:49:public static void initDianleContext(android.app.Service,java.lang.String)
+    134:148:public static void spendMoney(android.content.Context,int,com.dlnetwork.SpendMoneyListener)
+    156:169:public static void giveMoney(android.content.Context,int,com.dlnetwork.GiveMoneyListener)
+    177:244:public static void setTotalMoney(android.content.Context,int,com.dlnetwork.SetTotalMoneyListener)
+    253:268:public static void getOnlineParams(android.content.Context,java.lang.String,com.dlnetwork.GetOnlineParamsListener,java.lang.String)
+    276:285:public static java.lang.String getOnlineParams(android.content.Context,java.lang.String,java.lang.String)
+    295:298:public static void setCurrentUserID(android.content.Context,java.lang.String)
+com.dlnetwork.Dianle$1
+com.dlnetwork.Dianle$1$1
+com.dlnetwork.Dianle$1$2
+com.dlnetwork.GetOnlineParamsListener
+com.dlnetwork.GetServerDataListener
+com.dlnetwork.GetUpdateMessageListener
+com.dlnetwork.SetTotalMoneyListener
+com.dlnetwork.c:
+    365:405:void a(int,com.dlnetwork.SpendMoneyListener)
+    410:455:void a(int,com.dlnetwork.GiveMoneyListener)
+    458:469:private java.lang.String b(java.lang.String)
+    476:527:void a(java.lang.String,com.dlnetwork.GetOnlineParamsListener,java.lang.String)
+    530:553:java.lang.String c(java.lang.String,java.lang.String)
+    819:821:private void a(long)
+    772:772:static synthetic java.lang.Runnable m(com.dlnetwork.c)
+    818:818:static synthetic void a(com.dlnetwork.c,long)
+    777:777:static synthetic java.lang.Runnable n(com.dlnetwork.c)
+    762:762:static synthetic java.lang.Runnable o(com.dlnetwork.c)
+    767:767:static synthetic java.lang.Runnable p(com.dlnetwork.c)
+com.dlnetwork.c$2
+com.dlnetwork.c$3
+com.dlnetwork.c$4
+com.dlnetwork.c$4$1
+com.dlnetwork.g:
+    53:57:static java.lang.String a(android.content.Context,java.lang.String,java.lang.String)
+    61:62:static void b(android.content.Context,java.lang.String,java.lang.String)
+com.dlnetwork.j:
+    112:116:static java.lang.String b(java.lang.String)
+    121:122:private static java.lang.String e(java.lang.String)
 com.example.lifememory.BuildConfig
 com.example.lifememory.R:
     10:10:public R()
-com.example.lifememory.R$anim
-com.example.lifememory.R$array
-com.example.lifememory.R$attr
-com.example.lifememory.R$color
-com.example.lifememory.R$dimen
-com.example.lifememory.R$drawable
-com.example.lifememory.R$id
-com.example.lifememory.R$layout
-com.example.lifememory.R$menu
-com.example.lifememory.R$string
-com.example.lifememory.R$style
-com.example.lifememory.R$styleable:
-    986:986:public R$styleable()
 com.example.lifememory.activity.BabyJiShiBenAddActivity:
-    425:428:private java.lang.String getYMD()
-    432:435:private java.lang.String getYM()
+    438:441:private java.lang.String getYMD()
+    445:448:private java.lang.String getYM()
 com.example.lifememory.activity.BabyLuYinAddActivity:
     private static final int POLL_INTERVAL
 com.example.lifememory.activity.BabyLuYinReadActivity:
@@ -963,20 +989,64 @@ com.example.lifememory.activity.BillAccountUpdateActivity:
     android.widget.LinearLayout cal_equal
     android.widget.LinearLayout cal_del
     android.widget.ImageView cal_sure
+com.example.lifememory.activity.BillCalenderActivity:
+    private static final int CAL_LAYOUT_ID
+    private static final int SWIPE_MIN_DISTANCE
+    private static final int SWIPE_MAX_OFF_PATH
+    private static final int SWIPE_THRESHOLD_VELOCITY
+    private static final java.lang.String MESSAGE
+com.example.lifememory.activity.BillChartIndexActivity:
+    private android.widget.ImageView lineBtn
+    public static final java.lang.String CHART_PIE_ACTIVITY
+    public static final java.lang.String CHART_BAR_ACTIVITY
+    public static final java.lang.String CHART_LINE_ACTIVITY
+    public static final java.lang.String CHART_LIST_ACTIVITY
+    public static final java.lang.String CHART_NODATA_ACTIVITY
 com.example.lifememory.activity.BillMonthDetailsActivity:
     private long tipPopwindowShowTime
     private java.util.Timer timer
+com.example.lifememory.activity.BudgetBarChart
+com.example.lifememory.activity.BudgetPieChart:
+    52:52:public java.lang.String getName()
+    61:61:public java.lang.String getDesc()
+    82:89:public android.content.Intent execute(android.content.Context)
 com.example.lifememory.activity.IndexActivity:
     private static final java.lang.String LEFT_MENU_TAG
 com.example.lifememory.activity.PregnancyJiShiBenAddActivity:
-    420:423:private java.lang.String getYMD()
-    427:430:private java.lang.String getYM()
+    434:437:private java.lang.String getYMD()
+    441:444:private java.lang.String getYM()
 com.example.lifememory.activity.PregnancyJiShiBenEditActivity:
-    346:349:private java.lang.String getYMD()
+    409:412:private java.lang.String getYMD()
 com.example.lifememory.activity.PregnancyLuYinAddActivity:
     private static final int POLL_INTERVAL
 com.example.lifememory.activity.PregnancyLuYinReadActivity:
     private static final int SEEKBAR_INTERVAL
+com.example.lifememory.activity.WelcomeActivity:
+    private android.view.animation.TranslateAnimation left
+    private android.view.animation.TranslateAnimation right
+    109:152:private void runAnimation()
+    27:27:static synthetic android.widget.ImageView access$2(com.example.lifememory.activity.WelcomeActivity)
+    28:28:static synthetic android.view.animation.TranslateAnimation access$3(com.example.lifememory.activity.WelcomeActivity)
+    28:28:static synthetic android.view.animation.TranslateAnimation access$4(com.example.lifememory.activity.WelcomeActivity)
+com.example.lifememory.activity.WelcomeActivity$3
+com.example.lifememory.activity.WelcomeActivity$4
+com.example.lifememory.activity.bill.calender.CalendarGridViewAdapter:
+    private java.lang.String ymd
+    100:104:public CalendarGridViewAdapter(android.app.Activity)
+com.example.lifememory.activity.bill.calender.CalendarUtil:
+    148:150:public java.lang.String animalsYear()
+    155:160:private static java.lang.String cyclicalm(int)
+    165:166:public java.lang.String cyclical()
+    331:331:public static boolean compare(java.util.Date,java.util.Date)
+    353:353:public static java.lang.String getCurrentDay(java.util.Calendar)
+com.example.lifememory.activity.bill.calender.NumberHelper:
+    3:3:public NumberHelper()
+com.example.lifememory.activity.bill.calender.StringUtil:
+    12:12:public StringUtil()
+    31:31:public static boolean equals(java.lang.String,java.lang.String)
+    42:42:public static boolean equalsIgnoreCase(java.lang.String,java.lang.String)
+    53:53:public static boolean contains(java.lang.String,java.lang.String)
+    63:63:public static java.lang.String getString(java.lang.String)
 com.example.lifememory.activity.model.BabyJiShiBen:
     private static final long serialVersionUID
     72:72:public static long getSerialversionuid()
@@ -1081,11 +1151,21 @@ com.example.lifememory.adapter.BillCatatoryListAdapter:
     42:44:public void setDatas(java.util.List)
 com.example.lifememory.adapter.BillCatatoryListAdapter$ViewHolder:
     android.widget.ImageView selectedImage
+com.example.lifememory.adapter.BillMonthDetailsListViewListViewAdapter:
+    int txtLineCount
+com.example.lifememory.adapter.CommonMyExpandableListViewAdapterList:
+    private boolean isFirstGroup
+com.example.lifememory.adapter.CommonMyExpandableListViewAdapterLuYinList:
+    private boolean isFirstGroup
 com.example.lifememory.adapter.DateAdapter
-com.example.lifememory.adapter.MyExpandableListViewAdapterList:
-    private boolean isFirstGroup
-com.example.lifememory.adapter.MyExpandableListViewAdapterLuYinList:
-    private boolean isFirstGroup
+com.example.lifememory.adapter.MyExpandableListViewAdapter
+com.example.lifememory.adapter.MyExpandableListViewAdapter$MyOnItemClick
+com.example.lifememory.adapter.MyExpandableListViewAdapterList
+com.example.lifememory.adapter.MyExpandableListViewAdapterList$1
+com.example.lifememory.adapter.MyExpandableListViewAdapterLuYinList
+com.example.lifememory.adapter.MyExpandableListViewAdapterLuYinList$1
+com.example.lifememory.adapter.MyExpandableListViewLuYinAdapter
+com.example.lifememory.adapter.MyExpandableListViewLuYinAdapter$MyOnItemClick
 com.example.lifememory.adapter.PregnancyDiaryJiShiListAdapter:
     57:58:public void refreshView()
 com.example.lifememory.adapter.PregnancyDiaryJiShiListAdapter$ViewHolder
@@ -1094,12 +1174,41 @@ com.example.lifememory.adapter.PregnancyDiaryLuYinBenListAdapter:
 com.example.lifememory.adapter.PregnancyDiaryLuYinBenListAdapter$ViewHolder
 com.example.lifememory.adapter.PregnancyJiShiBenAddToolBarAdapter:
     39:41:public void setSelected(int)
+com.example.lifememory.chart.AbstractDemoChart:
+    46:48:protected org.achartengine.model.XYMultipleSeriesDataset buildDataset(java.lang.String[],java.util.List,java.util.List)
+    53:64:public void addXYSeries(org.achartengine.model.XYMultipleSeriesDataset,java.lang.String[],java.util.List,java.util.List,int)
+    74:76:protected org.achartengine.renderer.XYMultipleSeriesRenderer buildRenderer(int[],org.achartengine.chart.PointStyle[])
+    80:93:protected void setRenderer(org.achartengine.renderer.XYMultipleSeriesRenderer,int[],org.achartengine.chart.PointStyle[])
+    112:121:protected void setChartSettings(org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String,java.lang.String,java.lang.String,double,double,double,double,int,int)
+    133:145:protected org.achartengine.model.XYMultipleSeriesDataset buildDateDataset(java.lang.String[],java.util.List,java.util.List)
+    156:162:protected org.achartengine.model.CategorySeries buildCategoryDataset(java.lang.String,double[])
+    184:190:protected org.achartengine.model.MultipleCategorySeries buildMultipleCategoryDataset(java.lang.String,java.util.List,java.util.List)
+    220:231:protected org.achartengine.model.XYMultipleSeriesDataset buildBarDataset(java.lang.String[],java.util.List)
+    241:252:protected org.achartengine.renderer.XYMultipleSeriesRenderer buildBarRenderer(int[])
+com.example.lifememory.chart.IDemoChart
+com.example.lifememory.chart.line.XYChartData:
+    public float[] coodrinateY_double
+    21:26:public XYChartData(java.lang.String,java.lang.String[],float[],int)
+    33:34:public void setLineName(java.lang.String)
+    37:37:public java.lang.String[] getCoordinateX()
+    41:42:public void setCoordinateX(java.lang.String[])
+    49:50:public void setCoordinateY(int[])
+    57:58:public void setPaintColor(int)
+    61:61:public float[] getCoodrinateY_double()
+    65:66:public void setCoodrinateY_double(float[])
+com.example.lifememory.chart.line.XYChartView:
+    56:58:public XYChartView(android.content.Context,android.util.AttributeSet)
 com.example.lifememory.db.service.BabyDiaryJiShiBenService:
     48:68:public java.util.ArrayList listAll()
     127:148:public java.util.ArrayList getTodayItems(java.lang.String)
+com.example.lifememory.db.service.BillInfoService:
+    750:757:public boolean isHaveSpendDatas(java.lang.String)
+    833:852:public void reimburseMent(com.example.lifememory.activity.model.Bill,java.lang.String,int,java.lang.String)
 com.example.lifememory.db.service.PregnancyDiaryJiShiBenService:
     47:67:public java.util.ArrayList listAll()
     126:147:public java.util.ArrayList getTodayItems(java.lang.String)
+com.example.lifememory.dialog.CommonDiaryDialogAlert:
+    30:34:public CommonDiaryDialogAlert(android.content.Context,com.example.lifememory.dialog.DialogAlertListener,java.lang.String,java.lang.Object)
 com.example.lifememory.dialog.DialogAlert:
     30:34:public DialogAlert(android.content.Context,com.example.lifememory.dialog.DialogAlertListener,java.lang.String,java.lang.Object)
 com.example.lifememory.dialog.DialogAlertBill:
@@ -1107,8 +1216,8 @@ com.example.lifememory.dialog.DialogAlertBill:
 com.example.lifememory.dialog.DialogBackUnSaveAlert:
     31:35:public DialogBackUnSaveAlert(android.content.Context,com.example.lifememory.dialog.DialogAlertListener,java.lang.String,java.lang.Object)
 com.example.lifememory.dialog.DialogPregnancyJiShiBenReNameDialog:
-    37:41:public DialogPregnancyJiShiBenReNameDialog(android.content.Context,com.example.lifememory.dialog.DialogInputListener,java.lang.String,java.lang.String,boolean)
-    45:49:public DialogPregnancyJiShiBenReNameDialog(android.content.Context,com.example.lifememory.dialog.DialogInputListener,java.lang.String,java.lang.String,java.lang.Object)
+    38:42:public DialogPregnancyJiShiBenReNameDialog(android.content.Context,com.example.lifememory.dialog.DialogInputListener,java.lang.String,java.lang.String,boolean)
+    46:50:public DialogPregnancyJiShiBenReNameDialog(android.content.Context,com.example.lifememory.dialog.DialogInputListener,java.lang.String,java.lang.String,java.lang.Object)
 com.example.lifememory.fragments.FR_Bill_index_bak
 com.example.lifememory.fragments.FR_Bill_index_bak$1
 com.example.lifememory.fragments.FR_Bill_index_bak$2
@@ -1120,6 +1229,7 @@ com.example.lifememory.fragments.FR_Bill_index_bak$7
 com.example.lifememory.fragments.FR_Bill_index_bak$8
 com.example.lifememory.fragments.FR_Bill_index_bak$9
 com.example.lifememory.fragments.FR_Bill_index_bak$9$1
+com.example.lifememory.fragments.chart.FR_BillBarChartFragment_bak
 com.example.lifememory.slidingmenu.menulib.app.SlidingActivity
 com.example.lifememory.slidingmenu.menulib.app.SlidingActivityBase
 com.example.lifememory.slidingmenu.menulib.app.SlidingActivityHelper:
@@ -1133,6 +1243,7 @@ com.example.lifememory.slidingmenu.menulib.app.SlidingFragmentActivity:
     133:134:public void showSecondaryMenu()
     140:141:public void setSlidingActionBarEnabled(boolean)
 com.example.lifememory.test.BillCatagoryServiceTest
+com.example.lifememory.utils.AbstractMyActivityGroup
 com.example.lifememory.utils.Configure
 com.example.lifememory.utils.ConstantUtil:
     public static final int EDIT_NAME_FINISHED
@@ -1148,6 +1259,8 @@ com.example.lifememory.utils.ConstantUtil:
     public static final int SELECTED_INCATAGORY_FINISHED
     public static final int EDIT_INCATAGORY_FINISHED
     public static final int EDIT_BUDGET_FINISHED
+    public static final int REIMBURSEMENT_VALUE_INPUT
+    public static final int SELECT_ACCOUNT_FINISHED
     public static final int EDIT_NOCHANGE_BACK
     public static final java.lang.String ACCOUNT_COMMON
     public static final java.lang.String ACCOUNT_TRANSFER_IN
@@ -1182,3 +1295,574 @@ com.example.lifememory.wheel.WheelView:
     296:297:public void addScrollingListener(com.example.lifememory.wheel.OnWheelScrollListener)
     306:307:public void removeScrollingListener(com.example.lifememory.wheel.OnWheelScrollListener)
     391:391:public boolean isCyclic()
+com.iflytek.Setting:
+    private Setting()
+    public static void saveLogFile(com.iflytek.Setting$LOG_LEVEL,java.lang.String)
+    public static void showLogcat(boolean)
+    public static void checkNetwork(boolean)
+    public static void setLocationEnable(boolean)
+    public static void setLanguage(java.util.Locale)
+com.iflytek.Version:
+    public Version()
+com.iflytek.a.a:
+    public void a(java.lang.String,boolean)
+    public boolean b(java.lang.String,boolean)
+com.iflytek.a.b:
+    public void a(com.iflytek.a.f)
+com.iflytek.a.f:
+    public f(java.lang.String,java.lang.String,int)
+    public boolean a()
+    public java.lang.String b()
+    public java.lang.String c()
+    public java.lang.String d()
+    public com.iflytek.a.f a(int,boolean)
+    public boolean a(int)
+    public void g()
+com.iflytek.a.g:
+    public com.iflytek.a.f b(android.content.Context)
+    public com.iflytek.a.f a(android.content.Context,com.iflytek.speech.SpeechError,boolean)
+    public void a(com.iflytek.a.f)
+com.iflytek.a.i:
+    public com.iflytek.a.f b(android.content.Context)
+    public void a(com.iflytek.a.f)
+    public com.iflytek.a.f a(android.content.Context,com.iflytek.speech.SpeechError,boolean)
+com.iflytek.b.a:
+    public boolean b(java.lang.String)
+com.iflytek.b.c:
+    private static java.lang.String a(int)
+    public static java.lang.String a(android.content.Context,java.lang.String,com.iflytek.b.a,boolean)
+    public static java.lang.String c(android.content.Context,com.iflytek.b.a)
+    public static boolean a(java.lang.String)
+com.iflytek.c.a:
+    public static void a(java.util.Locale)
+    public static boolean a(java.lang.String)
+    private static boolean b(java.lang.String)
+    public static java.lang.String a(int)
+    public static java.lang.String b(int)
+com.iflytek.msc.MSC:
+    public static native int DebugLog(boolean)
+    public static native int QTTSFini()
+    public static final native char[] QISRSessionBegin(byte[],byte[],com.iflytek.msc.MSCSessionInfo)
+    public static native int QISRSetParam(char[],byte[],byte[])
+    public static native int QISRAudioWrite(char[],byte[],int,int,com.iflytek.msc.MSCSessionInfo)
+    public static final native byte[] QISRGetResult(char[],com.iflytek.msc.MSCSessionInfo)
+    public static native int QISRSessionEnd(char[],byte[])
+    public static native int QISRFini()
+    public static native int QISVFini()
+    public static native int QMSPLogin(byte[],byte[],byte[])
+    public static native byte[] QMSPUploadData(byte[],byte[],int,byte[],com.iflytek.msc.MSCSessionInfo)
+    public static native byte[] QMSPDownloadData(byte[],com.iflytek.msc.MSCSessionInfo)
+    public static native byte[] QMSPSearch(byte[],byte[],com.iflytek.msc.MSCSessionInfo)
+    public static native int QMSPLogOut()
+com.iflytek.msc.MSCSessionInfo:
+    public int epstatues
+com.iflytek.msc.a.a:
+    public java.lang.String d()
+    protected void a(com.iflytek.b.a)
+com.iflytek.msc.a.c:
+    protected void a(java.lang.String)
+    public java.lang.String getSessionID()
+    public boolean destory()
+    public boolean destory(int)
+    protected boolean c()
+com.iflytek.msc.a.c$a
+com.iflytek.msc.a.e
+com.iflytek.msc.b.a:
+    private char[] c
+    private com.iflytek.msc.MSCSessionInfo d
+    private com.iflytek.msc.MSCSessionInfo e
+    private byte[] f
+    public a()
+    public static boolean a()
+    public synchronized int a(android.content.Context,java.lang.String,com.iflytek.b.a,java.lang.String,boolean)
+    public synchronized void a(java.lang.String)
+    public synchronized void a(byte[],int)
+    public synchronized void b()
+    private synchronized void a(byte[],int,int)
+    public synchronized int c()
+    public synchronized int d()
+    public synchronized int b(java.lang.String)
+    public synchronized boolean a(java.lang.String,java.lang.String)
+    public synchronized java.lang.String c(java.lang.String)
+    public static int d(java.lang.String)
+    public synchronized boolean e()
+    public byte[] f()
+    public com.iflytek.msc.b.a$a g()
+com.iflytek.msc.b.a$a
+com.iflytek.msc.b.b
+com.iflytek.msc.b.c
+com.iflytek.msc.b.c$1
+com.iflytek.msc.c.a
+com.iflytek.msc.d.a
+com.iflytek.msc.d.b
+com.iflytek.msc.d.b$a
+com.iflytek.msc.e.b:
+    public static boolean b()
+    public static int d(java.lang.String)
+    public static java.lang.String e(java.lang.String)
+com.iflytek.msc.f.d
+com.iflytek.msc.f.e:
+    public static void a(java.lang.String,java.lang.String)
+    public static void b(java.lang.String)
+    public static void b(java.lang.String,java.lang.String)
+com.iflytek.msc.f.f:
+    public static synchronized java.lang.String a(java.lang.String)
+com.iflytek.msc.f.g:
+    public static byte[] a(android.content.Context,java.lang.String)
+    public static void a(java.util.concurrent.ConcurrentLinkedQueue,java.lang.String)
+com.iflytek.msc.f.i
+com.iflytek.record.PcmPlayer:
+    public PcmPlayer(android.content.Context)
+    public boolean b()
+    public boolean c()
+com.iflytek.record.a:
+    public void a(java.util.concurrent.ConcurrentLinkedQueue)
+com.iflytek.record.c
+com.iflytek.record.c$a
+com.iflytek.speech.DataDownloader
+com.iflytek.speech.DataUploader
+com.iflytek.speech.RecognizerResult
+com.iflytek.speech.SpeechConfig:
+    public static final int Rate16K
+    public static final int Rate8K
+    public static final int Rate11K
+    public static final int Rate22K
+    public SpeechConfig()
+    public static void a(com.iflytek.speech.SpeechConfig$RATE)
+    public static int a()
+    public static void a(int)
+    public static int b()
+    public static void c(com.iflytek.speech.SpeechConfig$RATE)
+    public static void c(int)
+com.iflytek.speech.SpeechError:
+    private static final long serialVersionUID
+    public static final int UNKNOWN
+    public static final int ERROR_NO_NETWORK
+    public static final int ERROR_NETWORK_TIMEOUT
+    public static final int ERROR_NET_EXPECTION
+    public static final int ERROR_INSUFFICIENT_PERMISSIONS
+    public static final int ERROR_INVALID_RESULT
+    public static final int ERROR_SERVER_CONNECT
+    public static final int ERROR_INVALID_PARAM
+    public static final int ERROR_CLIENT
+    public static final int ERROR_AUDIO_RECORD
+    public static final int ERROR_NO_MATCH
+    public static final int ERROR_SPEECH_TIMEOUT
+    public static final int ERROR_INVALID_ENCODING
+    public static final int ERROR_EMPTY_UTTERANCE
+    public static final int ERROR_FILE_ACCESS
+    public static final int ERROR_PLAY_MEDIA
+    public static final int ERROR_MEMORY_WRANING
+    public static final int ERROR_TEXT_OVERFLOW
+    public static final int ERROR_LOGIN
+    public static final int ERROR_IN_USE
+    public static final int ERROR_INVALID_DATA
+    public static final int ERROR_INVALID_GRAMMAR
+    public static final int ERROR_INVALID_LOCAL_RESOURCE
+    public static final int ERROR_LOGIN_INVALID_USER
+    public static final int ERROR_LOGIN_INVALID_PWD
+    public static final int ERROR_PERMISSION_DENIED
+    public static final int ERROR_BROWSER_NOT_INSTALLED
+    public static final int ERROR_TTS_INTERRUPT
+    public int getErrorType()
+    public java.lang.String getErrorDesc()
+    public com.iflytek.speech.SpeechError$a getOperation()
+com.iflytek.speech.SpeechError$a
+com.iflytek.speech.SpeechListener
+com.iflytek.speech.SpeechSearcher
+com.iflytek.speech.SpeechUser:
+    public com.iflytek.speech.SpeechUser$Login_State getLoginState()
+    public boolean login(android.content.Context,java.lang.String,java.lang.String,java.lang.String,com.iflytek.speech.SpeechListener)
+    public boolean logout()
+    protected boolean c()
+    static synthetic com.iflytek.speech.SpeechUser$Login_State a(com.iflytek.speech.SpeechUser,com.iflytek.speech.SpeechUser$Login_State)
+com.iflytek.speech.SpeechUser$a
+com.iflytek.speech.SynthesizerPlayer:
+    public abstract com.iflytek.record.PcmPlayer$PLAY_STATE getState()
+    public abstract void pause()
+    public abstract void replay()
+    public abstract void resume()
+    public abstract void cancel()
+    public abstract boolean destory()
+    public abstract boolean destory(int)
+    public void setSampleRate(com.iflytek.speech.SpeechConfig$RATE)
+    public void setPitch(int)
+    public int getUpflowBytes(boolean)
+    public int getDownflowBytes(boolean)
+com.iflytek.speech.a
+com.iflytek.speech.a.a:
+    private boolean f
+    public static com.iflytek.speech.b b(android.content.Context,java.lang.String)
+    protected a(android.content.Context,java.lang.String)
+    public void a(com.iflytek.speech.a,java.lang.String,java.lang.String,java.lang.String)
+    public void a(com.iflytek.speech.a,java.util.concurrent.ConcurrentLinkedQueue,java.lang.String,java.lang.String,java.lang.String)
+    public void e()
+    public java.util.concurrent.ConcurrentLinkedQueue h()
+    protected boolean c()
+    public int b(boolean)
+    public int a(boolean)
+    public void a(com.iflytek.speech.SpeechConfig$RATE)
+    public int f()
+    public void a(int)
+    static synthetic com.iflytek.msc.a.a a(com.iflytek.speech.a.a)
+    static synthetic com.iflytek.msc.a.a b(com.iflytek.speech.a.a)
+    static synthetic android.content.Context c(com.iflytek.speech.a.a)
+    static synthetic boolean d(com.iflytek.speech.a.a)
+    static synthetic android.content.Context e(com.iflytek.speech.a.a)
+com.iflytek.speech.a.a$a
+com.iflytek.speech.a.b
+com.iflytek.speech.a.c:
+    public void pause()
+    public void replay()
+    public void resume()
+    public com.iflytek.record.PcmPlayer$PLAY_STATE getState()
+    public void cancel()
+    public int getDownflowBytes(boolean)
+    public int getUpflowBytes(boolean)
+    public void setPitch(int)
+    public void setSampleRate(com.iflytek.speech.SpeechConfig$RATE)
+    public boolean destory()
+    public boolean destory(int)
+com.iflytek.speech.a.c$a:
+    public void b()
+    public void c()
+    public void e()
+com.iflytek.speech.b:
+    public static com.iflytek.speech.b a(android.content.Context,java.lang.String)
+    protected b(android.content.Context,java.lang.String)
+    public abstract void a(com.iflytek.speech.a,java.lang.String,java.lang.String,java.lang.String)
+    public abstract void a(com.iflytek.speech.a,java.util.concurrent.ConcurrentLinkedQueue,java.lang.String,java.lang.String,java.lang.String)
+    public abstract void e()
+    public abstract int f()
+    public int a(boolean)
+    public int b(boolean)
+    public void a(com.iflytek.speech.SpeechConfig$RATE)
+    public void a(int)
+com.iflytek.speech.c:
+    protected boolean c()
+    public int a(boolean)
+    public int b(boolean)
+    public void a(int)
+    public void a(com.iflytek.speech.SpeechConfig$RATE)
+com.iflytek.speech.e:
+    protected boolean c()
+com.iflytek.ui.RecognizerDialog
+com.iflytek.ui.RecognizerDialogListener
+com.iflytek.ui.SynthesizerDialog
+com.iflytek.ui.SynthesizerDialogListener
+com.iflytek.ui.UploadDialog
+com.iflytek.ui.a
+com.iflytek.ui.a.a
+com.iflytek.ui.a.b
+com.iflytek.ui.a.c
+com.iflytek.ui.a.c$a
+com.iflytek.ui.a.d
+com.iflytek.ui.a.e
+com.iflytek.ui.a.f
+com.iflytek.ui.a.g
+com.iflytek.ui.a.h
+com.iflytek.ui.a.h$a
+com.iflytek.ui.a.i
+com.iflytek.ui.a.j
+com.iflytek.ui.a.j$a
+com.iflytek.ui.a.k
+com.iflytek.ui.a.l
+com.iflytek.ui.a.m
+com.iflytek.ui.a.n
+com.iflytek.ui.a.n$a
+com.iflytek.ui.a.o
+com.iflytek.ui.a.p
+com.iflytek.ui.b
+com.iflytek.ui.b.a
+com.iflytek.ui.b.b
+com.iflytek.ui.b.b$a
+com.iflytek.ui.b.b$b
+com.iflytek.ui.c
+com.iflytek.ui.d
+com.iflytek.ui.e
+com.iflytek.ui.f
+com.iflytek.ui.f$1
+com.iflytek.ui.g
+com.iflytek.ui.h
+com.iflytek.ui.i
+com.iflytek.ui.i$1
+com.iflytek.ui.j
+com.iflytek.util.ContactManager
+com.iflytek.util.ContactManager$ContactListener
+com.iflytek.util.ContactManager$a
+com.iflytek.util.ContactManager$b
+com.iflytek.util.UserWords
+com.iflytek.util.a
+com.iflytek.util.a.a
+com.iflytek.util.a.a.a:
+    public a(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    public java.lang.String a()
+    public java.lang.String b()
+    public java.lang.String c()
+com.iflytek.util.a.b
+com.iflytek.util.a.b.a
+com.iflytek.util.a.b.b
+com.iflytek.util.a.c
+com.iflytek.util.a.c.a
+org.achartengine.ChartFactory:
+    public static final java.lang.String CHART
+    public static final java.lang.String TITLE
+    51:53:private ChartFactory()
+    68:70:public static final org.achartengine.GraphicalView getLineChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    86:88:public static final org.achartengine.GraphicalView getCubeLineChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,float)
+    104:106:public static final org.achartengine.GraphicalView getScatterChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    122:124:public static final org.achartengine.GraphicalView getBubbleChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    142:145:public static final org.achartengine.GraphicalView getTimeChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String)
+    162:164:public static final org.achartengine.GraphicalView getBarChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,org.achartengine.chart.BarChart$Type)
+    181:183:public static final org.achartengine.GraphicalView getRangeBarChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,org.achartengine.chart.BarChart$Type)
+    200:207:public static final org.achartengine.GraphicalView getCombinedXYChartView(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String[])
+    243:245:public static final org.achartengine.GraphicalView getDialChartView(android.content.Context,org.achartengine.model.CategorySeries,org.achartengine.renderer.DialRenderer)
+    262:264:public static final org.achartengine.GraphicalView getDoughnutChartView(android.content.Context,org.achartengine.model.MultipleCategorySeries,org.achartengine.renderer.DefaultRenderer)
+    282:282:public static final android.content.Intent getLineChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    300:300:public static final android.content.Intent getCubicLineChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,float)
+    317:317:public static final android.content.Intent getScatterChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    334:334:public static final android.content.Intent getBubbleChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    353:353:public static final android.content.Intent getTimeChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String)
+    371:371:public static final android.content.Intent getBarChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,org.achartengine.chart.BarChart$Type)
+    392:397:public static final android.content.Intent getLineChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String)
+    419:424:public static final android.content.Intent getCubicLineChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,float,java.lang.String)
+    442:447:public static final android.content.Intent getScatterChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String)
+    465:470:public static final android.content.Intent getBubbleChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String)
+    490:496:public static final android.content.Intent getTimeChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String,java.lang.String)
+    515:520:public static final android.content.Intent getBarChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,org.achartengine.chart.BarChart$Type,java.lang.String)
+    540:545:public static final android.content.Intent getRangeBarChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,org.achartengine.chart.BarChart$Type,java.lang.String)
+    565:575:public static final android.content.Intent getCombinedXYChartIntent(android.content.Context,org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer,java.lang.String[],java.lang.String)
+    593:598:public static final android.content.Intent getPieChartIntent(android.content.Context,org.achartengine.model.CategorySeries,org.achartengine.renderer.DefaultRenderer,java.lang.String)
+    616:621:public static final android.content.Intent getDoughnutChartIntent(android.content.Context,org.achartengine.model.MultipleCategorySeries,org.achartengine.renderer.DefaultRenderer,java.lang.String)
+    639:644:public static final android.content.Intent getDialChartIntent(android.content.Context,org.achartengine.model.CategorySeries,org.achartengine.renderer.DialRenderer,java.lang.String)
+    658:663:private static void checkParameters(org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    692:697:private static void checkParameters(org.achartengine.model.MultipleCategorySeries,org.achartengine.renderer.DefaultRenderer)
+    700:705:private static boolean checkMultipleSeriesItems(org.achartengine.model.MultipleCategorySeries,int)
+org.achartengine.GraphicalActivity
+org.achartengine.GraphicalView:
+    145:149:public double[] toRealPoint(int)
+    231:240:public void addZoomListener(org.achartengine.tools.ZoomListener,boolean,boolean)
+    248:253:public synchronized void removeZoomListener(org.achartengine.tools.ZoomListener)
+    261:262:public void addPanListener(org.achartengine.tools.PanListener)
+    270:271:public void removePanListener(org.achartengine.tools.PanListener)
+    313:318:public void repaint(int,int,int,int)
+    326:334:public android.graphics.Bitmap toBitmap()
+org.achartengine.GraphicalView$2
+org.achartengine.ITouchHandler:
+    public abstract void addZoomListener(org.achartengine.tools.ZoomListener)
+    public abstract void removeZoomListener(org.achartengine.tools.ZoomListener)
+    public abstract void addPanListener(org.achartengine.tools.PanListener)
+    public abstract void removePanListener(org.achartengine.tools.PanListener)
+org.achartengine.TouchHandler:
+    167:170:public void addZoomListener(org.achartengine.tools.ZoomListener)
+    178:181:public void removeZoomListener(org.achartengine.tools.ZoomListener)
+    189:192:public void addPanListener(org.achartengine.tools.PanListener)
+    200:203:public void removePanListener(org.achartengine.tools.PanListener)
+org.achartengine.TouchHandlerOld:
+    105:105:public void addZoomListener(org.achartengine.tools.ZoomListener)
+    113:113:public void removeZoomListener(org.achartengine.tools.ZoomListener)
+    121:124:public void addPanListener(org.achartengine.tools.PanListener)
+    132:135:public void removePanListener(org.achartengine.tools.PanListener)
+org.achartengine.chart.BarChart
+org.achartengine.chart.BarChart$Type
+org.achartengine.chart.BubbleChart
+org.achartengine.chart.CombinedXYChart
+org.achartengine.chart.CubicLineChart
+org.achartengine.chart.DialChart
+org.achartengine.chart.DoughnutChart
+org.achartengine.chart.LineChart
+org.achartengine.chart.PieSegment:
+    35:35:protected float getStartAngle()
+    39:39:protected float getEndAngle()
+org.achartengine.chart.PointStyle:
+    62:70:public static org.achartengine.chart.PointStyle getPointStyleForName(java.lang.String)
+    79:87:public static int getIndexForName(java.lang.String)
+org.achartengine.chart.RangeBarChart
+org.achartengine.chart.RoundChart:
+    protected static final int SHAPE_WIDTH
+    protected static final int NO_VALUE
+org.achartengine.chart.ScatterChart:
+    public static final java.lang.String TYPE
+    private static final float SIZE
+    private static final int SHAPE_WIDTH
+    41:42:ScatterChart()
+    51:53:public ScatterChart(org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    58:60:protected void setDatasetRenderer(org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    263:263:public java.lang.String getChartType()
+org.achartengine.chart.TimeChart
+org.achartengine.chart.XYChart:
+    84:87:public XYChart(org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    92:94:protected void setDatasetRenderer(org.achartengine.model.XYMultipleSeriesDataset,org.achartengine.renderer.XYMultipleSeriesRenderer)
+    438:438:protected android.graphics.Rect getScreenR()
+    442:443:protected void setScreenR(android.graphics.Rect)
+    774:775:public void setCalcRange(double[],int)
+    778:778:public double[] toRealPoint(float,float)
+    782:782:public double[] toScreenPoint(double[])
+    812:824:public double[] toScreenPoint(double[],int)
+    902:902:public double getDefaultMinimum()
+    public abstract java.lang.String getChartType()
+org.achartengine.model.CategorySeries:
+    48:48:public java.lang.String getTitle()
+    57:58:public synchronized void add(double)
+    79:81:public synchronized void set(int,java.lang.String,double)
+    89:91:public synchronized void remove(int)
+    97:99:public synchronized void clear()
+    136:141:public org.achartengine.model.XYSeries toXYSeries()
+org.achartengine.model.MultipleCategorySeries
+org.achartengine.model.Point:
+    46:47:public void setX(float)
+    50:51:public void setY(float)
+org.achartengine.model.RangeCategorySeries
+org.achartengine.model.SeriesSelection:
+    35:35:public int getSeriesIndex()
+    39:39:public int getPointIndex()
+    43:43:public double getXValue()
+    47:47:public double getValue()
+org.achartengine.model.TimeSeries
+org.achartengine.model.XYMultipleSeriesDataset:
+    25:27:public XYMultipleSeriesDataset()
+    35:36:public synchronized void addSeries(org.achartengine.model.XYSeries)
+    45:46:public synchronized void addSeries(int,org.achartengine.model.XYSeries)
+    54:55:public synchronized void removeSeries(int)
+    63:64:public synchronized void removeSeries(org.achartengine.model.XYSeries)
+org.achartengine.model.XYSeries:
+    53:54:public XYSeries(java.lang.String)
+    62:66:public XYSeries(java.lang.String,int)
+    76:86:private void initRange()
+    95:99:private void updateRange(double,double)
+    116:117:public void setTitle(java.lang.String)
+    126:128:public synchronized void add(double,double)
+    136:142:public synchronized void remove(int)
+    148:150:public synchronized void clear()
+    159:159:public synchronized double getX(int)
+org.achartengine.model.XYValueSeries
+org.achartengine.renderer.DefaultRenderer:
+    public static final int NO_COLOR
+    public static final int BACKGROUND_COLOR
+    public static final int TEXT_COLOR
+    122:123:public void setChartTitle(java.lang.String)
+    140:141:public void setChartTitleTextSize(float)
+    159:160:public void addSeriesRenderer(int,org.achartengine.renderer.SimpleSeriesRenderer)
+    168:169:public void removeSeriesRenderer(org.achartengine.renderer.SimpleSeriesRenderer)
+    196:196:public org.achartengine.renderer.SimpleSeriesRenderer[] getSeriesRenderers()
+    214:215:public void setBackgroundColor(int)
+    232:233:public void setApplyBackgroundColor(boolean)
+    250:251:public void setAxesColor(int)
+    323:324:public void setShowLabels(boolean)
+    387:388:public void setShowCustomTextGrid(boolean)
+    469:471:public void setTextTypeface(java.lang.String,int)
+    488:489:public void setAntialiasing(boolean)
+    570:571:public void setExternalZoomEnabled(boolean)
+    597:598:public void setPanEnabled(boolean)
+    606:607:public void setZoomRate(float)
+    624:625:public void setClickEnabled(boolean)
+    642:643:public void setSelectableBuffer(int)
+    660:661:public void setLegendHeight(int)
+    699:700:public void setInScroll(boolean)
+    710:710:public float getStartAngle()
+    721:722:public void setStartAngle(float)
+org.achartengine.renderer.DialRenderer
+org.achartengine.renderer.DialRenderer$Type
+org.achartengine.renderer.SimpleSeriesRenderer:
+    private double mGradientStartValue
+    private int mGradientStartColor
+    private double mGradientStopValue
+    private int mGradientStopColor
+    83:84:public void setDisplayChartValues(boolean)
+    101:102:public void setChartValuesTextSize(float)
+    120:121:public void setChartValuesTextAlign(android.graphics.Paint$Align)
+    138:139:public void setChartValuesSpacing(float)
+    156:157:public void setStroke(org.achartengine.renderer.BasicStroke)
+    164:164:public boolean isGradientEnabled()
+    172:173:public void setGradientEnabled(boolean)
+    180:180:public double getGradientStartValue()
+    188:188:public int getGradientStartColor()
+    197:199:public void setGradientStart(double,int)
+    206:206:public double getGradientStopValue()
+    214:214:public int getGradientStopColor()
+    223:225:public void setGradientStop(double,int)
+org.achartengine.renderer.XYMultipleSeriesRenderer:
+    168:169:public void setOrientation(org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation)
+    186:187:public void setXTitle(java.lang.String)
+    214:215:public void setYTitle(java.lang.String)
+    224:225:public void setYTitle(java.lang.String,int)
+    242:243:public void setAxisTitleTextSize(float)
+    251:251:public double getXAxisMin()
+    260:261:public void setXAxisMin(double)
+    269:269:public boolean isMinXSet()
+    278:278:public double getXAxisMax()
+    287:288:public void setXAxisMax(double)
+    296:296:public boolean isMaxXSet()
+    305:305:public double getYAxisMin()
+    314:315:public void setYAxisMin(double)
+    323:323:public boolean isMinYSet()
+    332:332:public double getYAxisMax()
+    341:342:public void setYAxisMax(double)
+    350:350:public boolean isMaxYSet()
+    500:501:public void setXLabels(int)
+    511:512:public void addTextLabel(double,java.lang.String)
+    521:522:public void addXTextLabel(double,java.lang.String)
+    549:550:public void clearTextLabels()
+    556:557:public void clearXTextLabels()
+    566:567:public void addYTextLabel(double,java.lang.String)
+    577:578:public void addYTextLabel(double,java.lang.String,int)
+    587:587:public java.lang.String getYTextLabel(java.lang.Double)
+    607:607:public java.lang.Double[] getYTextLabelLocations()
+    624:625:public void clearYTextLabels()
+    642:643:public void setYLabels(int)
+    652:656:public void setDisplayChartValues(boolean)
+    665:669:public void setChartValuesTextSize(float)
+    705:707:public void setPanEnabled(boolean,boolean)
+    743:745:public void setZoomEnabled(boolean,boolean)
+    754:754:public double getBarsSpacing()
+    763:763:public double getBarSpacing()
+    774:775:public void setBarSpacing(double)
+    810:811:public void setGridColor(int)
+    830:831:public void setPanLimits(double[])
+    850:851:public void setZoomLimits(double[])
+    868:869:public void setXLabelsAngle(float)
+    886:887:public void setYLabelsAngle(float)
+    895:895:public float getPointSize()
+    904:905:public void setPointSize(float)
+    908:909:public void setRange(double[])
+    945:945:public double[] getInitialRange()
+    965:966:public void setInitialRange(double[])
+    976:977:public void setInitialRange(double[],int)
+    1003:1004:public void setXLabelsColor(int)
+    1013:1014:public void setYLabelsColor(int,int)
+    1031:1032:public void setXLabelsAlign(android.graphics.Paint$Align)
+    1045:1046:public void setYLabelsAlign(android.graphics.Paint$Align)
+    1053:1054:public void setYAxisAlign(android.graphics.Paint$Align,int)
+    1062:1063:public void setYLabelsAlign(android.graphics.Paint$Align,int)
+org.achartengine.renderer.XYSeriesRenderer:
+    43:43:public boolean isFillBelowLine()
+    53:54:public void setFillBelowLine(boolean)
+    71:72:public void setFillPoints(boolean)
+    80:80:public int getFillBelowLineColor()
+    89:90:public void setFillBelowLineColor(int)
+    107:108:public void setPointStyle(org.achartengine.chart.PointStyle)
+    116:116:public float getLineWidth()
+    125:126:public void setLineWidth(float)
+org.achartengine.tools.Pan:
+    157:158:public synchronized void addPanListener(org.achartengine.tools.PanListener)
+    166:167:public synchronized void removePanListener(org.achartengine.tools.PanListener)
+org.achartengine.tools.Zoom:
+    public static final int ZOOM_AXIS_XY
+    public static final int ZOOM_AXIS_X
+    public static final int ZOOM_AXIS_Y
+    177:178:public synchronized void addZoomListener(org.achartengine.tools.ZoomListener)
+    186:187:public synchronized void removeZoomListener(org.achartengine.tools.ZoomListener)
+org.achartengine.tools.ZoomEvent:
+    45:45:public boolean isZoomIn()
+    54:54:public float getZoomRate()
+org.achartengine.util.IndexXYMap:
+    32:33:public IndexXYMap()
+    54:54:public double getMaxXDifference()
+    70:70:public java.lang.Object getXByIndex(int)
+    91:92:public org.achartengine.util.XYEntry getByIndex(int)
+    101:102:public org.achartengine.util.XYEntry removeByIndex(int)
+org.achartengine.util.MathHelper:
+    public static final double NULL_VALUE
+    35:37:private MathHelper()
+    46:57:public static double[] minmax(java.util.List)
+org.achartengine.util.XYEntry
